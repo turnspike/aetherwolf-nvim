@@ -3,7 +3,7 @@ The official Turnspike nVIM settings.
 
 # Installation
 
-Requires homeshick or homesick.
+Requires [homeshick](https://github.com/andsens/homeshick) or homesick.
 
 Just run:
   * homeshick clone turnspike/vimrc
