@@ -1,5 +1,5 @@
 # Turnspike Vimrc
-The official Turnspike nVIM settings.
+The official [turnspike](https://turnspike.com) nVIM settings.
 
 # Installation
 
