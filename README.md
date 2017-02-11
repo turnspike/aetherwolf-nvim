@@ -5,13 +5,13 @@ The official [turnspike](https://turnspike.com) nVIM settings.
 
 Requires [homeshick](https://github.com/andsens/homeshick) or homesick.
 
-Just run:
+## NeoVIM
 
     homeshick clone turnspike/vimrc
     nvim +PlugInstall +qall
 
-If using vanilla vim (as opposed to neovim):
+## VIM (vanilla)
 
+    homeshick clone turnspike/vimrc
     ln -s ~/.config/nvim/init.vim ~/.vimrc
     vim +PlugInstall +qall
-
