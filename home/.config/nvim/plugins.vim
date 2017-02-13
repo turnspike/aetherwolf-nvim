@@ -41,8 +41,8 @@ Plug 'airblade/vim-gitgutter'
 
 "Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-nnoremap <leader>tn :NERDTreeToggle<CR>
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
+nnoremap <leader>tf :NERDTreeToggle<CR>
 
 Plug 'sjbach/lusty'
 nnoremap <leader>tl :LustyFilesystemExplorer<CR>
@@ -51,6 +51,34 @@ nnoremap <leader>tl :LustyFilesystemExplorer<CR>
 " show tag sidebar for current file
 Plug 'majutsushi/tagbar'
 nnoremap <leader>tt :TagbarToggle<CR>
+
+" unite
+
+let g:unite_data_directory = '~/.unite'
+let g:unite_abbr_highlight = 'normal'
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+autocmd FileType unite call s:unite_keymaps()
+
+function! s:unite_keymaps()
+
+     " Play nice with supertab
+    let b:SuperTabDisabled=1
+    " Enable navigation with control-j and control-k in insert mode
+    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+	nmap <buffer> jk <Plug>(unite_exit)
+	imap <buffer> ; <CR>
+
+	nnoremap <leader>y :<C-u>Unite history/yank<CR>
+	nnoremap <leader>l :<C-u>Unite -start-insert -auto-resize line<CR>
+	nnoremap <leader>R :<C-u>Unite register<CR>
+	nnoremap <leader>b :<C-u>Unite -start-insert -auto-resize buffer<CR>
+	nnoremap <leader>o :<C-u>Unite -auto-resize outline<CR>
+	nnoremap <leader>f :<C-u>Unite -start-insert -auto-resize file_rec/git<CR>
+	nnoremap <leader>e :<C-u>UniteWithBufferDir -start-insert -auto-resize file<CR>
+
+endfunction`
 
 " tmux integration
 "Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -102,6 +130,8 @@ Plug 'mhinz/vim-startify'
 
 "-- languages
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'aklt/plantuml-syntax' " plantuml
+Plug 'scrooloose/vim-slumlord' " plantuml live preview
 
 call plug#end()
 

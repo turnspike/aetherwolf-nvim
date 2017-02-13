@@ -13,6 +13,10 @@ imap jk <esc>
 map <c-j> <c-d>
 map <c-k> <c-u>
 
+" insert mode control enhancements
+imap <c-f> <Right>
+imap <c-b> <Left>
+
 "#-- buffers
 map <leader>bd :bdelete<cr>
 map <leader>bn :bnext<cr>

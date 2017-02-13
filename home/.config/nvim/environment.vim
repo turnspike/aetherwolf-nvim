@@ -10,12 +10,12 @@ set smarttab
 "-- cursor movement
 set backspace=indent,eol,start
 set nostartofline " preserve column on page movements
-" insert mode control enhancements
-imap <c-f> <Right>
-imap <c-b> <Left>
 
 "-- copy/paste
-set clipboard=unnamed " yank and paste with the system clipboard
+" yank and paste with the system clipboard under x11 (ie not ssh)
+if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
+  set clipboard=unnamed
+endif
 
 "-- splits
 set hidden " enable multi file editing
@@ -46,9 +46,11 @@ set nofoldenable
 set foldlevel=2
 
 "-- backups
-set nobackup
-set noswapfile
-set nowritebackup
+set backupdir=~/.temp,.
+set dir=~/.temp//,.
+"set nobackup
+"set noswapfile
+"set nowritebackup
 
 "-- whitespace
 "set list " show trailing whitespace
