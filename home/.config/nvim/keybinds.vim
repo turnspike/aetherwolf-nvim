@@ -1,11 +1,11 @@
-"#-- note: plugin specific keybinds live in plugins.vim
+"---- note: plugin specific keybinds live in plugins.vim
 
 " use space as leader key
 map <space> <leader>
 map <space><space> <leader><leader>
 "let maplocalleader = ","
 
-"#-- movement
+"---- movement
 
 " extra ways to exit insert mode
 imap jk <esc>
@@ -14,16 +14,23 @@ map <c-j> <c-d>
 map <c-k> <c-u>
 
 " insert mode control enhancements
-imap <c-f> <Right>
-imap <c-b> <Left>
+imap <c-f> <right>
+imap <c-b> <left>
 
-"#-- buffers
-map <leader>bd :bdelete<cr>
-map <leader>bn :bnext<cr>
-map <leader>bp :bprev<cr>
-map <leader>bc :enew<cr>
+"---- searching
+" in visual mode, c-r does a global search/replace of the highlighted text
+vnoremap <c-r> "hy:%s/<c-r>h//g<left><left><paste>
 
-"#-- splits
+"---- buffers
+nnoremap <c-n> :bprev<cr>
+nnoremap <c-m> :bnext<cr>
+"nnoremap <leader>bd :bdelete<cr>
+"nnoremap <leader>bn :bnext<cr>
+"nnoremap <leader>bp :bprev<cr>
+"nnoremap <leader>bc :enew<cr>
+"nnoremap <leader>bs :ls<CR>:b<space>
+
+"---- splits
 
 " quicker window movement
 nnoremap <c-h> <c-w>h
@@ -40,7 +47,7 @@ nmap <leader>shs :resize -5<cr>
 nmap <leader>svg :vertical resize -5<cr>
 nmap <leader>svs :vertical resize +5<cr>
 
-"#-- copy/paste
+"---- copy/paste
 
 " copy to system clipboard
 vnoremap <leader>y "+y
@@ -55,14 +62,14 @@ nnoremap <leader>P "+P
 "vnoremap p "_dP
 
 " toggle autocommenting etc when pasting from websites
-set pastetoggle=<leader>zx
+set pastetoggle=<leader>=
 
-"#-- cursor
+"---- cursor
 " move cursor naturally through wrapped lines
 nnoremap j gj
 nnoremap k gk
 
-"#-- lines
+"---- lines
 
 " double-tap leader to select current line in visual mode
 nmap <leader><leader> V
@@ -73,19 +80,19 @@ noremap <leader>d "ayy"ap
 " join line
 "...
 
-"#-- paragraphs
+"---- paragraphs
 " clone
 noremap <leader>pc vipy'>pO<esc>j
 " delete
 noremap <leader>pd vipd
 
-"#-- selections
+"---- selections
 " clone
 noremap <leader>vc y'>pO<esc>j
 " delete
 noremap <leader>vd gvd
 
-"-- files
+"---- files
 "nnoremap <leader>s :w<cr>
 "inoremap <leader>s <C-c>:w<cr>
 nnoremap <leader>w :w<cr>
@@ -99,7 +106,7 @@ cmap w!! w !sudo tee % >/dev/null
 nnoremap <leader>ce :e $MYVIMRC<cr>
 nnoremap <leader>cr :so $MYVIMRC<cr>
 
-"#-- fix common typos
+"---- fix common typos
 " use Q to record macros (don't use Ex mode)
 nnoremap Q q
 " normal q does nothing
@@ -107,6 +114,6 @@ nnoremap q <nop>
 " don't use q: command (TODO: find a remap for q:)
 map q: <nop>
 
-"#-- neovim
+"---- neovim
 " exit terminal mode
 tnoremap jk <C-\><C-n>

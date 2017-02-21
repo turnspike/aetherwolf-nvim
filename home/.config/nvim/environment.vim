@@ -11,6 +11,9 @@ set smarttab
 set backspace=indent,eol,start
 set nostartofline " preserve column on page movements
 
+"-- cursor hilite
+autocmd InsertEnter,InsertLeave * set cul! " underline current line for insert mode only
+
 "-- copy/paste
 " yank and paste with the system clipboard under x11 (ie not ssh)
 if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
@@ -29,6 +32,8 @@ set timeoutlen=600 ttimeoutlen=0 " 600ms for key combos, 0ms for <esc>
 "-- commandline
 set wildmode=list:longest,full " more linuxy filename completion with <tab>
 set wildmenu
+"set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+"set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 "-- search and replace
 set gdefault " always use /g with %s/
@@ -46,8 +51,10 @@ set nofoldenable
 set foldlevel=2
 
 "-- backups
-set backupdir=~/.temp,.
-set dir=~/.temp//,.
+" use XDG-compliant ~/.cache/nvim, create if needed
+silent !mkdir ~/.cache/nvim > /dev/null 2>&1
+set backupdir=~/.cache/nvim,.
+set dir=~/.cache/nvim//,.
 "set nobackup
 "set noswapfile
 "set nowritebackup
