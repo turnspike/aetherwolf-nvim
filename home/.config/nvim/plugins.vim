@@ -8,7 +8,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 "---- editing
 
 Plug 'tpope/vim-unimpaired' " use ] and [ combos for :ex commands, eg ]b for next buffer
-Plug 'tpope/vim-surround' " bracket manipulation eg cs'<p>
 Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
 Plug 'timkendrick/vim-duplicate' " duplicate chunks using <leader>-d
 map <leader>d <Plug>Duplicate
@@ -40,6 +39,14 @@ let g:LoupeVeryMagic=0 " don't prepend \v to searches
 " show git line status in left gutter
 Plug 'airblade/vim-gitgutter'
 "nnoremap <leader>gg :GitGutterToggle<CR>
+
+"---- codesense
+
+Plug 'tpope/vim-surround' " bracket manipulation eg cs'<p>
+Plug 'idbrii/vim-endoscope' " c-S to close tag/scope
+Plug 'ervandew/supertab' " autocomplete by pressing tab (overlay for ctrl-p, ctrl-x etc)
+" TODO: kspell
+" TODO: ctags
 
 "---- project plugins (files, outlines, layouts...)
 
@@ -106,6 +113,8 @@ nnoremap <leader>cU :execute 'CtrlPFunky ' . expand('<cword>')<cr>
 "let g:ctrlpswitcher_mode = 1
 
 "---- terminal enhancements
+
+Plug 'epeli/slimux'
 
 " tmux integration
 "Plug 'tmux-plugins/vim-tmux-focus-events'

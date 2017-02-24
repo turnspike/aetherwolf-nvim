@@ -1,29 +1,31 @@
-"---- note: plugin specific keybinds live in plugins.vim
+"---- note: plugin specific keybinds live in plugins.vim, filetype keybinds live in filetypes.vim
 
-" use space as leader key
+" use space as leader key (using 'map' has some advantage that I forget now)
 map <space> <leader>
 map <space><space> <leader><leader>
-"let maplocalleader = ","
+let maplocalleader = "\<space>"
 
 "---- movement
 
 " extra ways to exit insert mode
 imap jk <esc>
 "imap <s-cr> <esc>
-map <c-j> <c-d>
-map <c-k> <c-u>
 
 " insert mode control enhancements
 imap <c-f> <right>
 imap <c-b> <left>
 
 "---- searching
-" in visual mode, c-r does a global search/replace of the highlighted text
-vnoremap <c-r> "hy:%s/<c-r>h//g<left><left><paste>
+" in visual mode, leader-r does a global search/replace of the highlighted text
+vnoremap <leader>r "hy:%s/<c-r>h//g<left><left><paste>
+" in normal mode, leader-r launches search/replace :ex command
+nnoremap <leader>r :%s///g<left><left><left>
+" press esc to clear hilites after searching
+nnoremap <esc> :noh<return><esc>
 
 "---- buffers
-nnoremap <c-n> :bprev<cr>
-nnoremap <c-m> :bnext<cr>
+"nnoremap <c-n> :bprev<cr>
+"nnoremap <c-m> :bnext<cr>
 "nnoremap <leader>bd :bdelete<cr>
 "nnoremap <leader>bn :bnext<cr>
 "nnoremap <leader>bp :bprev<cr>
@@ -47,16 +49,16 @@ nmap <leader>shs :resize -5<cr>
 nmap <leader>svg :vertical resize -5<cr>
 nmap <leader>svs :vertical resize +5<cr>
 
-"---- copy/paste
-
-" copy to system clipboard
-vnoremap <leader>y "+y
-nnoremap <leader>Y "+yg_
-nnoremap <leader>yy "+yy
-
-" paste from system clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
+""---- copy/paste
+"
+"" copy to system clipboard
+"vnoremap <leader>y "+y
+"nnoremap <leader>Y "+yg_
+"nnoremap <leader>yy "+yy
+"
+"" paste from system clipboard
+"nnoremap <leader>p "+p
+"nnoremap <leader>P "+P
 
 " don't copy the contents of an overwritten selection
 "vnoremap p "_dP
@@ -76,9 +78,6 @@ nmap <leader><leader> V
 
 " duplicate/clone line
 noremap <leader>d "ayy"ap
-
-" join line
-"...
 
 "---- paragraphs
 " clone
@@ -111,7 +110,7 @@ nnoremap <leader>cr :so $MYVIMRC<cr>
 nnoremap Q q
 " normal q does nothing
 nnoremap q <nop>
-" don't use q: command (TODO: find a remap for q:)
+" don't use q: command (TODO: find a replacement for q:)
 map q: <nop>
 
 "---- neovim

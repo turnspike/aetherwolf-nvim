@@ -75,10 +75,13 @@ set wmw=0 " window min width = 0, for splits?
 
 "-- general
 
+" fix search hilite colors
+hi Search cterm=NONE ctermfg=Yellow ctermbg=DarkGray
+
 "-- buffer hooks
 
 " directly go to insert mode when swtich to terminal window
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+"au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 
 "-- helper functions
 :command! ConfigEdit edit $MYVIMRC " edit config file
