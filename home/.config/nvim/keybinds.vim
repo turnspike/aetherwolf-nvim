@@ -16,10 +16,10 @@ imap <c-f> <right>
 imap <c-b> <left>
 
 "---- searching
-" in visual mode, leader-r does a global search/replace of the highlighted text
-vnoremap <leader>r "hy:%s/<c-r>h//g<left><left><paste>
-" in normal mode, leader-r launches search/replace :ex command
-nnoremap <leader>r :%s///g<left><left><left>
+" in visual mode, leader-h does a global search/replace of the highlighted text
+vnoremap <leader>h "hy:%s/<c-r>h//g<left><left><paste>
+" in normal mode, leader-h launches search/replace :ex command
+nnoremap <leader>h :%s///g<left><left><left>
 " press esc to clear hilites after searching
 nnoremap <esc> :noh<return><esc>
 
@@ -100,7 +100,7 @@ noremap <leader>vd gvd
 "nnoremap <leader>s :w<cr>
 "inoremap <leader>s <C-c>:w<cr>
 nnoremap <leader>w :w<cr>
-nnoremap <leader>e :Explore<cr>
+"nnoremap <leader>e :Explore<cr>
 noremap <leader>q :q<cr>
 " write files as sudo using w!!
 "cnoremap w!! %!sudo tee > /dev/null %

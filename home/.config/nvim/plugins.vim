@@ -53,16 +53,12 @@ Plug 'ervandew/supertab' " autocomplete by pressing tab (overlay for ctrl-p, ctr
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
+" create sessions dir if needed
 silent !mkdir ~/.cache/vim/sessions > /dev/null 2>&1
 let g:session_directory = "~/.cache/vim/sessions"
 let g:session_autoload = "yes"
 let g:session_autosave = "yes"
 let g:session_command_aliases = 1
-
-nnoremap <leader>so :OpenSession<cr>
-nnoremap <leader>ss :SaveSession<cr>
-nnoremap <leader>sd :DeleteSession<cr>
-nnoremap <leader>sc :CloseSession<cr>
 
 "---- project plugins (files, outlines, layouts...)
 
@@ -128,7 +124,7 @@ nnoremap <leader>cU :execute 'CtrlPFunky ' . expand('<cword>')<cr>
 "---- REPL
 
 Plug 'thinca/vim-quickrun'
-nnoremap <leader>5 :QuickRun<cr>
+nnoremap <leader>r :QuickRun<cr>
 
 "Plug 'benmills/vimux'
 "Plug 'epeli/slimux'

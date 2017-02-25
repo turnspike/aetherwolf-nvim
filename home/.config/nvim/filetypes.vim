@@ -9,6 +9,9 @@ au FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
 "autocmd FileType ruby nnoremap <buffer> <C-S-r> :exec '!clear; python' shellescape(@%, 1)<cr>
 command! FR set filetype=ruby
 
+"---- plantuml
+autocmd FileType plantuml nnoremap <buffer> <leader>r :!java -jar ~/bin/plantuml.jar -o %:p:h %<cr>
+
 "---- other
 au FileType python set tabstop=4|set shiftwidth=4|set softtabstop=4|set expandtab
 au FileType make setlocal noexpandtab|set softtabstop=4
