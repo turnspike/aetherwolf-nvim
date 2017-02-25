@@ -20,7 +20,6 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " region commenting
 Plug 'scrooloose/nerdcommenter'
 let g:NERDDefaultAlign = 'left' " comment delimiters hard left
-"let g:NERDSpaceDelims = 1 " add spaces after comment delimiters by default
 "let g:NERDCompactSexyComs = 1 " use compact syntax for prettified multi-line comments
 let g:NERDCommentEmptyLines = 1 " allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDTrimTrailingWhitespace = 1 " enable trimming of trailing whitespace when uncommenting
@@ -40,6 +39,8 @@ let g:LoupeVeryMagic=0 " don't prepend \v to searches
 Plug 'airblade/vim-gitgutter'
 "nnoremap <leader>gg :GitGutterToggle<CR>
 
+" TODO: add fugitive and learn it
+
 "---- codesense
 
 Plug 'tpope/vim-surround' " bracket manipulation eg cs'<p>
@@ -47,6 +48,21 @@ Plug 'idbrii/vim-endoscope' " c-S to close tag/scope
 Plug 'ervandew/supertab' " autocomplete by pressing tab (overlay for ctrl-p, ctrl-x etc)
 " TODO: kspell
 " TODO: ctags
+
+"---- sessions
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+
+silent !mkdir ~/.cache/vim/sessions > /dev/null 2>&1
+let g:session_directory = "~/.cache/vim/sessions"
+let g:session_autoload = "yes"
+let g:session_autosave = "yes"
+let g:session_command_aliases = 1
+
+nnoremap <leader>so :OpenSession<cr>
+nnoremap <leader>ss :SaveSession<cr>
+nnoremap <leader>sd :DeleteSession<cr>
+nnoremap <leader>sc :CloseSession<cr>
 
 "---- project plugins (files, outlines, layouts...)
 
@@ -68,6 +84,7 @@ Plug 'tpope/vim-vinegar' " use - (minus) to launch a modified netrw file browser
 
 " show tag sidebar for current file
 Plug 'majutsushi/tagbar'
+let g:tagbar_usearrows = 1
 nnoremap <leader>tt :TagbarToggle<CR>
 
 " TODO macos/homebrew
@@ -91,10 +108,6 @@ if executable('ag')
 endif
 
 nnoremap <leader>b :CtrlPBuffer<cr>
-nnoremap <leader>cb :CtrlPBuffer<cr>
-nnoremap <leader>cf :CtrlPBuffer<cr>
-nnoremap <leader>cr :CtrlPMRUFiles<cr>
-nnoremap <leader>ct :CtrlPTags<cr>
 
 Plug 'tacahiroy/ctrlp-funky'
 nnoremap <leader>cu :CtrlPFunky<Cr>
@@ -112,20 +125,26 @@ nnoremap <leader>cU :execute 'CtrlPFunky ' . expand('<cword>')<cr>
 "Plug 'ivan-cukic/vim-ctrlp-switcher'
 "let g:ctrlpswitcher_mode = 1
 
+"---- REPL
+
+Plug 'thinca/vim-quickrun'
+nnoremap <leader>5 :QuickRun<cr>
+
+"Plug 'benmills/vimux'
+"Plug 'epeli/slimux'
+
 "---- terminal enhancements
 
-Plug 'epeli/slimux'
-
 " tmux integration
-"Plug 'tmux-plugins/vim-tmux-focus-events'
-"Plug 'roxma/vim-tmux-clipboard'
-"Plug 'christoomey/vim-tmux-navigator'
-"let g:tmux_navigator_no_mappings = 1
-"nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-"nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-"nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-"nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-"nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'roxma/vim-tmux-clipboard'
+Plug 'christoomey/vim-tmux-navigator'
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
 "Plug 'wincent/terminus' " change cursor shape with mode
 "let g:TerminusMouse=0
@@ -185,6 +204,16 @@ Plug 'scrooloose/vim-slumlord' " plantuml live preview
 Plug 'vim-ruby/vim-ruby' " ruby syntax
 Plug 'tpope/vim-rails' " rails syntax
 "Plug 'skalnik/vim-vroom' " run tests
+
+"Bundle 'astashov/vim-ruby-debugger'
+"Bundle 'ecomba/vim-ruby-refactoring'
+"Bundle 'skwp/vim-ruby-conque'
+"Bundle 'tpope/vim-rails.git'
+"Bundle 'tpope/vim-rake.git'
+"Bundle 'tpope/vim-rvm.git'
+"Bundle 'vim-ruby/vim-ruby.git'
+"Bundle 'vim-scripts/Specky.git'
+"Bundle 'ck3g/vim-change-hash-syntax'
 
 call plug#end()
 

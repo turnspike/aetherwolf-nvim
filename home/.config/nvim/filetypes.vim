@@ -5,7 +5,7 @@ autocmd FileType * setlocal formatoptions-=cro " don't autocomment newlines
 au FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
 
 "---- ruby
-autocmd FileType ruby nnoremap <buffer> <leader>r :exec '!clear; ruby' shellescape(@%, 1)<cr>
+"autocmd FileType ruby nnoremap <buffer> <leader>r :exec '!clear; ruby' shellescape(@%, 1)<cr>
 "autocmd FileType ruby nnoremap <buffer> <C-S-r> :exec '!clear; python' shellescape(@%, 1)<cr>
 command! FR set filetype=ruby
 

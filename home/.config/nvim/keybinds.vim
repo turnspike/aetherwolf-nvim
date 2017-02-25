@@ -24,8 +24,10 @@ nnoremap <leader>r :%s///g<left><left><left>
 nnoremap <esc> :noh<return><esc>
 
 "---- buffers
-"nnoremap <c-n> :bprev<cr>
-"nnoremap <c-m> :bnext<cr>
+" override c-b and c-f (a bit saucy I admit)
+nnoremap <c-b> :bprev<cr>
+nnoremap <c-f> :bnext<cr>
+
 "nnoremap <leader>bd :bdelete<cr>
 "nnoremap <leader>bn :bnext<cr>
 "nnoremap <leader>bp :bprev<cr>
@@ -34,11 +36,11 @@ nnoremap <esc> :noh<return><esc>
 
 "---- splits
 
-" quicker window movement
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
+"" quicker window movement
+"nnoremap <c-h> <c-w>h
+"nnoremap <c-j> <c-w>j
+"nnoremap <c-k> <c-w>k
+"nnoremap <c-l> <c-w>l
 
 " manipulate splits
 nmap <leader>sv :vsplit<cr>
@@ -78,6 +80,9 @@ nmap <leader><leader> V
 
 " duplicate/clone line
 noremap <leader>d "ayy"ap
+
+" insert blank line
+noremap <leader>l O<esc>
 
 "---- paragraphs
 " clone
