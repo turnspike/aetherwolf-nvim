@@ -62,10 +62,11 @@ set ssop-=options    " do not store global and local values in a session
 set ssop-=folds      " do not store folds
 
 "---- backups
-" use XDG-compliant ~/.cache/vim, create if needed
-silent !mkdir ~/.cache/vim > /dev/null 2>&1
-set backupdir=~/.cache/vim,.
-set dir=~/.cache/vim//,.
+let g:cache_home=$XDG_CACHE_HOME.'/nvim'
+silent !mkdir expand(g:cache_home) > /dev/null 2>&1
+execute "set backupdir=".g:cache_home
+execute "set dir=".g:cache_home
+execute "let g:netrw_home='".g:cache_home."'"
 "set nobackup
 "set noswapfile
 "set nowritebackup
