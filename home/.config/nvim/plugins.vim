@@ -49,13 +49,17 @@ Plug 'ervandew/supertab' " autocomplete by pressing tab (overlay for ctrl-p, ctr
 " TODO: kspell
 " TODO: ctags
 
+" Plug 'Shougo/neocomplete.vim'
+" Plug 'xolox/vim-easytags'
+" g:easytags_async = 1
+
 "---- sessions
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
-" create sessions dir if needed
-silent !mkdir ~/.cache/vim/sessions > /dev/null 2>&1
-let g:session_directory = "~/.cache/vim/sessions"
+" g:cache_home is set in env.vim, ususally ~/.cache/nvim
+silent !mkdir expand(g:cache_home)/sessions > /dev/null 2>&1
+execute "let g:session_directory='".g:cache_home."/sessions'"
 let g:session_autoload = "yes"
 let g:session_autosave = "yes"
 let g:session_command_aliases = 1
