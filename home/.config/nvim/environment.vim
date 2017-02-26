@@ -17,7 +17,7 @@ autocmd InsertEnter,InsertLeave * set cul! " underline current line for insert m
 "---- copy/paste
 " yank and paste with the system clipboard under x11 (ie not ssh)
 if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
-  set clipboard=unnamed
+"  set clipboard=unnamed
 endif
 
 "---- splits
@@ -28,6 +28,13 @@ set splitright " open vsplits right (defaults left)
 "---- input
 set timeout " use timeouts for keyboard combo mappings
 set timeoutlen=600 ttimeoutlen=0 " 600ms for key combos, 0ms for <esc>
+
+"---- mouse
+" mouse? no more mouse for you
+set mouse=
+if exists(':ttymouse')
+	set ttymouse=
+endif
 
 "---- commandline
 set wildmode=list:longest,full " more linuxy filename completion with <tab>
