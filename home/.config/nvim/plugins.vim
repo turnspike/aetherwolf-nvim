@@ -136,8 +136,8 @@ nnoremap <leader>r :QuickRun<cr>
 "---- terminal enhancements
 
 " tmux integration
-Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'roxma/vim-tmux-clipboard'
+"Plug 'tmux-plugins/vim-tmux-focus-events'
+"Plug 'roxma/vim-tmux-clipboard'
 Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>

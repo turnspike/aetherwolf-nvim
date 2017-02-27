@@ -52,7 +52,9 @@ nmap <leader>svg :vertical resize -5<cr>
 nmap <leader>svs :vertical resize +5<cr>
 
 ""---- copy/paste
-"
+" move point back to original position after yanking
+vmap y ygv<Esc>
+
 "" copy to system clipboard
 "vnoremap <leader>y "+y
 "nnoremap <leader>Y "+yg_

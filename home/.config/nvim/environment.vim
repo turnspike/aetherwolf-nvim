@@ -17,7 +17,7 @@ autocmd InsertEnter,InsertLeave * set cul! " underline current line for insert m
 "---- copy/paste
 " yank and paste with the system clipboard under x11 (ie not ssh)
 if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
-"  set clipboard=unnamed
+	set clipboard=unnamed
 endif
 
 "---- splits
@@ -95,9 +95,10 @@ hi Search cterm=NONE ctermfg=Yellow ctermbg=DarkGray
 " directly go to insert mode when swtich to terminal window
 "au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 
-"---- autosave and restore session (vim-session seems to be broken with zsh/nvim)
-
-
 "---- helper functions
 :command! ConfigEdit edit $MYVIMRC " edit config file
 :command! ConfigReload source $MYVIMRC " live reload config
+
+"---- neovim
+let g:python2_host_prog = '/usr/local/bin/python2'
+let g:python3_host_prog = '/usr/local/bin/python3'
