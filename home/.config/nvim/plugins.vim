@@ -1,4 +1,4 @@
-"" initialise vimplug
+" initialise vimplug
 if empty(glob("~/.local/share/nvim/site/autoload/plug.vim"))
     execute '!curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 endif
@@ -189,7 +189,8 @@ let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
 let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
 
 Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme = 'powerlineish'
+"let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'sol'
 
 " show marks in left gutter
 Plug 'kshenoy/vim-signature'

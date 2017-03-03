@@ -1,8 +1,9 @@
 "---- note: plugin specific keybinds live in plugins.vim, filetype keybinds live in filetypes.vim
 
 " use space as leader key (using 'map' has some advantage that I forget now)
-map <space> <leader>
-map <space><space> <leader><leader>
+"map <space> <leader>
+"map <space><space> <leader><leader>
+let mapleader = "\<space>"
 let maplocalleader = "\<space>"
 
 "---- movement
@@ -24,10 +25,6 @@ nnoremap <leader>h :%s///g<left><left><left>
 nnoremap <esc> :noh<return><esc>
 
 "---- buffers
-" override c-b and c-f (a bit saucy I admit)
-nnoremap <c-b> :bprev<cr>
-nnoremap <c-f> :bnext<cr>
-
 "nnoremap <leader>bd :bdelete<cr>
 "nnoremap <leader>bn :bnext<cr>
 "nnoremap <leader>bp :bprev<cr>
@@ -35,12 +32,6 @@ nnoremap <c-f> :bnext<cr>
 "nnoremap <leader>bs :ls<CR>:b<space>
 
 "---- splits
-
-"" quicker window movement
-"nnoremap <c-h> <c-w>h
-"nnoremap <c-j> <c-w>j
-"nnoremap <c-k> <c-w>k
-"nnoremap <c-l> <c-w>l
 
 " manipulate splits
 nmap <leader>sv :vsplit<cr>
@@ -51,18 +42,18 @@ nmap <leader>shs :resize -5<cr>
 nmap <leader>svg :vertical resize -5<cr>
 nmap <leader>svs :vertical resize +5<cr>
 
-""---- copy/paste
+"---- copy/paste
 " move point back to original position after yanking
 vmap y ygv<Esc>
 
-"" copy to system clipboard
-"vnoremap <leader>y "+y
-"nnoremap <leader>Y "+yg_
-"nnoremap <leader>yy "+yy
-"
-"" paste from system clipboard
-"nnoremap <leader>p "+p
-"nnoremap <leader>P "+P
+" copy to system clipboard
+vnoremap <leader>y "+y
+nnoremap <leader>Y "+yg_
+nnoremap <leader>yy "+yy
+
+" paste from system clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
 
 " don't copy the contents of an overwritten selection
 "vnoremap p "_dP
@@ -83,14 +74,11 @@ nmap <leader><leader> V
 " duplicate/clone line
 noremap <leader>d "ayy"ap
 
-" insert blank line
-noremap <leader>l O<esc>
-
 "---- paragraphs
 " clone
 noremap <leader>pc vipy'>pO<esc>j
 " delete
-noremap <leader>pd vipd
+noremap <leader>pd vipddd
 
 "---- selections
 " clone
