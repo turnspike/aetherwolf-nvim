@@ -38,7 +38,13 @@ let g:LoupeVeryMagic=0 " don't prepend \v to searches
 " show git line status in left gutter
 Plug 'airblade/vim-gitgutter'
 "nnoremap <leader>gg :GitGutterToggle<CR>
+"nmap <Leader>gk <Plug>GitGutterPrevHunk
+"nmap <Leader>gj <Plug>GitGutterNextHunk
+"nmap <Leader>gp <Plug>GitGutterPreviewHunk
+"nmap <Leader>gr <Plug>GitGutterRevertHunk
+"nmap <Leader>gs <Plug>GitGutterStageHunk
 
+Plug 'tpope/vim-fugitive'
 " TODO: add fugitive and learn it
 
 "---- codesense
@@ -205,6 +211,7 @@ Plug 'scrooloose/vim-slumlord' " plantuml live preview
 Plug 'vim-ruby/vim-ruby' " ruby syntax
 Plug 'tpope/vim-rails' " rails syntax
 "Plug 'skalnik/vim-vroom' " run tests
+"Plug 'jceb/vim-orgmode'
 
 "Bundle 'astashov/vim-ruby-debugger'
 "Bundle 'ecomba/vim-ruby-refactoring'
