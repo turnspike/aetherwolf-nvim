@@ -81,7 +81,7 @@ let g:session_command_aliases = 1
 
 "Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
 "nnoremap <leader>nt :NERDTreeToggle<cr>
 " reveal the current file in NERDTree
 nnoremap <leader>nf :NERDTreeFind<cr>
