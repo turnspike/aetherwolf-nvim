@@ -18,9 +18,10 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 " region commenting
+"Plug 'tpope/vim-commentary' " gc to comment
 Plug 'scrooloose/nerdcommenter'
 let g:NERDDefaultAlign = 'left' " comment delimiters hard left
-"let g:NERDCompactSexyComs = 1 " use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1 " use compact syntax for prettified multi-line comments
 let g:NERDCommentEmptyLines = 1 " allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDTrimTrailingWhitespace = 1 " enable trimming of trailing whitespace when uncommenting
 
@@ -28,6 +29,10 @@ let g:NERDTrimTrailingWhitespace = 1 " enable trimming of trailing whitespace wh
 "Plug 'thirtythreeforty/lessspace.vim' "strip whitespace only on edited lines
 Plug 'ntpeters/vim-better-whitespace' " hilight and work with trailing whitespace
 autocmd BufEnter * EnableStripWhitespaceOnSave " auto strip whitespace
+
+"---- buffers
+Plug 'schickling/vim-bufonly' " :BufOnly to close other buffers
+Plug 'bogado/file-line' " open file at specific line, eg vim app/models/user.rb:1337
 
 "---- searching
 Plug 'wincent/loupe' " make current search match more obvious
@@ -45,7 +50,7 @@ Plug 'airblade/vim-gitgutter'
 "nmap <Leader>gs <Plug>GitGutterStageHunk
 
 Plug 'tpope/vim-fugitive'
-" TODO: add fugitive and learn it
+" TODO: learn it
 
 "---- codesense
 
@@ -77,12 +82,23 @@ let g:session_command_aliases = 1
 "Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
-nnoremap <leader>nt :NERDTreeToggle<cr>
+"nnoremap <leader>nt :NERDTreeToggle<cr>
 " reveal the current file in NERDTree
 nnoremap <leader>nf :NERDTreeFind<cr>
 " don't blat <c-j> and <c-k> (used for split movement)
 let g:NERDTreeMapJumpPrevSibling='<Nop>'
 let g:NERDTreeMapJumpNextSibling='<Nop>'
+
+" Open NERDTree in the directory of the current file (or /home if no file is open)
+nmap <silent> <leader>i :call NERDTreeToggleInCurDir()<cr>
+function! NERDTreeToggleInCurDir()
+  " If NERDTree is open in the current buffer
+  if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
+    exe ":NERDTreeClose"
+  else
+    exe ":NERDTreeFind"
+  endif
+endfunction
 
 Plug 'tpope/vim-vinegar' " use - (minus) to launch a modified netrw file browser
 
@@ -97,6 +113,7 @@ nnoremap <leader>tt :TagbarToggle<CR>
 " set rtp+=/usr/local/opt/fzf
 
 " fuzzy finder navigator
+" TODO learn this + add to zsh
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 let g:fzf_command_prefix = 'Fzf' " use :Fzf prefix
@@ -104,21 +121,21 @@ nnoremap <leader>ff :FzfFiles<cr>
 nnoremap <leader>fb :FzfBuffers<cr>
 
 " ctrlp navigator
-let g:ctrlp_extensions = ['funky']
+"let g:ctrlp_extensions = ['funky']
 "let g:ctrlp_extensions = ['funky','switcher']
-Plug 'ctrlpvim/ctrlp.vim'
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor " use ag over grep
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " use ag in CtrlP for listing files
-  let g:ctrlp_use_caching = 0 " ag is fast enough that CtrlP doesn't need to cache
-endif
+"Plug 'ctrlpvim/ctrlp.vim'
+"if executable('ag')
+"  set grepprg=ag\ --nogroup\ --nocolor " use ag over grep
+"  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " use ag in CtrlP for listing files
+"  let g:ctrlp_use_caching = 0 " ag is fast enough that CtrlP doesn't need to cache
+"endif
+"
+"nnoremap <leader>b :CtrlPBuffer<cr>
 
-nnoremap <leader>b :CtrlPBuffer<cr>
-
-Plug 'tacahiroy/ctrlp-funky'
-nnoremap <leader>cu :CtrlPFunky<Cr>
-" narrow the list down with a word under cursor
-nnoremap <leader>cU :execute 'CtrlPFunky ' . expand('<cword>')<cr>
+"Plug 'tacahiroy/ctrlp-funky'
+"nnoremap <leader>cu :CtrlPFunky<Cr>
+"" narrow the list down with a word under cursor
+"nnoremap <leader>cU :execute 'CtrlPFunky ' . expand('<cword>')<cr>
 
 "Bundle 'iurifq/ctrlp-rails.vim'
 ":CtrlPModels
@@ -152,7 +169,7 @@ nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
-"Plug 'wincent/terminus' " change cursor shape with mode
+Plug 'wincent/terminus' " change cursor shape with mode
 "let g:TerminusMouse=0
 
 "---- linting
@@ -204,6 +221,13 @@ Plug 'kshenoy/vim-signature'
 " start screen menu
 Plug 'mhinz/vim-startify'
 
+"---- orgmode
+Plug 'mattn/calendar-vim'
+"Plug 'vimwiki/vimwiki'
+Plug 'tpope/vim-speeddating' " use CTRL-A/CTRL-X to increment dates, times
+Plug 'tpope/vim-repeat' " add . repeat for some plugins
+Plug 'jceb/vim-orgmode'
+
 "---- languages
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'aklt/plantuml-syntax' " plantuml
@@ -211,7 +235,6 @@ Plug 'scrooloose/vim-slumlord' " plantuml live preview
 Plug 'vim-ruby/vim-ruby' " ruby syntax
 Plug 'tpope/vim-rails' " rails syntax
 "Plug 'skalnik/vim-vroom' " run tests
-"Plug 'jceb/vim-orgmode'
 
 "Bundle 'astashov/vim-ruby-debugger'
 "Bundle 'ecomba/vim-ruby-refactoring'

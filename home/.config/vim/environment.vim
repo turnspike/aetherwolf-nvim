@@ -17,7 +17,7 @@ autocmd InsertEnter,InsertLeave * set cul! " underline current line for insert m
 "---- copy/paste
 " yank and paste with the system clipboard under x11 (ie not ssh)
 if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
-	set clipboard=unnamed
+"	set clipboard=unnamed
 endif
 
 "---- splits
@@ -30,11 +30,17 @@ set timeout " use timeouts for keyboard combo mappings
 set timeoutlen=600 ttimeoutlen=0 " 600ms for key combos, 0ms for <esc>
 
 "---- mouse
-" mouse? no more mouse for you
-set mouse=
-if exists(':ttymouse')
-	set ttymouse=
-endif
+"" mouse? no more mouse for you
+"set mouse=
+"if exists(':ttymouse')
+"    set ttymouse=
+"endif
+set mouse=a
+
+"---- files
+"let g:netrw_keepdir=0 " :e is relative to current buffer
+"set autochdir " auto cd to directory of current buffer
+autocmd BufEnter * silent! lcd %:p:h " auto cd to dir of current buffer
 
 "---- commandline
 set wildmode=list:longest,full " more linuxy filename completion with <tab>
@@ -84,6 +90,9 @@ set scrolloff=3 " show context above/below cursorline
 set title " change the terminal's title
 set wmh=0 " window min height = 0, for splits?
 set wmw=0 " window min width = 0, for splits?
+
+"---- vc, diffs
+set diffopt+=vertical
 
 "---- general
 

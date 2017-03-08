@@ -1,8 +1,5 @@
 "---- note: plugin specific keybinds live in plugins.vim, filetype keybinds live in filetypes.vim
 
-" use space as leader key (using 'map' has some advantage that I forget now)
-"map <space> <leader>
-"map <space><space> <leader><leader>
 let mapleader = "\<space>"
 let maplocalleader = "\<space>"
 
