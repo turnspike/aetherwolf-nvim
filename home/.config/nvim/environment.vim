@@ -68,11 +68,20 @@ set ssop-=options    " do not store global and local values in a session
 set ssop-=folds      " do not store folds
 
 "---- backups
-let g:cache_home=$XDG_CACHE_HOME.'/nvim'
-silent !mkdir expand(g:cache_home) > /dev/null 2>&1
-execute "set backupdir=".g:cache_home
-execute "set dir=".g:cache_home
-execute "let g:netrw_home='".g:cache_home."'"
+"let g:cache_home=$XDG_CACHE_HOME.'/nvim'
+"silent !mkdir expand(g:cache_home) > /dev/null 2>&1
+"execute "set backupdir=".g:cache_home
+"execute "set dir=".g:cache_home
+"execute "let g:netrw_home='".g:cache_home."'"
+"silent !mkdir $HOME/.cache/nvim > /dev/null 2>&1
+set directory=$HOME/.cache/nvim
+set backupdir=$HOME/.cache/nvim
+let g:netrw_home='~/.cache/nvim'
+
+"set backupdir = '~/.cache/nvim'
+"set dir = '~/.cache/nvim'
+"let g:netrw_home = '~/.cache/nvim'
+
 "set nobackup
 "set noswapfile
 "set nowritebackup

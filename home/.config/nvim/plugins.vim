@@ -5,6 +5,10 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+"---- colors
+Plug 'flazz/vim-colorschemes'
+"colorscheme dusk
+
 "---- editing
 
 Plug 'tpope/vim-unimpaired' " use ] and [ combos for :ex commands, eg ]b for next buffer
@@ -69,11 +73,13 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
 " g:cache_home is set in env.vim, ususally ~/.cache/nvim
-silent !mkdir expand(g:cache_home)/sessions > /dev/null 2>&1
-execute "let g:session_directory='".g:cache_home."/sessions'"
-let g:session_autoload = "yes"
-let g:session_autosave = "yes"
-let g:session_command_aliases = 1
+"silent !mkdir expand(g:cache_home)/sessions > /dev/null 2>&1
+"execute "let g:session_directory='".g:cache_home."/sessions'"
+silent !mkdir ~/.cache/nvim/sessions > /dev/null 2>&1
+let g:session_directory='~/.cache/nvim/sessions'
+let g:session_autoload='yes'
+let g:session_autosave='yes'
+let g:session_command_aliases=1
 
 "---- project plugins (files, outlines, layouts...)
 
@@ -100,6 +106,12 @@ function! NERDTreeToggleInCurDir()
   endif
 endfunction
 
+" use vimfiler instead of netrw
+"Plug 'Shougo/unite.vim'
+"Plug 'Shougo/vimfiler.vim'
+"let g:vimfiler_as_default_explorer = 1
+
+
 Plug 'tpope/vim-vinegar' " use - (minus) to launch a modified netrw file browser
 
 " tpope/vim-sleuth
@@ -114,11 +126,11 @@ nnoremap <leader>tt :TagbarToggle<CR>
 
 " fuzzy finder navigator
 " TODO learn this + add to zsh
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-let g:fzf_command_prefix = 'Fzf' " use :Fzf prefix
-nnoremap <leader>ff :FzfFiles<cr>
-nnoremap <leader>fb :FzfBuffers<cr>
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf.vim'
+"let g:fzf_command_prefix = 'Fzf' " use :Fzf prefix
+"nnoremap <leader>ff :FzfFiles<cr>
+"nnoremap <leader>fb :FzfBuffers<cr>
 
 " ctrlp navigator
 "let g:ctrlp_extensions = ['funky']
@@ -247,4 +259,3 @@ Plug 'tpope/vim-rails' " rails syntax
 "Bundle 'ck3g/vim-change-hash-syntax'
 
 call plug#end()
-

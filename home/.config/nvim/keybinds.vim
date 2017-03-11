@@ -106,5 +106,7 @@ nnoremap q <nop>
 map q: <nop>
 
 "---- neovim
-" exit terminal mode
-tnoremap jk <C-\><C-n>
+if has("nvim")
+  " exit terminal mode
+  tnoremap jk <C-\><C-n>
+endif
