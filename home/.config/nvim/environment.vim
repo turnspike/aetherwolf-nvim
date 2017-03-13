@@ -91,7 +91,7 @@ let g:netrw_home='~/.cache/nvim'
 "set listchars=tab:▸\ ,trail:▫ " whitespace chars
 
 "---- display
-set breakindent " preserve indentation when wrapping
+"set breakindent " preserve indentation when wrapping
 "set noruler
 set noshowmode " airline handles mode display
 set ruler " show cursor position
