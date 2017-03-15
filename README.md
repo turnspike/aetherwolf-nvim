@@ -3,7 +3,7 @@ turnspike's vim settings.
 
 # Pre-requisites
 
-* Homeshick, XDG environment variables set, vim-plug:
+* [Homeshick](https://github.com/andsens/homeshick), [XDG environment variables](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) set, [vim-plug](https://github.com/junegunn/vim-plug):
 ~~~~
 printf '\nsource "$HOME/.homesick/repos/homeshick/homeshick.sh"' >> $HOME/.bashrc
 printf '\nexport XDG_CONFIG_HOME=~/.config' >> $HOME/.bashrc
