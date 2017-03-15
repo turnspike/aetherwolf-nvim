@@ -1,5 +1,5 @@
 # Turnspike Vimrc
-The official [turnspike](https://turnspike.com) nVIM settings.
+turnspike's vim settings.
 
 # Pre-requisites
 
