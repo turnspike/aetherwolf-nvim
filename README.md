@@ -7,6 +7,7 @@ The official [turnspike](https://turnspike.com) nVIM settings.
 ~~~~
 printf '\nsource "$HOME/.homesick/repos/homeshick/homeshick.sh"' >> $HOME/.bashrc
 printf '\nexport XDG_CONFIG_HOME=~/.config' >> $HOME/.bashrc
+source $HOME/.bashrc
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ~~~~
 
