@@ -17,6 +17,11 @@ au FileType python set tabstop=4|set shiftwidth=4|set softtabstop=4|set expandta
 au FileType make setlocal noexpandtab|set softtabstop=4
 au BufRead,BufNewFile *.md setlocal filetype=markdown
 
+"---- indenting
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
+
 "" - Go {{{3
 "augroup myGolang
 "    au!
