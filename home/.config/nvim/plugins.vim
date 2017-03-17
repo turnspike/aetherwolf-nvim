@@ -52,6 +52,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround' " bracket manipulation eg cs'<p>
 Plug 'idbrii/vim-endoscope' " c-S to close tag/scope
 Plug 'ervandew/supertab' " autocomplete by pressing tab (overlay for ctrl-p, ctrl-x etc)
+Plug 'kien/rainbow_parentheses.vim' " color paren pairs, good for lisps
+"Plug 'SirVer/ultisnips' " insert code snips
+"Plug 'honza/vim-snippets' "insert code snips
+
 " TODO: kspell
 " TODO: ctags
 
@@ -206,10 +210,14 @@ Plug 'mhinz/vim-startify'
 
 "---- languages
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'aklt/plantuml-syntax' " plantuml
+Plug 'guns/vim-clojure-static'
+Plug 'guns/vim-clojure-highlight'
+"Plug 'aklt/plantuml-syntax' " plantuml
 Plug 'scrooloose/vim-slumlord' " plantuml live preview
-Plug 'vim-ruby/vim-ruby' " ruby syntax
+"Plug 'vim-ruby/vim-ruby' " ruby syntax
 Plug 'tpope/vim-rails' " rails syntax
+Plug 'sheerun/vim-polyglot' " multi-language syntax pack
+Plug 'letientai299/vim-react-snippets', { 'branch': 'es6' } " react code snips, ./UltiSnips/javascript.snippets
 "Plug 'skalnik/vim-vroom' " run tests
 "Plug 'jceb/vim-orgmode'
 
