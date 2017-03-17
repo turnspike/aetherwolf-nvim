@@ -1,9 +1,16 @@
 # Turnspike Vimrc
-The official [turnspike](https://turnspike.com) nVIM settings.
+turnspike's vim settings.
 
-# Installation
+# Pre-requisites
 
-Requires [homeshick](https://github.com/andsens/homeshick) or homesick.
+* [Homeshick](https://github.com/andsens/homeshick), [XDG environment variables](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) set, [vim-plug](https://github.com/junegunn/vim-plug):
+~~~~
+git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
+printf '\nsource "$HOME/.homesick/repos/homeshick/homeshick.sh"' >> $HOME/.bashrc
+printf '\nexport XDG_CONFIG_HOME=~/.config' >> $HOME/.bashrc
+source $HOME/.bashrc
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+~~~~
 
 ## NeoVIM
 
