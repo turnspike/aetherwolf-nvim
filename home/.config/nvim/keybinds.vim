@@ -56,7 +56,8 @@ nnoremap <leader>P "+P
 "vnoremap p "_dP
 
 " toggle autocommenting etc when pasting from websites
-set pastetoggle=<leader>=
+set pastetoggle=<leader>t
+"set pastetoggle=<leader>=
 
 "---- cursor
 " move cursor naturally through wrapped lines
