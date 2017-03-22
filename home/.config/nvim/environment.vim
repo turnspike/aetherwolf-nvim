@@ -83,7 +83,7 @@ let g:netrw_home='~/.cache/nvim'
 "let g:netrw_home = '~/.cache/nvim'
 
 "set nobackup
-"set noswapfile
+set noswapfile " nvim keeps making huge 50GB .swp files for some reason
 "set nowritebackup
 
 "---- whitespace
