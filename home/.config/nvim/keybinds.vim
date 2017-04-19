@@ -1,7 +1,7 @@
 "---- note: plugin specific keybinds live in plugins.vim, filetype keybinds live in filetypes.vim
 
-let mapleader = "\<space>"
-let maplocalleader = "\<space>"
+let mapleader = "\<Space>"
+"let maplocalleader = "\<space>"
 
 "---- movement
 
