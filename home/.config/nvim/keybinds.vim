@@ -1,7 +1,7 @@
 "---- note: plugin specific keybinds live in plugins.vim, filetype keybinds live in filetypes.vim
 
-let mapleader = "\<Space>"
-"let maplocalleader = "\<space>"
+let mapleader = "\<space>"
+let maplocalleader = "\<space>"
 
 "---- movement
 
@@ -56,7 +56,7 @@ nnoremap <leader>P "+P
 "vnoremap p "_dP
 
 " toggle autocommenting etc when pasting from websites
-set pastetoggle=<leader>t
+"set pastetoggle=<leader>t
 "set pastetoggle=<leader>=
 
 "---- cursor
