@@ -179,13 +179,13 @@ nnoremap <leader>r :QuickRun<cr>
 "Plug 'roxma/vim-tmux-clipboard'
 Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+"nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+"nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+"nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+"nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+"nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
-Plug 'wincent/terminus' " change cursor shape with mode
+"Plug 'wincent/terminus' " change cursor shape with mode
 "let g:TerminusMouse=0
 
 "---- linting
@@ -229,7 +229,8 @@ let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
 
 Plug 'vim-airline/vim-airline-themes'
 "let g:airline_theme = 'powerlineish'
-let g:airline_theme = 'sol'
+"let g:airline_theme = 'sol'
+let g:airline_theme = 'base16_tomorrow'
 
 " show marks in left gutter
 Plug 'kshenoy/vim-signature'
@@ -246,14 +247,14 @@ Plug 'jceb/vim-orgmode'
 
 "---- languages
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'guns/vim-clojure-static'
-Plug 'guns/vim-clojure-highlight'
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 "Plug 'aklt/plantuml-syntax' " plantuml
 Plug 'scrooloose/vim-slumlord' " plantuml live preview
 "Plug 'vim-ruby/vim-ruby' " ruby syntax
-Plug 'tpope/vim-rails' " rails syntax
+Plug 'tpope/vim-rails', { 'for': 'rails' } " rails syntax
 Plug 'sheerun/vim-polyglot' " multi-language syntax pack
-Plug 'letientai299/vim-react-snippets', { 'branch': 'es6' } " react code snips, ./UltiSnips/javascript.snippets
+"Plug 'letientai299/vim-react-snippets', { 'branch': 'es6' } " react code snips, ./UltiSnips/javascript.snippets
 "Plug 'skalnik/vim-vroom' " run tests
 
 "Bundle 'astashov/vim-ruby-debugger'
