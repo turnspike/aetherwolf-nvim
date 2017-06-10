@@ -11,7 +11,10 @@ Plug 'flazz/vim-colorschemes'
 
 "---- editing
 
+Plug 'tpope/vim-repeat' " add . repeat for some plugins
 Plug 'tpope/vim-unimpaired' " use ] and [ combos for :ex commands, eg ]b for next buffer
+Plug 'tpope/vim-surround' " bracket manipulation eg cs'<p>
+Plug 'idbrii/vim-endoscope' " c-S to close tag/scope
 Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
 Plug 'timkendrick/vim-duplicate' " duplicate chunks using <leader>-d
 map <leader>d <Plug>Duplicate
@@ -54,14 +57,27 @@ Plug 'airblade/vim-gitgutter'
 "nmap <Leader>gs <Plug>GitGutterStageHunk
 
 Plug 'tpope/vim-fugitive'
-" TODO: learn it
+nnoremap <leader>ga :Git add %:p<CR><CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit -v -q<CR>
+nnoremap <leader>gt :Gcommit -v -q %:p<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>ge :Gedit<CR>
+nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>gw :Gwrite<CR><CR>
+nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <leader>gp :Ggrep<space>
+nnoremap <leader>gm :Gmove<space>
+nnoremap <leader>gb :Git branch<space>
+nnoremap <leader>go :Git checkout<space>
+nnoremap <leader>gps :Dispatch! git push<CR>
+nnoremap <leader>gpl :Dispatch! git pull<CR>
 
 "---- codesense
 
-Plug 'tpope/vim-surround' " bracket manipulation eg cs'<p>
-Plug 'idbrii/vim-endoscope' " c-S to close tag/scope
-Plug 'ervandew/supertab' " autocomplete by pressing tab (overlay for ctrl-p, ctrl-x etc)
-Plug 'kien/rainbow_parentheses.vim' " color paren pairs, good for lisps
+"Plug 'ervandew/supertab' " autocomplete by pressing tab (overlay for ctrl-p, ctrl-x etc)
+Plug 'luochen1990/rainbow' " color paren pairs, good for lisps
+"Plug 'kien/rainbow_parentheses.vim' " color paren pairs, good for lisps
 "Plug 'SirVer/ultisnips' " insert code snips
 "Plug 'honza/vim-snippets' "insert code snips
 
@@ -179,6 +195,7 @@ nnoremap <leader>r :QuickRun<cr>
 "Plug 'roxma/vim-tmux-clipboard'
 Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_no_mappings = 1
+" TODO these blat core vim shortcuts, remap to c-w-h etc
 "nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 "nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 "nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
@@ -242,13 +259,19 @@ Plug 'mhinz/vim-startify'
 Plug 'mattn/calendar-vim'
 "Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-speeddating' " use CTRL-A/CTRL-X to increment dates, times
-Plug 'tpope/vim-repeat' " add . repeat for some plugins
 Plug 'jceb/vim-orgmode'
 
-"---- languages
+"---- clojure
+
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'tpope/vim-salve', { 'for': 'clojure' }
+"Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'guns/vim-sexp', { 'for': 'clojure' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+
+"---- other languages
+
 "Plug 'aklt/plantuml-syntax' " plantuml
 Plug 'scrooloose/vim-slumlord' " plantuml live preview
 "Plug 'vim-ruby/vim-ruby' " ruby syntax
