@@ -14,6 +14,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-repeat' " add . repeat for some plugins
 Plug 'tpope/vim-unimpaired' " use ] and [ combos for :ex commands, eg ]b for next buffer
 Plug 'tpope/vim-surround' " bracket manipulation eg cs'<p>
+Plug 'tpope/vim-dispatch' " bracket manipulation eg cs'<p>
 Plug 'idbrii/vim-endoscope' " c-S to close tag/scope
 Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
 Plug 'timkendrick/vim-duplicate' " duplicate chunks using <leader>-d
@@ -49,15 +50,15 @@ let g:LoupeVeryMagic=0 " don't prepend \v to searches
 
 " show git line status in left gutter
 Plug 'airblade/vim-gitgutter'
-"nnoremap <leader>gg :GitGutterToggle<CR>
-"nmap <Leader>gk <Plug>GitGutterPrevHunk
-"nmap <Leader>gj <Plug>GitGutterNextHunk
-"nmap <Leader>gp <Plug>GitGutterPreviewHunk
-"nmap <Leader>gr <Plug>GitGutterRevertHunk
-"nmap <Leader>gs <Plug>GitGutterStageHunk
+"nmap <leader>gg :GitGutterToggle<CR>
+nmap <leader>gk <Plug>GitGutterPrevHunk
+nmap <leader>gj <Plug>GitGutterNextHunk
+"nmap <leader>gp <Plug>GitGutterPreviewHunk
+"nmap <leader>gr <Plug>GitGutterRevertHunk
+"nmap <leader>gs <Plug>GitGutterStageHunk
 
 Plug 'tpope/vim-fugitive'
-nmap <leader>ga :Git add %:p<CR><CR>
+nmap <leader>ga :Dispatch git add %:p<CR><CR>
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gc :Gcommit -v -q<CR>
 nmap <leader>gt :Gcommit -v -q %:p<CR>
@@ -70,8 +71,8 @@ nmap <leader>gp :Ggrep<space>
 nmap <leader>gm :Gmove<space>
 nmap <leader>gb :Git branch<space>
 nmap <leader>go :Git checkout<space>
-nmap <leader>gps :Dispatch! git push<CR>
-nmap <leader>gpl :Dispatch! git pull<CR>
+nmap <leader>gp :Dispatch! git push<CR>
+nmap <leader>gu :Dispatch! git pull<CR>
 
 "---- codesense
 
@@ -110,7 +111,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
 "nnoremap <leader>nt :NERDTreeToggle<cr>
 " reveal the current file in NERDTree
-nnoremap <leader>nf :NERDTreeFind<cr>
+nmap <leader>nf :NERDTreeFind<cr>
 " don't blat <c-j> and <c-k> (used for split movement)
 let g:NERDTreeMapJumpPrevSibling='<Nop>'
 let g:NERDTreeMapJumpNextSibling='<Nop>'
@@ -139,18 +140,16 @@ Plug 'tpope/vim-vinegar' " use - (minus) to launch a modified netrw file browser
 " show tag sidebar for current file
 Plug 'majutsushi/tagbar'
 let g:tagbar_usearrows = 1
-nnoremap <leader>tt :TagbarToggle<CR>
+nmap <leader>tt :TagbarToggle<CR>
 
 " TODO macos/homebrew
-" set rtp+=/usr/local/opt/fzf
 
 " fuzzy finder navigator
-" TODO learn this + add to zsh
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'junegunn/fzf.vim'
-"let g:fzf_command_prefix = 'Fzf' " use :Fzf prefix
-"nnoremap <leader>ff :FzfFiles<cr>
-"nnoremap <leader>fb :FzfBuffers<cr>
+let g:fzf_command_prefix = 'Fzf' " use :Fzf prefix
+nmap <leader>ff :FzfFiles<cr>
+nmap <leader>fb :FzfBuffers<cr>
 
 " ctrlp navigator
 "let g:ctrlp_extensions = ['funky']
