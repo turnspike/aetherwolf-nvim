@@ -71,8 +71,8 @@ nmap <leader>gp :Ggrep<space>
 nmap <leader>gm :Gmove<space>
 nmap <leader>gb :Git branch<space>
 nmap <leader>go :Git checkout<space>
-nmap <leader>gp :Dispatch! git push<CR>
-nmap <leader>gu :Dispatch! git pull<CR>
+nmap <leader>gp :Dispatch git push<CR>
+nmap <leader>gu :Dispatch git pull<CR>
 
 "---- codesense
 
