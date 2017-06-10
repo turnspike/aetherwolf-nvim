@@ -18,7 +18,7 @@ Plug 'tpope/vim-dispatch' " bracket manipulation eg cs'<p>
 Plug 'idbrii/vim-endoscope' " c-S to close tag/scope
 Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
 Plug 'timkendrick/vim-duplicate' " duplicate chunks using <leader>-d
-map <leader>d <Plug>Duplicate
+nmap <leader>d <Plug>Duplicate
 
 " visually select outwards using <v>
 Plug 'terryma/vim-expand-region'
@@ -72,8 +72,8 @@ nmap <leader>gp :Ggrep<space>
 nmap <leader>gm :Gmove<space>
 nmap <leader>gb :Git branch<space>
 nmap <leader>go :Git checkout<space>
-nmap <leader>gp :Dispatch git push<CR>
-nmap <leader>gu :Dispatch git pull<CR>
+nmap <leader>gp :Dispatch! git push<CR>
+nmap <leader>gu :Dispatch! git pull<CR>
 
 "---- codesense
 
