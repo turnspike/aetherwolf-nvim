@@ -50,6 +50,7 @@ let g:LoupeVeryMagic=0 " don't prepend \v to searches
 
 " show git line status in left gutter
 Plug 'airblade/vim-gitgutter'
+let g:gitgutter_max_signs=10000 " limit signs on large files
 "nmap <leader>gg :GitGutterToggle<CR>
 nmap <leader>gk <Plug>GitGutterPrevHunk
 nmap <leader>gj <Plug>GitGutterNextHunk
@@ -145,9 +146,9 @@ nmap <leader>tt :TagbarToggle<CR>
 " TODO macos/homebrew
 
 " fuzzy finder navigator
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'junegunn/fzf.vim'
-let g:fzf_command_prefix = 'Fzf' " use :Fzf prefix
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " base fzf
+Plug 'junegunn/fzf.vim' " load Ex commands
+let g:fzf_command_prefix = 'Fzf' " use :Fzf prefix for Ex commands
 nmap <leader>ff :FzfFiles<cr>
 nmap <leader>fb :FzfBuffers<cr>
 

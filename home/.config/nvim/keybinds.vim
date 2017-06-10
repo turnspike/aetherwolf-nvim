@@ -68,7 +68,7 @@ nnoremap k gk
 nmap <leader><leader> V
 
 " duplicate/clone line
-noremap <leader>d "ayy"ap
+" noremap <leader>d "ayy"ap
 
 "---- paragraphs
 " clone
@@ -91,6 +91,8 @@ noremap <leader>q :q<cr>
 " write files as sudo using w!!
 "cnoremap w!! %!sudo tee > /dev/null %
 cmap w!! w !sudo tee % >/dev/null
+" show file uri in command area
+nmap <leader>g :echo resolve(expand('%:p'))<CR>
 
 " vimrc
 nnoremap <leader>ce :e $MYVIMRC<cr>
@@ -102,7 +104,7 @@ nnoremap Q q
 " normal q does nothing
 nnoremap q <nop>
 " don't use q: command (TODO: find a replacement for q:)
-map q: <nop>
+nmap q: <nop>
 
 "---- neovim
 if has("nvim")
