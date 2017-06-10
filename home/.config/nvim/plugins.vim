@@ -57,21 +57,21 @@ Plug 'airblade/vim-gitgutter'
 "nmap <Leader>gs <Plug>GitGutterStageHunk
 
 Plug 'tpope/vim-fugitive'
-nnoremap <leader>ga :Git add %:p<CR><CR>
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gc :Gcommit -v -q<CR>
-nnoremap <leader>gt :Gcommit -v -q %:p<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>ge :Gedit<CR>
-nnoremap <leader>gr :Gread<CR>
-nnoremap <leader>gw :Gwrite<CR><CR>
-nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
-nnoremap <leader>gp :Ggrep<space>
-nnoremap <leader>gm :Gmove<space>
-nnoremap <leader>gb :Git branch<space>
-nnoremap <leader>go :Git checkout<space>
-nnoremap <leader>gps :Dispatch! git push<CR>
-nnoremap <leader>gpl :Dispatch! git pull<CR>
+nmap <leader>ga :Git add %:p<CR><CR>
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gc :Gcommit -v -q<CR>
+nmap <leader>gt :Gcommit -v -q %:p<CR>
+nmap <leader>gd :Gdiff<CR>
+nmap <leader>ge :Gedit<CR>
+nmap <leader>gr :Gread<CR>
+nmap <leader>gw :Gwrite<CR><CR>
+nmap <leader>gl :silent! Glog<CR>:bot copen<CR>
+nmap <leader>gp :Ggrep<space>
+nmap <leader>gm :Gmove<space>
+nmap <leader>gb :Git branch<space>
+nmap <leader>go :Git checkout<space>
+nmap <leader>gps :Dispatch! git push<CR>
+nmap <leader>gpl :Dispatch! git pull<CR>
 
 "---- codesense
 
