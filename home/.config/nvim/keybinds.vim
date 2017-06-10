@@ -92,7 +92,7 @@ noremap <leader>q :q<cr>
 "cnoremap w!! %!sudo tee > /dev/null %
 cmap w!! w !sudo tee % >/dev/null
 " show file uri in command area
-nmap <leader>g :echo resolve(expand('%:p'))<CR>
+nnoremap <leader>g :echo resolve(expand('%:p'))<CR>
 
 " vimrc
 nnoremap <leader>ce :e $MYVIMRC<cr>

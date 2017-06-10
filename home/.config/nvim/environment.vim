@@ -30,12 +30,11 @@ set timeout " use timeouts for keyboard combo mappings
 set timeoutlen=600 ttimeoutlen=0 " 600ms for key combos, 0ms for <esc>
 
 "---- mouse
-"" mouse? no more mouse for you
-"set mouse=
-"if exists(':ttymouse')
-"    set ttymouse=
-"endif
-set mouse=a
+" mouse? no more mouse for you
+set mouse =
+if exists(':ttymouse')
+    set ttymouse=
+endif
 
 "---- files
 "let g:netrw_keepdir=0 " :e is relative to current buffer
