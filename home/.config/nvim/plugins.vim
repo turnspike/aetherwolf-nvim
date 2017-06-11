@@ -118,9 +118,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
 "nnoremap <leader>nt :NERDTreeToggle<cr>
 " reveal the current file in NERDTree
 nmap <leader>nf :NERDTreeFind<cr>
-" don't blat <c-j> and <c-k> (used for split movement)
-let g:NERDTreeMapJumpPrevSibling='<Nop>'
-let g:NERDTreeMapJumpNextSibling='<Nop>'
+"" don't blat <c-j> and <c-k> (used for split movement)
+"let g:NERDTreeMapJumpPrevSibling='<Nop>'
+"let g:NERDTreeMapJumpNextSibling='<Nop>'
 
 " Open NERDTree in the directory of the current file (or /home if no file is open)
 nmap <silent> <leader>i :call NERDTreeToggleInCurDir()<cr>
