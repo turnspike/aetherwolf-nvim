@@ -52,11 +52,11 @@ let g:LoupeVeryMagic=0 " don't prepend \v to searches
 Plug 'airblade/vim-gitgutter'
 let g:gitgutter_max_signs=10000 " limit signs on large files
 "nmap <leader>gg :GitGutterToggle<CR>
-nmap <leader>gk <Plug>GitGutterPrevHunk
-nmap <leader>gj <Plug>GitGutterNextHunk
-"nmap <leader>gp <Plug>GitGutterPreviewHunk
-"nmap <leader>gr <Plug>GitGutterRevertHunk
-"nmap <leader>gs <Plug>GitGutterStageHunk
+nmap <leader>ghk <Plug>GitGutterPrevHunk
+nmap <leader>ghj <Plug>GitGutterNextHunk
+nmap <leader>ghp <Plug>GitGutterPreviewHunk
+nmap <leader>ghr <Plug>GitGutterUndo
+nmap <leader>ghs <Plug>GitGutterStageHunk
 
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
