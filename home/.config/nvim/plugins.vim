@@ -19,6 +19,8 @@ Plug 'idbrii/vim-endoscope' " c-S to close tag/scope
 Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
 "Plug 'timkendrick/vim-duplicate' " duplicate chunks using <leader>-d
 "nmap <leader>d <Plug>Duplicate
+" TODO: osyo-manga/vim-over
+" TODO: godlygeek/tabular
 
 " visually select outwards using <v>
 Plug 'terryma/vim-expand-region'
