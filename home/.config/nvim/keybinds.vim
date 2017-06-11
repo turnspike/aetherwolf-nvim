@@ -87,6 +87,7 @@ noremap <leader>vd gvd
 "nnoremap <leader>s :w<cr>
 "inoremap <leader>s <C-c>:w<cr>
 nnoremap <leader>w :w<cr>
+nnoremap <leader>x :x<cr>
 "nnoremap <leader>e :Explore<cr>
 noremap <leader>q :q<cr>
 " write files as sudo using w!!
