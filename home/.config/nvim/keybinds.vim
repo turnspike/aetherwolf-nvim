@@ -17,7 +17,8 @@ vnoremap <leader>h "hy:%s/<c-r>h//g<left><left><paste>
 " in normal mode, leader-h launches search/replace :ex command
 nnoremap <leader>h :%s///g<left><left><left>
 " press esc to clear hilites after searching
-nnoremap <esc> :noh<return><esc>
+"nnoremap <esc> :noh<return><esc>
+nmap <esc>:noh<CR>:echo ""<CR><esc>
 
 "---- buffers
 "nnoremap <leader>bd :bdelete<cr>
