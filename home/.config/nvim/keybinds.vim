@@ -69,7 +69,7 @@ nnoremap k gk
 nmap <leader><leader> V
 
 " duplicate/clone line
-" noremap <leader>d "ayy"ap
+noremap <leader>d "ayy"ap
 
 "---- paragraphs
 " clone
