@@ -21,6 +21,7 @@ Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
 "nmap <leader>d <Plug>Duplicate
 " TODO: osyo-manga/vim-over
 " TODO: godlygeek/tabular
+" TODO: justinmk/vim-sneak
 
 " visually select outwards using <v>
 Plug 'terryma/vim-expand-region'
