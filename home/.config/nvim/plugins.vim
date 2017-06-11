@@ -58,12 +58,14 @@ nmap <leader>gj <Plug>GitGutterNextHunk
 "nmap <leader>gr <Plug>GitGutterRevertHunk
 "nmap <leader>gs <Plug>GitGutterStageHunk
 
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 nmap <leader>ga :Dispatch git add %:p<CR><CR>
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gc :Gcommit -v -q<CR>
 nmap <leader>gt :Gcommit -v -q %:p<CR>
 nmap <leader>gd :Gdiff<CR>
+nmap <Leader>gD :diffoff!<cr><c-w>h:bd<cr>
 nmap <leader>ge :Gedit<CR>
 nmap <leader>gr :Gread<CR>
 nmap <leader>gw :Gwrite<CR><CR>
@@ -74,6 +76,7 @@ nmap <leader>gb :Git branch<space>
 nmap <leader>go :Git checkout<space>
 nmap <leader>gp :Dispatch! git push<CR>
 nmap <leader>gu :Dispatch! git pull<CR>
+:command! Gpraise Gblame " eliminate the negativity
 
 "---- codesense
 
