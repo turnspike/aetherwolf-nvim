@@ -54,9 +54,14 @@ nnoremap <leader>P "+P
 " don't copy the contents of an overwritten selection
 "vnoremap p "_dP
 
+" nvim team says don't use pastetoggle :(
+" https://github.com/neovim/neovim/issues/6551
 " toggle autocommenting etc when pasting from websites
 "set pastetoggle=<leader>t
 "set pastetoggle=<leader>=
+
+" highlight last inserted text
+nnoremap vG `[v`]
 
 "---- cursor
 " move cursor naturally through wrapped lines
