@@ -162,15 +162,22 @@ nmap <leader>fb :Buffers<cr>
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 set grepprg=rg\ --vimgrep
 
-" vim rooter
+" lifted from: https://github.com/junegunn/fzf.vim/issues/47#issuecomment-160237795
+function! s:find_git_root()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
 
-Plug 'airblade/vim-rooter'
-let g:rooter_change_directory_for_non_project_files = 'current' " like autochdir if no .git
-let g:rooter_patterns = ['.vimroot', '.git/', '.python-version']
+command! ProjectFiles execute 'Files' s:find_git_root()
 
-augroup vimrc_rooter
-    autocmd VimEnter * :Rooter
-augroup END
+"" vim rooter
+"
+"Plug 'airblade/vim-rooter'
+"let g:rooter_change_directory_for_non_project_files = 'current' " like autochdir if no .git
+"let g:rooter_patterns = ['.vimroot', '.git/', '.python-version']
+"
+"augroup vimrc_rooter
+"    autocmd VimEnter * :Rooter
+"augroup END
 
 " ctrlp navigator
 "let g:ctrlp_extensions = ['funky']
