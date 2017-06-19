@@ -139,7 +139,6 @@ endfunction
 "Plug 'Shougo/vimfiler.vim'
 "let g:vimfiler_as_default_explorer = 1
 
-
 Plug 'tpope/vim-vinegar' " use - (minus) to launch a modified netrw file browser
 
 " tpope/vim-sleuth
@@ -154,9 +153,24 @@ nmap <leader>tt :TagbarToggle<CR>
 " fuzzy finder navigator
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " base fzf
 Plug 'junegunn/fzf.vim' " load Ex commands
-let g:fzf_command_prefix = 'Fzf' " use :Fzf prefix for Ex commands
-nmap <leader>ff :FzfFiles<cr>
-nmap <leader>fb :FzfBuffers<cr>
+"let g:fzf_command_prefix = 'Fzf' " use :Fzf prefix for Ex commands
+nmap <leader>ff :Files<cr>
+nmap <leader>fb :Buffers<cr>
+
+" lifted from: https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
+"command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+set grepprg=rg\ --vimgrep
+
+" vim rooter
+
+Plug 'airblade/vim-rooter'
+let g:rooter_change_directory_for_non_project_files = 'current' " like autochdir if no .git
+let g:rooter_patterns = ['.vimroot', '.git/', '.python-version']
+
+augroup vimrc_rooter
+    autocmd VimEnter * :Rooter
+augroup END
 
 " ctrlp navigator
 "let g:ctrlp_extensions = ['funky']
@@ -281,8 +295,11 @@ Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 
 "Plug 'aklt/plantuml-syntax' " plantuml
 Plug 'scrooloose/vim-slumlord' " plantuml live preview
-"Plug 'vim-ruby/vim-ruby' " ruby syntax
+
+Plug 'tpope/vim-cucumber', { 'for': 'rails'} " cucumber syntax
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' } " ruby syntax
 Plug 'tpope/vim-rails', { 'for': 'rails' } " rails syntax
+Plug 'tpope/vim-haml', { 'for': 'rails' } " rails syntax
 Plug 'sheerun/vim-polyglot' " multi-language syntax pack
 "Plug 'letientai299/vim-react-snippets', { 'branch': 'es6' } " react code snips, ./UltiSnips/javascript.snippets
 "Plug 'skalnik/vim-vroom' " run tests
@@ -290,10 +307,8 @@ Plug 'sheerun/vim-polyglot' " multi-language syntax pack
 "Bundle 'astashov/vim-ruby-debugger'
 "Bundle 'ecomba/vim-ruby-refactoring'
 "Bundle 'skwp/vim-ruby-conque'
-"Bundle 'tpope/vim-rails.git'
 "Bundle 'tpope/vim-rake.git'
 "Bundle 'tpope/vim-rvm.git'
-"Bundle 'vim-ruby/vim-ruby.git'
 "Bundle 'vim-scripts/Specky.git'
 "Bundle 'ck3g/vim-change-hash-syntax'
 
