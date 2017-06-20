@@ -5,6 +5,8 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+"---- utility
+
 "---- colors
 Plug 'flazz/vim-colorschemes'
 "colorscheme dusk
@@ -118,10 +120,13 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
 "nnoremap <leader>nt :NERDTreeToggle<cr>
 " reveal the current file in NERDTree
-nmap <leader>nf :NERDTreeFind<cr>
-"" don't blat <c-j> and <c-k> (used for split movement)
-"let g:NERDTreeMapJumpPrevSibling='<Nop>'
-"let g:NERDTreeMapJumpNextSibling='<Nop>'
+"nmap <leader>nf :NERDTreeFind<cr>
+call Cabbrev('nt', 'NERDTreeToggle')
+call Cabbrev('nf', 'NERDTreeFind')
+
+" don't blat <c-j> and <c-k> (used for split movement)
+let g:NERDTreeMapJumpPrevSibling='<Nop>'
+let g:NERDTreeMapJumpNextSibling='<Nop>'
 
 " Open NERDTree in the directory of the current file (or /home if no file is open)
 nmap <silent> <leader>i :call NERDTreeToggleInCurDir()<cr>
@@ -143,10 +148,16 @@ Plug 'tpope/vim-vinegar' " use - (minus) to launch a modified netrw file browser
 
 " tpope/vim-sleuth
 
+
+fu! Cabbrev(key, value)
+  exe printf('cabbrev <expr> %s (getcmdtype() == ":" && getcmdpos() <= %d) ? %s : %s',
+    \ a:key, 1+len(a:key), string(a:value), string(a:key))
+endfu
+
 " show tag sidebar for current file
 Plug 'majutsushi/tagbar'
 let g:tagbar_usearrows = 1
-nmap <leader>tt :TagbarToggle<CR>
+call Cabbrev('tt', 'TagbarToggle')
 
 " TODO macos/homebrew
 
@@ -154,8 +165,6 @@ nmap <leader>tt :TagbarToggle<CR>
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " base fzf
 Plug 'junegunn/fzf.vim' " load Ex commands
 "let g:fzf_command_prefix = 'Fzf' " use :Fzf prefix for Ex commands
-nmap <leader>ff :Files<cr>
-nmap <leader>fb :Buffers<cr>
 
 " lifted from: https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
 "command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
@@ -169,15 +178,9 @@ endfunction
 
 command! ProjectFiles execute 'Files' s:find_git_root()
 
-"" vim rooter
-"
-"Plug 'airblade/vim-rooter'
-"let g:rooter_change_directory_for_non_project_files = 'current' " like autochdir if no .git
-"let g:rooter_patterns = ['.vimroot', '.git/', '.python-version']
-"
-"augroup vimrc_rooter
-"    autocmd VimEnter * :Rooter
-"augroup END
+call Cabbrev('fp', 'ProjectFiles')
+call Cabbrev('ff', 'Files')
+call Cabbrev('fb', 'Buffers')
 
 " ctrlp navigator
 "let g:ctrlp_extensions = ['funky']
@@ -222,12 +225,12 @@ nnoremap <leader>r :QuickRun<cr>
 "Plug 'roxma/vim-tmux-clipboard'
 Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_no_mappings = 1
-" TODO these blat core vim shortcuts, remap to c-w-h etc
-"nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-"nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-"nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-"nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-"nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+"TODO do these blat core vim shortcuts?
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
 "Plug 'wincent/terminus' " change cursor shape with mode
 "let g:TerminusMouse=0
@@ -318,5 +321,14 @@ Plug 'sheerun/vim-polyglot' " multi-language syntax pack
 "Bundle 'tpope/vim-rvm.git'
 "Bundle 'vim-scripts/Specky.git'
 "Bundle 'ck3g/vim-change-hash-syntax'
+
+"---- misc
+
+"Description {===============================
+" Vim plugin for showing all your <Leader>
+" mappings in a readable table including the descriptions.
+" <leader>fml
+"}===========================================
+"Plug 'ktonga/vim-follow-my-lead'
 
 call plug#end()
