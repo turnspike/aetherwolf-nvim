@@ -4,24 +4,24 @@ let maplocalleader = "\<space>"
 "---- movement
 
 " extra ways to exit insert mode
-imap jk <esc>
+imap <silent> jk <esc>
 "imap <s-cr> <esc>
 
 " insert mode control enhancements
-imap <c-f> <right>
-imap <c-b> <left>
+imap <silent> <c-f> <right>
+imap <silent> <c-b> <left>
 
 "---- searching
 " in visual mode, leader-h does a global search/replace of the highlighted text
-vnoremap <leader>h "hy:%s/<c-r>h//g<left><left><paste>
+vnoremap <silent> <leader>h "hy:%s/<c-r>h/<paste>
 " in normal mode, leader-h launches search/replace :ex command
-nnoremap <leader>h :%s///g<left><left><left>
+nnoremap <silent> <leader>h :%s//<left>
 
 " press esc to clear hilites after searching
 "---- neovim only
 if has("nvim")
 	"nnoremap <esc> :noh<return><esc>
-	nmap <esc>:noh<CR>:echo ""<CR><esc>
+	nmap <silent> <esc>:noh<CR>:echo ""<CR><esc>
 endif
 
 "---- buffers
@@ -41,6 +41,14 @@ nmap <leader>shg :resize +5<cr>
 nmap <leader>shs :resize -5<cr>
 nmap <leader>svg :vertical resize -5<cr>
 nmap <leader>svs :vertical resize +5<cr>
+
+call Cabbrev('sv', 'vsplit')
+call Cabbrev('sh', 'split')
+call Cabbrev('sd', 'q')
+call Cabbrev('shg', 'resize +5')
+call Cabbrev('shs', 'resize -5')
+"call Cabbrev('shs', 'eq')
+"call Cabbrev('svg', 'eq')
 
 "---- copy/paste
 " move point back to original position after yanking

@@ -31,7 +31,7 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 " region commenting
-"Plug 'tpope/vim-commentary' " gc to comment
+"Plug 'tpope/vim-commentary' " gc to comment, <leader>c<space> to toggle comment
 Plug 'scrooloose/nerdcommenter'
 let g:NERDDefaultAlign = 'left' " comment delimiters hard left
 let g:NERDCompactSexyComs = 1 " use compact syntax for prettified multi-line comments
@@ -65,12 +65,12 @@ nmap <leader>ghs <Plug>GitGutterStageHunk
 
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
-nmap <leader>ga :Dispatch git add %:p<CR><CR>
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gc :Gcommit -v -q<CR>
-nmap <leader>gt :Gcommit -v -q %:p<CR>
-nmap <leader>gd :Gdiff<CR>
-nmap <Leader>gD :diffoff!<cr><c-w>h:bd<cr>
+call Cabbrev('ga', 'Dispatch git add %:p<CR><CR>')
+call Cabbrev('gs', 'Gstatus<CR>')
+call Cabbrev('gc', 'Gcommit -v -q<CR>')
+call Cabbrev('gt', 'Gcommit -v -q %:p<CR>')
+call Cabbrev('gd', 'Gdiff<CR>')
+call Cabbrev('gD', 'diffoff!<CR><c-w>h:bd<CR>')
 nmap <leader>ge :Gedit<CR>
 nmap <leader>gr :Gread<CR>
 nmap <leader>gw :Gwrite<CR><CR>
@@ -81,7 +81,7 @@ nmap <leader>gb :Git branch<space>
 nmap <leader>go :Git checkout<space>
 nmap <leader>gp :Dispatch! git push<CR>
 nmap <leader>gu :Dispatch! git pull<CR>
-:command! Gpraise Gblame " eliminate the negativity
+:command! Gpraise Gblame " eeeeliminate the negativity
 
 "---- codesense
 
@@ -129,7 +129,8 @@ let g:NERDTreeMapJumpPrevSibling='<Nop>'
 let g:NERDTreeMapJumpNextSibling='<Nop>'
 
 " Open NERDTree in the directory of the current file (or /home if no file is open)
-nmap <silent> <leader>i :call NERDTreeToggleInCurDir()<cr>
+"nmap <silent> <leader>i :call NERDTreeToggleInCurDir()<cr>
+call Cabbrev('ni', 'NERDTreeToggleInCurDir')
 function! NERDTreeToggleInCurDir()
   " If NERDTree is open in the current buffer
   if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
@@ -144,15 +145,16 @@ endfunction
 "Plug 'Shougo/vimfiler.vim'
 "let g:vimfiler_as_default_explorer = 1
 
-Plug 'tpope/vim-vinegar' " use - (minus) to launch a modified netrw file browser
+"Plug 'tpope/vim-vinegar' " use - (minus) to launch a modified netrw file browser
+"autocmd FileType netrw setl bufhidden=wipe " bugfix for :bd on netrw
+
+" vinegar is bugged so use filebeagle for now
+
+let g:filebeagle_suppress_keymaps = 1
+Plug 'jeetsukumaran/vim-filebeagle'
+map <silent> - <Plug>FileBeagleOpenCurrentBufferDir
 
 " tpope/vim-sleuth
-
-
-fu! Cabbrev(key, value)
-  exe printf('cabbrev <expr> %s (getcmdtype() == ":" && getcmdpos() <= %d) ? %s : %s',
-    \ a:key, 1+len(a:key), string(a:value), string(a:key))
-endfu
 
 " show tag sidebar for current file
 Plug 'majutsushi/tagbar'
@@ -213,7 +215,8 @@ call Cabbrev('fb', 'Buffers')
 "---- REPL
 
 Plug 'thinca/vim-quickrun'
-nnoremap <leader>r :QuickRun<cr>
+"nnoremap <leader>r :QuickRun<cr>
+call Cabbrev('tt', 'eq')
 
 "Plug 'benmills/vimux'
 "Plug 'epeli/slimux'
