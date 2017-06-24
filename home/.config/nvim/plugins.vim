@@ -68,24 +68,24 @@ nmap <leader>ghs <Plug>GitGutterStageHunk
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 
+"autocmd BufReadPost fugitive://* set bufhidden=delete
 "command! GitAdd execute 'Dispatch git add %:p<CR><CR>'
 call Cabbrev('ga', 'Gwrite')
 "nmap <leader>ga :Dispatch git add %:p<CR><CR>
 call Cabbrev('gs', 'Gstatus')
-call Cabbrev('gc', 'Gcommit -v -q<CR>')
-call Cabbrev('gac', 'Gwrite<CR>Gcommit -v -q<CR>')
-call Cabbrev('gd', 'Gdiff<CR>')
-call Cabbrev('gD', 'diffoff!<CR><c-w>h:bd<CR>')
-call Cabbrev('ge', 'Gedit<CR>')
-call Cabbrev('gr', 'Gread<CR>')
-call Cabbrev('gw', 'Gwrite<CR><CR>')
-call Cabbrev('gl', 'silent! Glog<CR>:bot copen<CR>')
-call Cabbrev('gg', 'Ggrep<space>')
-call Cabbrev('gm', 'Gmove<space>')
-call Cabbrev('gb', 'Git branch<space>')
-call Cabbrev('go', 'Git checkout<space>')
-call Cabbrev('gp', 'Dispatch! git push<CR>')
-call Cabbrev('gu', 'Dispatch! git pull<CR>')
+call Cabbrev('gc', 'Gcommit -v -q')
+nmap <leader>gc :Gcommit<CR>
+call Cabbrev('gd', 'Gdiff')
+call Cabbrev('gD', 'diffoff!<CR><c-w>h:bd')
+call Cabbrev('ge', 'Gedit')
+call Cabbrev('gr', 'Gread')
+"call Cabbrev('gl', 'silent! Glog<CR>:bot copen')
+"call Cabbrev('gg', 'Ggrep<space>')
+"call Cabbrev('gm', 'Gmove<space>')
+"call Cabbrev('gb', 'Git branch<space>')
+"call Cabbrev('go', 'Git checkout<space>')
+call Cabbrev('gp', 'Dispatch! git push')
+call Cabbrev('gu', 'Dispatch! git pull')
 :command! Gwho Gblame " eeeeliminate the negativity
 
 "---- codesense
