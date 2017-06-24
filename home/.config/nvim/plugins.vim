@@ -74,8 +74,9 @@ call Cabbrev('ga', 'Gwrite')
 call Cabbrev('gs', 'Gstatus')
 call Cabbrev('gc', 'Gcommit -v -q')
 nmap <leader>gc :Gwrite<CR>:Gcommit -v -q<CR>
+call Cabbrev('gac', 'Dispatch git add %:p<CR><CR>Gcommit -v -q')
 call Cabbrev('gd', 'Gdiff')
-call Cabbrev('gD', 'diffoff!<CR><c-w>h:bd')
+call Cabbrev('gD', 'diffoff!<CR><c-w>h:bd') "clean way to close fugitive diff window
 call Cabbrev('ge', 'Gedit')
 call Cabbrev('gr', 'Gread')
 "call Cabbrev('gl', 'silent! Glog<CR>:bot copen')

@@ -1,5 +1,7 @@
-let mapleader = "\<space>"
-let maplocalleader = "\<space>"
+" omg racy!!!1
+map <space> :
+"let mapleader = "\<space>"
+"let maplocalleader = "\<space>"
 
 "---- movement
 
@@ -77,8 +79,8 @@ nnoremap vG `[v`]
 
 "---- cursor
 " move cursor naturally through wrapped lines
-nnoremap j gj
-nnoremap k gk
+nnoremap <silent> j gj
+nnoremap <silent> k gk
 
 "---- lines
 
@@ -122,8 +124,11 @@ call Cabbrev('af', 'FileInfo') " af About File
 call Cabbrev('ce', 'e $MYVIMRC')
 call Cabbrev('cr', 'so $MYVIMRC')
 
-""---- fix common typos
-"nnoremap Q <nop>
+"---- fix common typos
+"" use Q to record macros (don't use Ex mode)
+"nnoremap Q q
+"" normal q does nothing
+"nnoremap q <nop>
 "" don't use q: command (TODO: find a replacement for q:)
 "nmap q: <nop>
 
