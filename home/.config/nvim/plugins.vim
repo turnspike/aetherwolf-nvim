@@ -74,7 +74,7 @@ call Cabbrev('ga', 'Gwrite')
 "nmap <leader>ga :Dispatch git add %:p<CR><CR>
 call Cabbrev('gs', 'Gstatus')
 call Cabbrev('gc', 'Gcommit -v -q')
-nmap <leader>gc :Gcommit<CR>
+nmap <leader>gc :Gwrite<CR>:Gcommit<CR>
 call Cabbrev('gd', 'Gdiff')
 call Cabbrev('gD', 'diffoff!<CR><c-w>h:bd')
 call Cabbrev('ge', 'Gedit')
