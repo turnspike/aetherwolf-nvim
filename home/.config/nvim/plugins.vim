@@ -69,9 +69,9 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 
 "command! GitAdd execute 'Dispatch git add %:p<CR><CR>'
-call Cabbrev('ga', 'GWrite')
+call Cabbrev('ga', 'Gwrite')
 "nmap <leader>ga :Dispatch git add %:p<CR><CR>
-call Cabbrev('gs', 'Gstatus<CR>')
+call Cabbrev('gs', 'Gstatus')
 call Cabbrev('gc', 'Gcommit -v -q<CR>')
 call Cabbrev('gac', 'Dispatch git add %:p<CR><CR>')
 call Cabbrev('gt', 'Gcommit -v -q %:p<CR>')
