@@ -74,7 +74,8 @@ call Cabbrev('ga', 'Gwrite')
 call Cabbrev('gs', 'Gstatus')
 call Cabbrev('gc', 'Gcommit -v -q')
 nmap <leader>gc :Gwrite<CR>:Gcommit -v -q<CR>
-call Cabbrev('gac', 'Dispatch git add %:p<CR><CR>Gcommit -v -q')
+" TODO: how to chain Cabbrev commands??
+"call Cabbrev('gac', 'Dispatch git add %:p<CR><CR>Gcommit -v -q')
 call Cabbrev('gd', 'Gdiff')
 call Cabbrev('gD', 'diffoff!<CR><c-w>h:bd') "clean way to close fugitive diff window
 call Cabbrev('ge', 'Gedit')
@@ -295,9 +296,30 @@ Plug 'mhinz/vim-startify'
 
 "---- orgmode
 Plug 'mattn/calendar-vim'
-"Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-speeddating' " use CTRL-A/CTRL-X to increment dates, times
-Plug 'jceb/vim-orgmode'
+"Plug 'jceb/vim-orgmode'
+let g:vimwiki_list = [
+    \{'path': '~/Dropbox/docs/wiki/work/work.wiki'},
+    \{'path': '~/Dropbox/docs/wiki/tech/tech.wiki'},
+    \{'path': '~/Dropbox/docs/wiki/personal/personal.wiki'}]
+au BufRead,BufNewFile *.wiki set filetype=vimwiki
+:autocmd FileType vimwiki map d :VimwikiMakeDiaryNote
+function! ToggleCalendar()
+  execute ":Calendar"
+  if exists("g:calendar_open")
+    if g:calendar_open == 1
+      execute "q"
+      unlet g:calendar_open
+    else
+      g:calendar_open = 1
+    end
+  else
+    let g:calendar_open = 1
+  end
+endfunction
+:autocmd FileType vimwiki map c :call ToggleCalendar()
+
 
 "---- clojure
 
@@ -316,7 +338,7 @@ Plug 'scrooloose/vim-slumlord' " plantuml live preview
 
 Plug 'tpope/vim-cucumber', { 'for': 'rails'} " cucumber syntax
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' } " ruby syntax
-Plug 'tpope/vim-rails', { 'for': 'rails' } " rails syntax
+Plug 'tpope/vim-rails' " rails syntax
 Plug 'tpope/vim-haml', { 'for': 'rails' } " rails syntax
 Plug 'sheerun/vim-polyglot' " multi-language syntax pack
 "Plug 'letientai299/vim-react-snippets', { 'branch': 'es6' } " react code snips, ./UltiSnips/javascript.snippets
