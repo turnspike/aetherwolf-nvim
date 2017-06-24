@@ -113,18 +113,19 @@ cmap w!! w !sudo tee % >/dev/null
 " show file uri in command area
 "nnoremap <leader>g :echo resolve(expand('%:p'))<CR>
 :command! FileInfo :echo resolve(expand('%:p'))
+call Cabbrev('af', 'FileInfo') " af About File
 
 " vimrc
-nnoremap <leader>ce :e $MYVIMRC<cr>
-nnoremap <leader>cr :so $MYVIMRC<cr>
+"nnoremap <leader>ce :e $MYVIMRC<cr>
+"nnoremap <leader>cr :so $MYVIMRC<cr>
 
-"---- fix common typos
-" use Q to record macros (don't use Ex mode)
-nnoremap Q q
-" normal q does nothing
-nnoremap q <nop>
-" don't use q: command (TODO: find a replacement for q:)
-nmap q: <nop>
+call Cabbrev('ce', 'e $MYVIMRC')
+call Cabbrev('cr', 'so $MYVIMRC')
+
+""---- fix common typos
+"nnoremap Q <nop>
+"" don't use q: command (TODO: find a replacement for q:)
+"nmap q: <nop>
 
 "---- neovim
 if has("nvim")

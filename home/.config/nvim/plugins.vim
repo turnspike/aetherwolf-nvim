@@ -67,9 +67,13 @@ nmap <leader>ghs <Plug>GitGutterStageHunk
 
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
-call Cabbrev('ga', 'Dispatch git add %:p<CR><CR>')
+
+"command! GitAdd execute 'Dispatch git add %:p<CR><CR>'
+call Cabbrev('ga', 'GWrite')
+"nmap <leader>ga :Dispatch git add %:p<CR><CR>
 call Cabbrev('gs', 'Gstatus<CR>')
 call Cabbrev('gc', 'Gcommit -v -q<CR>')
+call Cabbrev('gac', 'Dispatch git add %:p<CR><CR>')
 call Cabbrev('gt', 'Gcommit -v -q %:p<CR>')
 call Cabbrev('gd', 'Gdiff<CR>')
 call Cabbrev('gD', 'diffoff!<CR><c-w>h:bd<CR>')
