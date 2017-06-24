@@ -5,6 +5,8 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+" TODO: denite.vim instead of cabbrev?
+
 "---- utility
 
 "---- colors
@@ -71,17 +73,17 @@ call Cabbrev('gc', 'Gcommit -v -q<CR>')
 call Cabbrev('gt', 'Gcommit -v -q %:p<CR>')
 call Cabbrev('gd', 'Gdiff<CR>')
 call Cabbrev('gD', 'diffoff!<CR><c-w>h:bd<CR>')
-nmap <leader>ge :Gedit<CR>
-nmap <leader>gr :Gread<CR>
-nmap <leader>gw :Gwrite<CR><CR>
-nmap <leader>gl :silent! Glog<CR>:bot copen<CR>
-nmap <leader>gp :Ggrep<space>
-nmap <leader>gm :Gmove<space>
-nmap <leader>gb :Git branch<space>
-nmap <leader>go :Git checkout<space>
-nmap <leader>gp :Dispatch! git push<CR>
-nmap <leader>gu :Dispatch! git pull<CR>
-:command! Gpraise Gblame " eeeeliminate the negativity
+call Cabbrev('ge', 'Gedit<CR>')
+call Cabbrev('gr', 'Gread<CR>')
+call Cabbrev('gw', 'Gwrite<CR><CR>')
+call Cabbrev('gl', 'silent! Glog<CR>:bot copen<CR>')
+call Cabbrev('gg', 'Ggrep<space>')
+call Cabbrev('gm', 'Gmove<space>')
+call Cabbrev('gb', 'Git branch<space>')
+call Cabbrev('go', 'Git checkout<space>')
+call Cabbrev('gp', 'Dispatch! git push<CR>')
+call Cabbrev('gu', 'Dispatch! git pull<CR>')
+:command! Gwho Gblame " eeeeliminate the negativity
 
 "---- codesense
 
