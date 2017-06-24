@@ -69,12 +69,11 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 
 "autocmd BufReadPost fugitive://* set bufhidden=delete
-"command! GitAdd execute 'Dispatch git add %:p<CR><CR>'
 call Cabbrev('ga', 'Gwrite')
 "nmap <leader>ga :Dispatch git add %:p<CR><CR>
 call Cabbrev('gs', 'Gstatus')
 call Cabbrev('gc', 'Gcommit -v -q')
-nmap <leader>gc :Gwrite<CR>:Gcommit<CR>
+nmap <leader>gc :Gwrite<CR>:Gcommit -v -q<CR>
 call Cabbrev('gd', 'Gdiff')
 call Cabbrev('gD', 'diffoff!<CR><c-w>h:bd')
 call Cabbrev('ge', 'Gedit')
