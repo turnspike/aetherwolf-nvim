@@ -299,7 +299,13 @@ Plug 'mattn/calendar-vim'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-speeddating' " use CTRL-A/CTRL-X to increment dates, times
 "Plug 'jceb/vim-orgmode'
-let g:vimwiki_list = [{'path': '~/Dropbox/docs/wiki/notes/'}]
+
+let g:vimwiki_list = [
+\  {'path': '~/Dropbox/wiki/notes/notes.wiki'},
+\  {'path': '~/Dropbox/wiki/blog/blog.wiki'},
+\  {'path': '~/Dropbox/wiki/personal/personal.wiki'},
+\]
+
 "au BufRead,BufNewFile *.wiki set filetype=vimwiki
 ":autocmd FileType vimwiki map d :VimwikiMakeDiaryNote
 "function! ToggleCalendar()
@@ -316,9 +322,9 @@ let g:vimwiki_list = [{'path': '~/Dropbox/docs/wiki/notes/'}]
 "  end
 "endfunction
 ":autocmd FileType vimwiki map c :call ToggleCalendar()
-call Cabbrev('ww', 'VimwikiIndex')
-"call Cabbrev('wd', 'VimwikiDiaryIndex')
-call Cabbrev('wd', 'VimwikiMakeDiaryNote')
+call Cabbrev('vw', 'VimwikiIndex')
+call Cabbrev('vd', 'VimwikiDiaryIndex')
+call Cabbrev('vn', 'VimwikiMakeDiaryNote')
 
 "---- clojure
 

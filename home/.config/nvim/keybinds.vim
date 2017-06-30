@@ -1,7 +1,6 @@
-" omg racy!!!1
-map <space> :
-"let mapleader = "\<space>"
-"let maplocalleader = "\<space>"
+"map <space> :
+let mapleader = "\<space>"
+let maplocalleader = "\<space>"
 
 "---- movement
 
@@ -105,10 +104,10 @@ noremap <leader>vd gvd
 "---- files
 "nnoremap <leader>s :w<cr>
 "inoremap <leader>s <C-c>:w<cr>
-nnoremap <leader>w :w<cr>
-nnoremap <leader>x :x<cr>
+nnoremap <leader>s :w<cr>
+nnoremap <leader>x :w<cr>:bd<cr>
 "nnoremap <leader>e :Explore<cr>
-noremap <leader>q :q<cr>
+noremap <leader>q :bd<cr>
 " write files as sudo using w!!
 "cnoremap w!! %!sudo tee > /dev/null %
 cmap w!! w !sudo tee % >/dev/null
