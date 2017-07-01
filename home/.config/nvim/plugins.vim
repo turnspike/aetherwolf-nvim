@@ -127,7 +127,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
 "nnoremap <leader>nt :NERDTreeToggle<cr>
 " reveal the current file in NERDTree
 "nmap <leader>nf :NERDTreeFind<cr>
-call Cabbrev('nt', 'NERDTreeToggle')
+"call Cabbrev('nt', 'NERDTreeToggle')
 call Cabbrev('nf', 'NERDTreeFind')
 
 " don't blat <c-j> and <c-k> (used for split movement)
@@ -136,8 +136,8 @@ let g:NERDTreeMapJumpNextSibling='<Nop>'
 
 " Open NERDTree in the directory of the current file (or /home if no file is open)
 "nmap <silent> <leader>i :call NERDTreeToggleInCurDir()<cr>
-call Cabbrev('ni', 'NERDTreeToggleInCurDir')
-function! NERDTreeToggleInCurDir()
+call Cabbrev('nt', 'call NERDTreeToggleInCurDir()')
+function! s:NERDTreeToggleInCurDir()
   " If NERDTree is open in the current buffer
   if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
     exe ":NERDTreeClose"
@@ -222,7 +222,7 @@ call Cabbrev('fb', 'Buffers')
 
 Plug 'thinca/vim-quickrun'
 "nnoremap <leader>r :QuickRun<cr>
-call Cabbrev('tt', 'eq')
+"call Cabbrev('tt', 'eq')
 
 "Plug 'benmills/vimux'
 "Plug 'epeli/slimux'
@@ -303,7 +303,7 @@ Plug 'tpope/vim-speeddating' " use CTRL-A/CTRL-X to increment dates, times
 let g:vimwiki_list = [
 \  {'path': '~/Dropbox/wiki/notes/notes.wiki'},
 \  {'path': '~/Dropbox/wiki/blog/blog.wiki'},
-\  {'path': '~/Dropbox/wiki/personal/personal.wiki'},
+\  {'path': '~/Dropbox/wiki/personal/personal.wiki'}
 \]
 
 "au BufRead,BufNewFile *.wiki set filetype=vimwiki
