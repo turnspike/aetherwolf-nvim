@@ -18,7 +18,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-repeat' " add . repeat for some plugins
 Plug 'tpope/vim-unimpaired' " use ] and [ combos for :ex commands, eg ]b for next buffer
 Plug 'tpope/vim-surround' " bracket manipulation eg cs'<p>
-Plug 'tpope/vim-dispatch' " bracket manipulation eg cs'<p>
+Plug 'tpope/vim-dispatch' " execute shell commands in the background
 Plug 'idbrii/vim-endoscope' " c-S to close tag/scope
 Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
 "Plug 'timkendrick/vim-duplicate' " duplicate chunks using <leader>-d
@@ -69,8 +69,9 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 
 call Cabbrev('gac', 'call GAddCommit()')
-nmap <leader>gc :call GAddCommit()
+nmap <leader>c :call GAddCommit()<cr>
 function! GAddCommit() " add file and commit in one command
+    exe ":w"
     exe ":Gwrite"
     exe ":Gcommit -v -q"
 endfunction
@@ -307,9 +308,9 @@ Plug 'tpope/vim-speeddating' " use CTRL-A/CTRL-X to increment dates, times
 "Plug 'jceb/vim-orgmode'
 
 let g:vimwiki_list = [
-\  {'path': '~/Dropbox/wiki/notes/notes.wiki'},
-\  {'path': '~/Dropbox/wiki/blog/blog.wiki'},
-\  {'path': '~/Dropbox/wiki/personal/personal.wiki'}
+\  {'path': '~/Dropbox/wiki/notes/'},
+\  {'path': '~/Dropbox/wiki/blog/'},
+\  {'path': '~/Dropbox/wiki/personal/'}
 \]
 
 "au BufRead,BufNewFile *.wiki set filetype=vimwiki
