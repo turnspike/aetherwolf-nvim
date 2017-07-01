@@ -70,9 +70,8 @@ Plug 'tpope/vim-fugitive'
 
 call Cabbrev('gac', 'call GAddCommit()')
 nmap <leader>gc :call GAddCommit()
-function! GAddCommit() " add file and commit in one command
-    exe ":Gwrite"
-    exe ":Gcommit -v -q"
+function! :GAddCommit() " add file and commit in one command
+    exe ":Gwrite<CR>:Gcommit -v -q<CR>"
 endfunction
 
 "autocmd BufReadPost fugitive://* set bufhidden=delete
