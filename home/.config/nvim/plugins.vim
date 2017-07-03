@@ -372,6 +372,7 @@ Plug 'sheerun/vim-polyglot' " multi-language syntax pack
 " mappings in a readable table including the descriptions.
 " <leader>fml
 "}===========================================
-"Plug 'ktonga/vim-follow-my-lead'
+let g:fml_all_sources = 1
+Plug 'ktonga/vim-follow-my-lead'
 
 call plug#end()
