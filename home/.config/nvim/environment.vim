@@ -13,8 +13,18 @@ set nostartofline " preserve column on page movements
 
 "---- cursor hilite
 autocmd InsertEnter,InsertLeave * set cul! " underline current line for insert mode only
+"if exists('$TMUX')
+"  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+"  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+"else
+"  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"endif
+"autocmd InsertEnter * set cul
+"autocmd InsertLeave * set nocul
 
 "---- copy/paste
+
 " yank and paste with the system clipboard under x11 (ie not ssh)
 if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
 "	set clipboard=unnamed
@@ -26,6 +36,7 @@ set splitbelow " open hsplits down (defaults up)
 set splitright " open vsplits right (defaults left)
 
 "---- input
+set noshowcmd " don't display keypresses in bottom right of screen - it's distracting
 set timeout " use timeouts for keyboard combo mappings
 set timeoutlen=600 ttimeoutlen=0 " 600ms for key combos, 0ms for <esc>
 
@@ -113,8 +124,8 @@ hi Search cterm=NONE ctermfg=Yellow ctermbg=DarkGray
 "au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 
 "---- helper functions
-:command! ConfigEdit edit $MYVIMRC " edit config file
-:command! ConfigReload source $MYVIMRC " live reload config
+command! ConfigEdit edit $MYVIMRC " edit config file
+command! ConfigReload source $MYVIMRC " live reload config
 
 "---- neovim
 let g:python2_host_prog = '/usr/local/bin/python2'

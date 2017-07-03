@@ -104,6 +104,7 @@ noremap <leader>vd gvd
 "---- files
 "nnoremap <leader>s :w<cr>
 "inoremap <leader>s <C-c>:w<cr>
+nnoremap <leader>w :w<cr>
 nnoremap <leader>s :w<cr>
 nnoremap <leader>x :w<cr>:bd<cr>
 "nnoremap <leader>e :Explore<cr>
