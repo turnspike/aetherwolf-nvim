@@ -189,18 +189,18 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap <leader>l <plug>(fzf-complete-line)
 
 " lifted from: https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
-command! -bang -nargs=* FFind call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).' '.s:find_git_root(), 1, <bang>0) " search file content within proj scope
+command! -bang -nargs=* FPgrep call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).' '.s:get_project_root(), 1, <bang>0) " search file content within proj scope
 "set grepprg=rg\ --vimgrep
 
 " lifted from: https://github.com/junegunn/fzf.vim/issues/47#issuecomment-160237795
-function! s:find_git_root()
+function! s:get_project_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 
-command! FPfiles execute 'FFiles' s:find_git_root() " find filenames within project scope
+command! FPfiles execute 'FFiles' s:get_project_root() " find filenames within project scope
 
 call Cabbrev('ff', 'FPfiles')
-call Cabbrev('ft', 'FFind')
+call Cabbrev('fg', 'FPgrep')
 call Cabbrev('fb', 'FBuffers')
 
 " ctrlp navigator
@@ -326,17 +326,17 @@ let g:vimwiki_list = [
 "autocmd FileType vimwiki map c :call ToggleCalendar()<cr>
 
 function! ToggleCalendar()
-  execute ":Calendar"
-  if exists("g:calendar_open")
-	if g:calendar_open == 1
-	  execute "q"
-	  unlet g:calendar_open
-	else
-	  g:calendar_open = 1
-	end
-  else
-	let g:calendar_open = 1
-  end
+    execute ":Calendar"
+    if exists("g:calendar_open")
+        if g:calendar_open == 1
+            execute "q"
+            unlet g:calendar_open
+        else
+            g:calendar_open = 1
+        end
+    else
+        let g:calendar_open = 1
+    end
 endfunction
 
 call Cabbrev('vw', 'VimwikiIndex')
@@ -344,7 +344,7 @@ call Cabbrev('vd', 'VimwikiDiaryIndex')
 call Cabbrev('vn', 'VimwikiMakeDiaryNote')
 
 command! -bang -nargs=* VimwikiToggleCalendar call ToggleCalendar()
-call Cabbrev('vct', 'VimwikiIndex')
+call Cabbrev('vct', 'VimwikiToggleCalendar')
 
 "---- clojure
 
