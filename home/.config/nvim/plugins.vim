@@ -104,7 +104,9 @@ Plug 'luochen1990/rainbow' " color paren pairs, good for lisps
 "Plug 'kien/rainbow_parentheses.vim' " color paren pairs, good for lisps
 "Plug 'SirVer/ultisnips' " insert code snips
 "Plug 'honza/vim-snippets' "insert code snips
+Plug 'tpope/vim-ragtag'
 
+" TODO: YCM?
 " TODO: kspell
 " TODO: ctags
 
@@ -199,9 +201,10 @@ endfunction
 
 command! FPfiles execute 'FFiles' s:get_project_root() " find filenames within project scope
 
-call Cabbrev('ff', 'FPfiles')
-call Cabbrev('fg', 'FPgrep')
-call Cabbrev('fb', 'FBuffers')
+call Cabbrev('ff', 'FPfiles') " _fuzzy _filenames
+call Cabbrev('fg', 'FPgrep') " _fuzzy _grep
+call Cabbrev('fb', 'FBuffers') " _fuzzy _buffer
+call Cabbrev('fi', 'FBLines') " _fuzzy _in file
 
 " ctrlp navigator
 "let g:ctrlp_extensions = ['funky']
@@ -361,10 +364,10 @@ Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 "Plug 'aklt/plantuml-syntax' " plantuml
 Plug 'scrooloose/vim-slumlord' " plantuml live preview
 
-Plug 'tpope/vim-cucumber', { 'for': 'rails'} " cucumber syntax
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' } " ruby syntax
+Plug 'tpope/vim-cucumber' ", { 'for': 'rails'} ' cucumber syntax
+Plug 'vim-ruby/vim-ruby' ", { 'for': 'ruby' } ' ruby syntax
 Plug 'tpope/vim-rails' " rails syntax
-Plug 'tpope/vim-haml', { 'for': 'rails' } " rails syntax
+Plug 'tpope/vim-haml' ", { 'for': 'rails' } rails syntax
 Plug 'sheerun/vim-polyglot' " multi-language syntax pack
 "Plug 'letientai299/vim-react-snippets', { 'branch': 'es6' } " react code snips, ./UltiSnips/javascript.snippets
 "Plug 'skalnik/vim-vroom' " run tests

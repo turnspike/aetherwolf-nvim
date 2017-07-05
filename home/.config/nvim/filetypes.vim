@@ -1,16 +1,20 @@
 
 "---- all files
-autocmd FileType * setlocal formatoptions-=cro " don't autocomment newlines
-"autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
-au FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
+au FileType * setlocal formatoptions-=cro " don't autocomment newlines
+"au BufNewFile,BufRead * setlocal formatoptions-=cro " don't autocomment newlines
+au FileType * set tabstop=4|set shiftwidth=4|set noexpandtab " default indenting
 
 "---- ruby
-"autocmd FileType ruby nnoremap <buffer> <leader>r :exec '!clear; ruby' shellescape(@%, 1)<cr>
-"autocmd FileType ruby nnoremap <buffer> <C-S-r> :exec '!clear; python' shellescape(@%, 1)<cr>
-command! FR set filetype=ruby
+"au FileType ruby nnoremap <buffer> <leader>r :exec '!clear; ruby' shellescape(@%, 1)<cr>
+"au FileType ruby nnoremap <buffer> <C-S-r> :exec '!clear; python' shellescape(@%, 1)<cr>
+"command! FR set filetype=ruby
+au Filetype ruby,eruby setlocal ts=2 sw=2 expandtab
+au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+au FileType ruby,eruby let g:rubycomplete_rails = 1
 
 "---- plantuml
-autocmd FileType plantuml nnoremap <buffer> <leader>r :!java -jar ~/bin/plantuml.jar -o %:p:h %<cr>
+au FileType plantuml nnoremap <buffer> <leader>r :!java -jar ~/bin/plantuml.jar -o %:p:h %<cr>
 
 "---- other
 au FileType python set tabstop=4|set shiftwidth=4|set softtabstop=4|set expandtab
@@ -18,14 +22,13 @@ au FileType make setlocal noexpandtab|set softtabstop=4
 au BufRead,BufNewFile *.md setlocal filetype=markdown
 
 "---- indenting
-autocmd Filetype html setlocal ts=2 sw=2 expandtab
-autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
-autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
+au Filetype html setlocal ts=2 sw=2 expandtab
+au Filetype javascript setlocal ts=2 sw=2 expandtab
 
 "" - Go {{{3
 "augroup myGolang
 "    au!
-"    autocmd FileType go
+"    au FileType go
 "                \  nmap <buffer> <LocalLeader>r   <Plug>(go-run)
 "                \| nmap <buffer> <LocalLeader>b   <Plug>(go-build)
 "                \| nmap <buffer> <LocalLeader>t   <Plug>(go-test)
@@ -39,7 +42,7 @@ autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
 "" - CSV {{{3
 "augroup myCSV
 "    au!
-"    autocmd FileType csv
+"    au FileType csv
 "                \  nmap <buffer> <LocalLeader>i  :InitCSV<cr>
 "                \| nmap <buffer> <LocalLeader>A  :%ArrangeColumn!<cr>
 "                \| nmap <buffer> <LocalLeader>T  :CSVTabularize<cr>
