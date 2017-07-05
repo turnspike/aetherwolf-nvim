@@ -308,9 +308,9 @@ Plug 'kshenoy/vim-signature'
 Plug 'mhinz/vim-startify'
 
 "---- orgmode
-"Plug 'mattn/calendar-vim'
+Plug 'mattn/calendar-vim'
 Plug 'vimwiki/vimwiki'
-"Plug 'tpope/vim-speeddating' " use CTRL-A/CTRL-X to increment dates, times
+Plug 'tpope/vim-speeddating' " use CTRL-A/CTRL-X to increment dates, times
 "Plug 'jceb/vim-orgmode'
 
 let g:vimwiki_global_ext = 0
@@ -320,26 +320,31 @@ let g:vimwiki_list = [
 \  {'path': '~/Dropbox/wiki/personal/', 'syntax': 'markdown', 'ext': '.md'}
 \]
 
+" FIXME these apply to all open buffers when a vimwiki buffer is open
 "au BufRead,BufNewFile *.wiki set filetype=vimwiki
 "autocmd FileType vimwiki map d :VimwikiMakeDiaryNote<cr>
-"function! ToggleCalendar()
-"  execute ":Calendar"
-"  if exists("g:calendar_open")
-"    if g:calendar_open == 1
-"      execute "q"
-"      unlet g:calendar_open
-"    else
-"      g:calendar_open = 1
-"    end
-"  else
-"    let g:calendar_open = 1
-"  end
-"endfunction
 "autocmd FileType vimwiki map c :call ToggleCalendar()<cr>
+
+function! ToggleCalendar()
+  execute ":Calendar"
+  if exists("g:calendar_open")
+	if g:calendar_open == 1
+	  execute "q"
+	  unlet g:calendar_open
+	else
+	  g:calendar_open = 1
+	end
+  else
+	let g:calendar_open = 1
+  end
+endfunction
 
 call Cabbrev('vw', 'VimwikiIndex')
 call Cabbrev('vd', 'VimwikiDiaryIndex')
 call Cabbrev('vn', 'VimwikiMakeDiaryNote')
+
+command! -bang -nargs=* VimwikiToggleCalendar call ToggleCalendar()
+call Cabbrev('vct', 'VimwikiIndex')
 
 "---- clojure
 
