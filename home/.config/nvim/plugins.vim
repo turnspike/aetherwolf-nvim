@@ -176,26 +176,31 @@ call Cabbrev('tt', 'TagbarToggle')
 
 " TODO macos/homebrew
 
+Plug 'junegunn/vim-peekaboo' " show contents of registers
+
 " fuzzy finder navigator
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " base fzf
 Plug 'junegunn/fzf.vim' " load Ex commands
-"let g:fzf_command_prefix = 'Fzf' " use :Fzf prefix for Ex commands
+let g:fzf_command_prefix = 'F' " use :Fzf prefix for Ex commands
+
+" linewise completion
+imap <c-x><c-l> <plug>(fzf-complete-line)
+nmap <leader>l <plug>(fzf-complete-line)
 
 " lifted from: https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
-"command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
-set grepprg=rg\ --vimgrep
+command! -bang -nargs=* FFind call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).' '.s:find_git_root(), 1, <bang>0) " search file content within proj scope
+"set grepprg=rg\ --vimgrep
 
 " lifted from: https://github.com/junegunn/fzf.vim/issues/47#issuecomment-160237795
 function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 
-command! ProjectFiles execute 'Files' s:find_git_root()
+command! FPfiles execute 'FFiles' s:find_git_root() " find filenames within project scope
 
-call Cabbrev('fp', 'ProjectFiles')
-call Cabbrev('ff', 'Files')
-call Cabbrev('fb', 'Buffers')
+call Cabbrev('ff', 'FPfiles')
+call Cabbrev('ft', 'FFind')
+call Cabbrev('fb', 'FBuffers')
 
 " ctrlp navigator
 "let g:ctrlp_extensions = ['funky']
@@ -307,10 +312,11 @@ Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-speeddating' " use CTRL-A/CTRL-X to increment dates, times
 "Plug 'jceb/vim-orgmode'
 
+let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [
-\  {'path': '~/Dropbox/wiki/notes/'},
-\  {'path': '~/Dropbox/wiki/blog/'},
-\  {'path': '~/Dropbox/wiki/personal/'}
+\  {'path': '~/Dropbox/wiki/notes/', 'syntax': 'markdown', 'ext': '.md'},
+\  {'path': '~/Dropbox/wiki/blog/', 'syntax': 'markdown', 'ext': '.md'},
+\  {'path': '~/Dropbox/wiki/personal/', 'syntax': 'markdown', 'ext': '.md'}
 \]
 
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
