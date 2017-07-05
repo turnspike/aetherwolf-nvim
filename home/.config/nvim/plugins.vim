@@ -72,7 +72,8 @@ call Cabbrev('gac', 'call GAddCommit()')
 nmap <leader>c :call GAddCommit()<cr>
 function! GAddCommit() " add file and commit in one command
     exe ":w"
-    exe ":Gwrite"
+    "exe ":Gwrite"
+	exe "Dispatch git add %:p"
     exe ":Gcommit -v -q"
 endfunction
 
