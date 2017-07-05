@@ -127,6 +127,8 @@ call Cabbrev('cr', 'so $MYVIMRC')
 "---- fix common typos
 cnoreabbrev W w
 cnoreabbrev Q q
+" q will quit help buffer
+autocmd FileType help noremap <buffer> q :q<cr>
 "" use Q to record macros (don't use Ex mode)
 "nnoremap Q q
 "" normal q does nothing

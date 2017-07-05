@@ -134,27 +134,27 @@ let g:session_command_aliases=1
 "Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
-"nnoremap <leader>nt :NERDTreeToggle<cr>
+" autocmd BufEnter * if &modifiable | NERDTreeFind | wincmd p | endif
+" autocmd BufEnter * silent! if bufname('%') !~# 'NERD_tree_' | cd %:p:h | NERDTreeCWD | wincmd p | endif
+
+" FIXME sync nerdtree...
+"command! -bang -nargs=* NERDTreeSync call g:nt_sync() " search file content within proj scope
+"function! g:nt_sync()
+"    exe ":NERDTreeFind"
+"    exe "<c-w>l"
+"endfunction
+
+nmap <leader>nt :NERDTreeToggle<cr>
 " reveal the current file in NERDTree
-"nmap <leader>nf :NERDTreeFind<cr>
-"call Cabbrev('nt', 'NERDTreeToggle')
+nmap <leader>nf :NERDTreeFind<cr><c-w><c-w>
+call Cabbrev('nt', 'NERDTreeToggle')
 call Cabbrev('nf', 'NERDTreeFind')
 
+"let g:nerdtree_sync_cursorline = 1
+"let g:NERDTreeHighlightCursorline = 1 " highlight current line
 " don't blat <c-j> and <c-k> (used for split movement)
 let g:NERDTreeMapJumpPrevSibling='<Nop>'
 let g:NERDTreeMapJumpNextSibling='<Nop>'
-
-" Open NERDTree in the directory of the current file (or /home if no file is open)
-"nmap <silent> <leader>i :call NERDTreeToggleInCurDir()<cr>
-call Cabbrev('nt', 'call NERDTreeToggleInCurDir()')
-function! s:NERDTreeToggleInCurDir()
-  " If NERDTree is open in the current buffer
-  if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
-    exe ":NERDTreeClose"
-  else
-    exe ":NERDTreeFind"
-  endif
-endfunction
 
 " use vimfiler instead of netrw
 "Plug 'Shougo/unite.vim'
@@ -184,7 +184,8 @@ Plug 'junegunn/vim-peekaboo' " show contents of registers
 " fuzzy finder navigator
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " base fzf
 Plug 'junegunn/fzf.vim' " load Ex commands
-let g:fzf_command_prefix = 'F' " use :Fzf prefix for Ex commands
+"let g:fzf_command_prefix = 'F' " use :Fzf prefix for Ex commands
+Plug 'tweekmonster/fzf-filemru' " provides :FilesMru :ProjectMru
 
 " linewise completion
 imap <c-x><c-l> <plug>(fzf-complete-line)
@@ -199,12 +200,14 @@ function! s:get_project_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 
-command! FPfiles execute 'FFiles' s:get_project_root() " find filenames within project scope
+" find filenames within project scope TODO: add search string as second param
+command! Pfiles execute 'Files' s:get_project_root()
+"command! FPfiles execute 'FFiles '.s:get_project_root().' '.shellescape(<q-args>)
 
-call Cabbrev('ff', 'FPfiles') " _fuzzy _filenames
-call Cabbrev('fg', 'FPgrep') " _fuzzy _grep
-call Cabbrev('fb', 'FBuffers') " _fuzzy _buffer
-call Cabbrev('fi', 'FBLines') " _fuzzy _in file
+call Cabbrev('ff', 'Pfiles') " _fuzzy _filenames (in project)
+call Cabbrev('fg', 'Pgrep') " _fuzzy _grep (in project)
+call Cabbrev('fb', 'Buffers') " _fuzzy _buffer
+call Cabbrev('fi', 'BLines') " _fuzzy _in file
 
 " ctrlp navigator
 "let g:ctrlp_extensions = ['funky']
