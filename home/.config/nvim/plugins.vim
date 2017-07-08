@@ -34,6 +34,7 @@ Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
 Plug 'terryma/vim-expand-region'
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
+vmap V <Plug>(expand_region_shrink)
 
 " region commenting
 "Plug 'tpope/vim-commentary' " gc to comment, <leader>c<space> to toggle comment
@@ -184,6 +185,7 @@ map <silent> - <Plug>FileBeagleOpenCurrentBufferDir
 " show tag sidebar for current file
 Plug 'majutsushi/tagbar'
 let g:tagbar_usearrows = 1
+let g:tagbar_compact = 1
 call Cabbrev('tt', 'TagbarToggle')
 
 " TODO macos/homebrew

@@ -38,7 +38,7 @@ set splitright " open vsplits right (defaults left)
 "---- input
 set noshowcmd " don't display keypresses in bottom right of screen - it's distracting
 set timeout " use timeouts for keyboard combo mappings
-set timeoutlen=600 ttimeoutlen=0 " 600ms for key combos, 0ms for <esc>
+set timeoutlen=300 ttimeoutlen=0 " 300ms for key combos, 0ms for <esc>
 
 "---- mouse
 " mouse? no more mouse for you
@@ -49,8 +49,8 @@ endif
 
 "---- files
 "let g:netrw_keepdir=0 " :e is relative to current buffer
-"set autochdir " auto cd to directory of current buffer
-autocmd BufEnter * silent! lcd %:p:h " auto cd to dir of current buffer
+set autochdir " auto cd to directory of current buffer
+"autocmd BufEnter * silent! lcd %:p:h " auto cd to dir of current buffer
 
 "---- commandline
 set wildmode=list:longest,full " more linuxy filename completion with <tab>
