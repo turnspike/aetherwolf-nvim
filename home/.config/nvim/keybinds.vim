@@ -134,6 +134,13 @@ autocmd FileType help noremap <buffer> q :q<cr>
 "" don't use q: command (TODO: find a replacement for q:)
 "nmap q: <nop>
 
+""---- override plugin keybinds
+"nunmap <leader>fml
+nmap <leader>b :Buffers<cr>
+nmap <leader>f :Pfiles<cr>
+nmap <leader>r :ProjectMru --tiebreak=end<cr>
+nmap <leader>c :call GAddCommit()<cr>
+
 "---- neovim
 if has("nvim")
   " exit terminal mode

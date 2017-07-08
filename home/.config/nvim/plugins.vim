@@ -71,7 +71,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 
 call Cabbrev('gac', 'call GAddCommit()')
-nmap <leader>c :call GAddCommit()<cr>
 function! GAddCommit() " add file and commit in one command
     exe ":w"
     "exe ":Gwrite"
@@ -136,6 +135,7 @@ let g:session_command_aliases=1
 "Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
+Plug 'unkiwii/vim-nerdtree-sync', { 'on': 'NERDTreeToggle' }
 
 let NERDTreeMinimalUI = 1 " don't show help message
 
@@ -198,7 +198,7 @@ Plug 'tweekmonster/fzf-filemru' " provides :FilesMru :ProjectMru
 
 " linewise completion
 imap <c-x><c-l> <plug>(fzf-complete-line)
-nmap <leader>l <plug>(fzf-complete-line)
+"nmap <leader>l <plug>(fzf-complete-line)
 
 " lifted from: https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
 command! -bang -nargs=* Pgrep call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).' '.s:get_project_root(), 1, <bang>0) " search file content within proj scope
@@ -222,36 +222,39 @@ call Cabbrev('fr', 'Pmru') " _fuzzy _recent (in project)
 call Cabbrev('fb', 'Buffers') " _fuzzy _buffer
 call Cabbrev('fi', 'BLines') " _fuzzy _in file
 
-nnoremap <leader>fb :Buffers<cr>
-nnoremap <leader>ff :Pfiles<cr>
-nnoremap <leader>fr :ProjectMru --tiebreak=end<cr>
+"*** TODO fuzzy tags, fuzzy function list
+
+"FIXME these only work when set later in keybinds.vim??
+"nmap <leader>b :Buffers<cr>
+"nmap <leader>f :Pfiles<cr>
+"nmap <leader>r :ProjectMru --tiebreak=end<cr>
 "nnoremap <c-p> :FilesMru --tiebreak=end<cr>
 
-" ctrlp navigator
-Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_extensions = ['funky', 'switcher']
-
-if executable('rg')
-  set grepprg=rg\ --vimgrep
-  "set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""' " use rg in CtrlP for listing files
-  let g:ctrlp_use_caching = 0 " ag is fast enough that CtrlP doesn't need to cache
-endif
-
-Plug 'tacahiroy/ctrlp-funky'
-nnoremap <leader>cu :CtrlPFunky<Cr>
-" narrow the list down with a word under cursor
-nnoremap <leader>cU :execute 'CtrlPFunky ' . expand('<cword>')<cr>
-
-Plug 'iurifq/ctrlp-rails.vim'
-":CtrlPModels :CtrlPControllers :CtrlPViews :CtrlPLibs :CtrlPSpecs :CtrlPMigrations
-
-"Plug 'ivan-cukic/vim-ctrlp-switcher'
-"let g:ctrlpswitcher_mode = 1
+"" ctrlp navigator
+"Plug 'ctrlpvim/ctrlp.vim'
+"let g:ctrlp_extensions = ['funky', 'switcher']
+"
+"if executable('rg')
+"  set grepprg=rg\ --vimgrep
+"  "set grepprg=rg\ --color=never
+"  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""' " use rg in CtrlP for listing files
+"  let g:ctrlp_use_caching = 0 " ag is fast enough that CtrlP doesn't need to cache
+"endif
+"
+"Plug 'tacahiroy/ctrlp-funky'
+"nnoremap <leader>cu :CtrlPFunky<Cr>
+"" narrow the list down with a word under cursor
+"nnoremap <leader>cU :execute 'CtrlPFunky ' . expand('<cword>')<cr>
+"
+"Plug 'iurifq/ctrlp-rails.vim'
+"":CtrlPModels :CtrlPControllers :CtrlPViews :CtrlPLibs :CtrlPSpecs :CtrlPMigrations
+"
+""Plug 'ivan-cukic/vim-ctrlp-switcher'
+""let g:ctrlpswitcher_mode = 1
 
 "---- REPL
 
-Plug 'thinca/vim-quickrun'
+"Plug 'thinca/vim-quickrun'
 "nnoremap <leader>r :QuickRun<cr>
 "call Cabbrev('tt', 'eq')
 
@@ -397,12 +400,11 @@ Plug 'sheerun/vim-polyglot' " multi-language syntax pack
 
 "---- misc
 
-"Description {===============================
-" Vim plugin for showing all your <Leader>
-" mappings in a readable table including the descriptions.
-" <leader>fml
-"}===========================================
-let g:fml_all_sources = 1
-Plug 'ktonga/vim-follow-my-lead'
+"" TODO: add a pull request to make <leader>fml optional
+"" show all leader mappings
+"let g:fml_all_sources = 1
+"Plug 'ktonga/vim-follow-my-lead'
+"nunmap <Leader>fml
+"command! -bang -nargs=0 FollowMyLead call FMLShow()
 
 call plug#end()
