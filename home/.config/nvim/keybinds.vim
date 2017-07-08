@@ -34,14 +34,14 @@ endif
 
 "---- splits
 
-" manipulate splits
-nmap <leader>sv :vsplit<cr>
-nmap <leader>sh :split<cr>
-nmap <leader>sd :q<cr>
-nmap <leader>shg :resize +5<cr>
-nmap <leader>shs :resize -5<cr>
-nmap <leader>svg :vertical resize -5<cr>
-nmap <leader>svs :vertical resize +5<cr>
+"" manipulate splits
+"nmap <leader>sv :vsplit<cr>
+"nmap <leader>sh :split<cr>
+"nmap <leader>sd :q<cr>
+"nmap <leader>shg :resize +5<cr>
+"nmap <leader>shs :resize -5<cr>
+"nmap <leader>svg :vertical resize -5<cr>
+"nmap <leader>svs :vertical resize +5<cr>
 
 call Cabbrev('sv', 'vsplit')
 call Cabbrev('sh', 'split')
@@ -105,7 +105,6 @@ noremap <leader>vd gvd
 "nnoremap <leader>s :w<cr>
 "inoremap <leader>s <C-c>:w<cr>
 nnoremap <leader>w :w<cr>
-nnoremap <leader>s :w<cr>
 nnoremap <leader>x :w<cr>:bd<cr>
 "nnoremap <leader>e :Explore<cr>
 noremap <leader>q :bd<cr>

@@ -50,8 +50,8 @@ Plug 'schickling/vim-bufonly' " :BufOnly to close other buffers
 Plug 'bogado/file-line' " open file at specific line, eg vim app/models/user.rb:1337
 
 "---- searching
-Plug 'wincent/loupe' " make current search match more obvious
-let g:LoupeVeryMagic=0 " don't prepend \v to searches
+"Plug 'wincent/loupe' " make current search match more obvious
+"let g:LoupeVeryMagic=0 " don't prepend \v to searches
 
 "---- version control
 
@@ -134,6 +134,9 @@ let g:session_command_aliases=1
 "Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
+
+let NERDTreeMinimalUI = 1 " don't show help message
+
 " autocmd BufEnter * if &modifiable | NERDTreeFind | wincmd p | endif
 " autocmd BufEnter * silent! if bufname('%') !~# 'NERD_tree_' | cd %:p:h | NERDTreeCWD | wincmd p | endif
 
@@ -192,7 +195,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap <leader>l <plug>(fzf-complete-line)
 
 " lifted from: https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
-command! -bang -nargs=* FPgrep call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).' '.s:get_project_root(), 1, <bang>0) " search file content within proj scope
+command! -bang -nargs=* Pgrep call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).' '.s:get_project_root(), 1, <bang>0) " search file content within proj scope
 "set grepprg=rg\ --vimgrep
 
 " lifted from: https://github.com/junegunn/fzf.vim/issues/47#issuecomment-160237795
@@ -204,8 +207,11 @@ endfunction
 command! Pfiles execute 'Files' s:get_project_root()
 "command! FPfiles execute 'FFiles '.s:get_project_root().' '.shellescape(<q-args>)
 
+command! Pmru execute 'ProjectMru'
+
 call Cabbrev('ff', 'Pfiles') " _fuzzy _filenames (in project)
 call Cabbrev('fg', 'Pgrep') " _fuzzy _grep (in project)
+call Cabbrev('fr', 'Pmru') " _fuzzy _recent (in project)
 call Cabbrev('fb', 'Buffers') " _fuzzy _buffer
 call Cabbrev('fi', 'BLines') " _fuzzy _in file
 
@@ -313,12 +319,12 @@ Plug 'kshenoy/vim-signature'
 " start screen menu
 Plug 'mhinz/vim-startify'
 
-"---- orgmode
+"---- wiki
 Plug 'mattn/calendar-vim'
-Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-speeddating' " use CTRL-A/CTRL-X to increment dates, times
-"Plug 'jceb/vim-orgmode'
+Plug 'vimwiki/vimwiki'
 
+let g:vimwiki_map_prefix = '<Leader>i'
 let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [
 \  {'path': '~/Dropbox/wiki/notes/', 'syntax': 'markdown', 'ext': '.md'},
@@ -370,7 +376,7 @@ Plug 'scrooloose/vim-slumlord' " plantuml live preview
 Plug 'tpope/vim-cucumber' ", { 'for': 'rails'} ' cucumber syntax
 Plug 'vim-ruby/vim-ruby' ", { 'for': 'ruby' } ' ruby syntax
 Plug 'tpope/vim-rails' " rails syntax
-Plug 'tpope/vim-haml' ", { 'for': 'rails' } rails syntax
+Plug 'tpope/vim-haml' ", { 'for': 'haml' } rails syntax
 Plug 'sheerun/vim-polyglot' " multi-language syntax pack
 "Plug 'letientai299/vim-react-snippets', { 'branch': 'es6' } " react code snips, ./UltiSnips/javascript.snippets
 "Plug 'skalnik/vim-vroom' " run tests
