@@ -3,6 +3,7 @@
 au FileType * setlocal formatoptions-=cro " don't autocomment newlines
 "au BufNewFile,BufRead * setlocal formatoptions-=cro " don't autocomment newlines
 au FileType * set tabstop=2|set shiftwidth=2|set noexpandtab " default indenting
+autocmd BufEnter * if &modifiable | lcd %:p:h | endif
 
 "---- ruby
 "au FileType ruby nnoremap <buffer> <leader>r :exec '!clear; ruby' shellescape(@%, 1)<cr>
