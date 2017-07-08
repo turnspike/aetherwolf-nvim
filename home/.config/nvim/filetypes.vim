@@ -4,9 +4,6 @@ au FileType * setlocal formatoptions-=cro " don't autocomment newlines
 "au BufNewFile,BufRead * setlocal formatoptions-=cro " don't autocomment newlines
 au FileType * set tabstop=2|set shiftwidth=2|set noexpandtab " default indenting
 
-"---- autoreload .vimrc
-au BufWritePost .vimrc so $MYVIMRC
-
 "---- ruby
 "au FileType ruby nnoremap <buffer> <leader>r :exec '!clear; ruby' shellescape(@%, 1)<cr>
 "au FileType ruby nnoremap <buffer> <C-S-r> :exec '!clear; python' shellescape(@%, 1)<cr>
