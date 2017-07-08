@@ -55,7 +55,7 @@ autocmd BufEnter * silent! lcd %:p:h " auto cd to dir of current buffer
 "---- commandline
 set wildmode=list:longest,full " more linuxy filename completion with <tab>
 set wildmenu
-"set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*/tmp/*,*/.git/*,*.so,*.swp,*.zip     " MacOSX/Linux
 "set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 "---- search and replace
