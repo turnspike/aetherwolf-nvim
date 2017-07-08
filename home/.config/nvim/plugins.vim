@@ -8,6 +8,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 " TODO: denite.vim instead of cabbrev?
 
 "---- utility
+Plug 'danro/rename.vim' " add :rename
+
 
 "---- colors
 Plug 'flazz/vim-colorschemes'
@@ -203,7 +205,8 @@ function! s:get_project_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 
-" find filenames within project scope TODO: add search string as second param
+" find filenames within project scope
+" TODO: add search string as second param, add --tiebreak=end for better sorting
 command! Pfiles execute 'Files' s:get_project_root()
 "command! FPfiles execute 'FFiles '.s:get_project_root().' '.shellescape(<q-args>)
 
@@ -215,30 +218,30 @@ call Cabbrev('fr', 'Pmru') " _fuzzy _recent (in project)
 call Cabbrev('fb', 'Buffers') " _fuzzy _buffer
 call Cabbrev('fi', 'BLines') " _fuzzy _in file
 
+nmap <leader>fb :Buffers<cr>
+nmap <leader>ff :Pfiles --tiebreak=end<cr>
+nmap <leader>fr :ProjectMru --tiebreak=end<cr>
+"nnoremap <c-p> :FilesMru --tiebreak=end<cr>
+
 " ctrlp navigator
-"let g:ctrlp_extensions = ['funky']
-"let g:ctrlp_extensions = ['funky','switcher']
-"Plug 'ctrlpvim/ctrlp.vim'
-"if executable('ag')
-"  set grepprg=ag\ --nogroup\ --nocolor " use ag over grep
-"  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " use ag in CtrlP for listing files
-"  let g:ctrlp_use_caching = 0 " ag is fast enough that CtrlP doesn't need to cache
-"endif
-"
-"nnoremap <leader>b :CtrlPBuffer<cr>
+Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_extensions = ['funky']
+let g:ctrlp_extensions = ['funky','switcher']
 
-"Plug 'tacahiroy/ctrlp-funky'
-"nnoremap <leader>cu :CtrlPFunky<Cr>
-"" narrow the list down with a word under cursor
-"nnoremap <leader>cU :execute 'CtrlPFunky ' . expand('<cword>')<cr>
+if executable('rg')
+  set grepprg=rg\ --vimgrep
+  "set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""' " use rg in CtrlP for listing files
+  let g:ctrlp_use_caching = 0 " ag is fast enough that CtrlP doesn't need to cache
+endif
 
-"Bundle 'iurifq/ctrlp-rails.vim'
-":CtrlPModels
-":CtrlPControllers
-":CtrlPViews
-":CtrlPLibs
-":CtrlPSpecs
-":CtrlPMigrations
+Plug 'tacahiroy/ctrlp-funky'
+nnoremap <leader>cu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <leader>cU :execute 'CtrlPFunky ' . expand('<cword>')<cr>
+
+Plug 'iurifq/ctrlp-rails.vim'
+":CtrlPModels :CtrlPControllers :CtrlPViews :CtrlPLibs :CtrlPSpecs :CtrlPMigrations
 
 "Plug 'ivan-cukic/vim-ctrlp-switcher'
 "let g:ctrlpswitcher_mode = 1
