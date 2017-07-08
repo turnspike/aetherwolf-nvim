@@ -54,7 +54,6 @@ call Cabbrev('shs', 'resize -5')
 "---- copy/paste
 " move point back to original position after yanking
 vmap y ygv<Esc>
-
 " copy to system clipboard
 vnoremap <leader>y "+y
 nnoremap <leader>Y "+yg_
@@ -73,8 +72,8 @@ nnoremap <leader>P "+P
 "set pastetoggle=<leader>t
 "set pastetoggle=<leader>=
 
-" highlight last inserted text
-nnoremap vG `[v`]
+" select most recently edited/pasted text with gp
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 "---- cursor
 " move cursor naturally through wrapped lines
