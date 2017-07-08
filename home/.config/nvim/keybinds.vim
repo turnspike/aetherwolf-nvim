@@ -140,6 +140,8 @@ nmap <leader>b :Buffers<cr>
 nmap <leader>f :Pfiles<cr>
 nmap <leader>r :ProjectMru --tiebreak=end<cr>
 nmap <leader>c :call GAddCommit()<cr>
+nmap <leader>j :BLines<cr>
+nmap <leader>/ :BLines<cr>
 
 "---- neovim
 if has("nvim")
