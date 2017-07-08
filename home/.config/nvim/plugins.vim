@@ -7,9 +7,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " TODO: denite.vim instead of cabbrev?
 
-"---- utility
+"---- files
 Plug 'danro/rename.vim' " add :rename
-
+Plug 'EinfachToll/DidYouMean' " running 'vim <partial filename>' will prompt for matching files
+Plug 'bogado/file-line' " open file at specific line, eg vim app/models/user.rb:1337
 
 "---- colors
 Plug 'flazz/vim-colorschemes'
@@ -49,7 +50,6 @@ autocmd BufEnter * EnableStripWhitespaceOnSave " auto strip whitespace
 
 "---- buffers
 Plug 'schickling/vim-bufonly' " :BufOnly to close other buffers
-Plug 'bogado/file-line' " open file at specific line, eg vim app/models/user.rb:1337
 
 "---- searching
 "Plug 'wincent/loupe' " make current search match more obvious
@@ -61,11 +61,11 @@ Plug 'bogado/file-line' " open file at specific line, eg vim app/models/user.rb:
 Plug 'airblade/vim-gitgutter'
 let g:gitgutter_max_signs=10000 " limit signs on large files
 "nmap <leader>gg :GitGutterToggle<CR>
-nmap <leader>ghk <Plug>GitGutterPrevHunk
-nmap <leader>ghj <Plug>GitGutterNextHunk
-nmap <leader>ghp <Plug>GitGutterPreviewHunk
-nmap <leader>ghr <Plug>GitGutterUndo
-nmap <leader>ghs <Plug>GitGutterStageHunk
+"nmap <leader>ghk <Plug>GitGutterPrevHunk
+"nmap <leader>ghj <Plug>GitGutterNextHunk
+"nmap <leader>ghp <Plug>GitGutterPreviewHunk
+"nmap <leader>ghr <Plug>GitGutterUndo
+"nmap <leader>ghs <Plug>GitGutterStageHunk
 
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
@@ -139,8 +139,11 @@ Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
 
 let NERDTreeMinimalUI = 1 " don't show help message
 
-" autocmd BufEnter * if &modifiable | NERDTreeFind | wincmd p | endif
+"autocmd BufEnter * if &modifiable | NERDTreeFind | wincmd p | endif
 " autocmd BufEnter * silent! if bufname('%') !~# 'NERD_tree_' | cd %:p:h | NERDTreeCWD | wincmd p | endif
+
+"autocmd CursorHold,CursorHoldI * call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | wincmd w
+
 
 " FIXME sync nerdtree...
 "command! -bang -nargs=* NERDTreeSync call g:nt_sync() " search file content within proj scope
@@ -149,11 +152,12 @@ let NERDTreeMinimalUI = 1 " don't show help message
 "    exe "<c-w>l"
 "endfunction
 
-nmap <leader>nt :NERDTreeToggle<cr>
+nnoremap <leader>nt :NERDTreeToggle<cr>
 " reveal the current file in NERDTree
-nmap <leader>nf :NERDTreeFind<cr><c-w><c-w>
+nnoremap <leader>nr :NERDTreeFind<cr><c-w><c-w>
+"nnoremap <leader>nr :NERDTreeFocus<cr> \| R \| <c-w><c-p>
 call Cabbrev('nt', 'NERDTreeToggle')
-call Cabbrev('nf', 'NERDTreeFind')
+call Cabbrev('nr', 'NERDTreeFind')
 
 "let g:nerdtree_sync_cursorline = 1
 "let g:NERDTreeHighlightCursorline = 1 " highlight current line
@@ -218,15 +222,14 @@ call Cabbrev('fr', 'Pmru') " _fuzzy _recent (in project)
 call Cabbrev('fb', 'Buffers') " _fuzzy _buffer
 call Cabbrev('fi', 'BLines') " _fuzzy _in file
 
-nmap <leader>fb :Buffers<cr>
-nmap <leader>ff :Pfiles --tiebreak=end<cr>
-nmap <leader>fr :ProjectMru --tiebreak=end<cr>
+nnoremap <leader>fb :Buffers<cr>
+nnoremap <leader>ff :Pfiles<cr>
+nnoremap <leader>fr :ProjectMru --tiebreak=end<cr>
 "nnoremap <c-p> :FilesMru --tiebreak=end<cr>
 
 " ctrlp navigator
 Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_extensions = ['funky']
-let g:ctrlp_extensions = ['funky','switcher']
+let g:ctrlp_extensions = ['funky', 'switcher']
 
 if executable('rg')
   set grepprg=rg\ --vimgrep
