@@ -384,6 +384,8 @@ Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 "Plug 'aklt/plantuml-syntax' " plantuml
 Plug 'scrooloose/vim-slumlord' " plantuml live preview
 
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-cucumber' ", { 'for': 'rails'} ' cucumber syntax
 Plug 'vim-ruby/vim-ruby' ", { 'for': 'ruby' } ' ruby syntax
 Plug 'tpope/vim-rails' " rails syntax
@@ -410,3 +412,5 @@ Plug 'sheerun/vim-polyglot' " multi-language syntax pack
 "command! -bang -nargs=0 FollowMyLead call FMLShow()
 
 call plug#end()
+
+runtime macros/matchit.vim

@@ -51,18 +51,19 @@ call Cabbrev('shs', 'resize -5')
 "call Cabbrev('shs', 'eq')
 "call Cabbrev('svg', 'eq')
 
-"---- copy/paste
-" move point back to original position after yanking
-vmap y ygv<Esc>
-" copy to system clipboard
-vnoremap <leader>y "+y
-nnoremap <leader>Y "+yg_
-nnoremap <leader>yy "+yy
-
-" paste from system clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-
+""---- copy/paste
+"" move point back to original position after yanking
+"vmap y ygv<Esc>
+"
+"" copy to system clipboard
+"vnoremap <leader>y "+y
+"nnoremap <leader>Y "+yg_
+"nnoremap <leader>yy "+yy
+"
+"" paste from system clipboard
+"nnoremap <leader>p "+p
+"nnoremap <leader>P "+P
+"
 " don't copy the contents of an overwritten selection
 "vnoremap p "_dP
 
@@ -124,6 +125,7 @@ call Cabbrev('cr', 'so $MYVIMRC')
 
 "---- fix common typos
 cnoreabbrev W w
+cnoreabbrev X x
 cnoreabbrev Q q
 " q will quit help buffer
 autocmd FileType help noremap <buffer> q :q<cr>

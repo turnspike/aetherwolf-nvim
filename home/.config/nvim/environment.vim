@@ -27,7 +27,7 @@ autocmd InsertEnter,InsertLeave * set cul! " underline current line for insert m
 
 " yank and paste with the system clipboard under x11 (ie not ssh)
 if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
-"	set clipboard=unnamed
+  set clipboard=unnamed
 endif
 
 "---- splits
