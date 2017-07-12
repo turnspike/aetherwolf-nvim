@@ -27,7 +27,7 @@ autocmd InsertEnter,InsertLeave * set cul! " underline current line for insert m
 
 " yank and paste with the system clipboard under x11 (ie not ssh)
 if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
-  set clipboard=unnamed
+	set clipboard=unnamed
 endif
 
 "---- splits
@@ -44,7 +44,7 @@ set timeoutlen=300 ttimeoutlen=0 " 300ms for key combos, 0ms for <esc>
 " mouse? no more mouse for you
 set mouse =
 if exists(':ttymouse')
-    set ttymouse=
+	set ttymouse=
 endif
 
 "---- files
