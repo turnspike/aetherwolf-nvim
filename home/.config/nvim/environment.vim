@@ -41,10 +41,9 @@ set timeout " use timeouts for keyboard combo mappings
 set timeoutlen=300 ttimeoutlen=0 " 300ms for key combos, 0ms for <esc>
 
 "---- mouse
-" mouse? no more mouse for you
-set mouse =
+set mouse=n
 if exists(':ttymouse')
-	set ttymouse=
+  set ttymouse = xterm2
 endif
 
 "---- files
