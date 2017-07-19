@@ -107,7 +107,7 @@ noremap <leader>vd gvd
 nnoremap <leader>w :w<cr>
 nnoremap <leader>x :w<cr>:bd<cr>
 "nnoremap <leader>e :Explore<cr>
-noremap <leader>q :bd<cr>
+"noremap <leader>q :bd<cr>
 " write files as sudo using w!!
 "cnoremap w!! %!sudo tee > /dev/null %
 cmap w!! w !sudo tee % >/dev/null
@@ -139,11 +139,13 @@ autocmd FileType help noremap <buffer> q :q<cr>
 ""---- override plugin keybinds
 "nunmap <leader>fml
 nmap <leader>b :Buffers<cr>
-nmap <leader>f :Pfiles<cr>
+nmap <leader>p :Pfiles<cr>
 nmap <leader>r :ProjectMru --tiebreak=end<cr>
 nmap <leader>c :call GAddCommit()<cr>
 nmap <leader>j :BLines<cr>
 nmap <leader>/ :BLines<cr>
+" edit file relative from current buffer path
+nnoremap <leader>e :e <c-r>=expand('%:p:h') . '/'<cr>
 
 "---- neovim
 if has("nvim")

@@ -51,6 +51,8 @@ autocmd BufEnter * EnableStripWhitespaceOnSave " auto strip whitespace
 
 "---- buffers
 Plug 'schickling/vim-bufonly' " :BufOnly to close other buffers
+Plug 'moll/vim-bbye' " :Bdelete for a better buffer closer
+:nnoremap <leader>q :Bdelete<cr>
 
 "---- searching
 "Plug 'wincent/loupe' " make current search match more obvious
@@ -131,6 +133,10 @@ let g:session_command_aliases=1
 
 "---- project plugins (files, outlines, layouts...)
 
+Plug 'airblade/vim-rooter'
+let g:rooter_change_directory_for_non_project_files = 'current'
+let g:rooter_resolve_links = 1
+
 "Plug 'justinmk/vim-dirvish'
 
 "Plug 'vim-ctrlspace/vim-ctrlspace'
@@ -155,10 +161,10 @@ let NERDTreeMinimalUI = 1 " don't show help message
 
 nnoremap <leader>nt :NERDTreeToggle<cr>
 " reveal the current file in NERDTree
-nnoremap <leader>nr :NERDTreeFind<cr><c-w><c-w>
+nnoremap <leader>nf :NERDTreeFind<cr><c-w><c-w>
 "nnoremap <leader>nr :NERDTreeFocus<cr> \| R \| <c-w><c-p>
 call Cabbrev('nt', 'NERDTreeToggle')
-call Cabbrev('nr', 'NERDTreeFind')
+call Cabbrev('nf', 'NERDTreeFind')
 
 "let g:nerdtree_sync_cursorline = 1
 "let g:NERDTreeHighlightCursorline = 1 " highlight current line
@@ -218,7 +224,7 @@ command! Pfiles execute 'Files' s:get_project_root()
 
 command! Pmru execute 'ProjectMru'
 
-call Cabbrev('ff', 'Pfiles') " _fuzzy _filenames (in project)
+call Cabbrev('fp', 'Pfiles') " _fuzzy _filenames (in project)
 call Cabbrev('fg', 'Pgrep') " _fuzzy _grep (in project)
 call Cabbrev('fr', 'Pmru') " _fuzzy _recent (in project)
 call Cabbrev('fb', 'Buffers') " _fuzzy _buffer

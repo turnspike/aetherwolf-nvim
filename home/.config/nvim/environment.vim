@@ -25,10 +25,10 @@ autocmd InsertEnter,InsertLeave * set cul! " underline current line for insert m
 
 "---- copy/paste
 
-" yank and paste with the system clipboard under x11 (ie not ssh)
-if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
-	set clipboard=unnamed
-endif
+"" yank and paste with the system clipboard under x11 (ie not ssh)
+"if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
+"    "set clipboard=unnamed
+"endif
 
 "---- splits
 set hidden " enable multi file editing
@@ -48,7 +48,7 @@ endif
 
 "---- files
 "let g:netrw_keepdir=0 " :e is relative to current buffer
-set autochdir " auto cd to directory of current buffer
+"set autochdir " auto cd to directory of current buffer
 "autocmd BufEnter * silent! lcd %:p:h " auto cd to dir of current buffer
 
 "---- commandline
@@ -116,6 +116,9 @@ set diffopt+=vertical
 
 " fix search hilite colors
 hi Search cterm=NONE ctermfg=Yellow ctermbg=DarkGray
+
+"" hide ~ for blank lines at bottom of buffer
+"highlight EndOfBuffer ctermfg=black ctermbg=black
 
 "---- buffer hooks
 
