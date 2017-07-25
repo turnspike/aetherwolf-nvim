@@ -52,7 +52,6 @@ autocmd BufEnter * EnableStripWhitespaceOnSave " auto strip whitespace
 "---- buffers
 Plug 'schickling/vim-bufonly' " :BufOnly to close other buffers
 Plug 'moll/vim-bbye' " :Bdelete for a better buffer closer
-:nnoremap <leader>q :Bdelete<cr>
 
 "---- searching
 "Plug 'wincent/loupe' " make current search match more obvious
@@ -136,6 +135,7 @@ let g:session_command_aliases=1
 Plug 'airblade/vim-rooter'
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_resolve_links = 1
+let g:rooter_silent_chdir = 1
 
 "Plug 'justinmk/vim-dirvish'
 
@@ -186,6 +186,11 @@ let g:filebeagle_suppress_keymaps = 1
 Plug 'jeetsukumaran/vim-filebeagle'
 map <silent> - <Plug>FileBeagleOpenCurrentBufferDir
 
+"Plug 'francoiscabrol/ranger.vim'
+"Plug 'rbgrouleff/bclose.vim'
+""let g:ranger_map_keys = 0
+""map <leader>f :Ranger<CR>
+
 " tpope/vim-sleuth
 
 " show tag sidebar for current file
@@ -196,7 +201,7 @@ call Cabbrev('tt', 'TagbarToggle')
 
 " TODO macos/homebrew
 
-Plug 'junegunn/vim-peekaboo' " show contents of registers
+"Plug 'junegunn/vim-peekaboo' " show contents of registers
 
 " fuzzy finder navigator
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " base fzf
@@ -220,6 +225,7 @@ endfunction
 " find filenames within project scope
 " TODO: add search string as second param, add --tiebreak=end for better sorting
 command! Pfiles execute 'Files' s:get_project_root()
+"command! -bang -complete=buffer -nargs=? Bclose Bdelete<bang> <args>
 "command! FPfiles execute 'FFiles '.s:get_project_root().' '.shellescape(<q-args>)
 
 command! Pmru execute 'ProjectMru'
@@ -297,10 +303,10 @@ Plug 'bling/vim-airline'
 " airline - use unicode symbols (terminal friendly)
 " TODO make conditional on term mode
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+		let g:airline_symbols = {}
 endif
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 let g:airline_symbols.crypt = '❖'
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.maxlinenr = ''
@@ -328,7 +334,8 @@ let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
 Plug 'vim-airline/vim-airline-themes'
 "let g:airline_theme = 'powerlineish'
 "let g:airline_theme = 'sol'
-let g:airline_theme = 'base16_tomorrow'
+"let g:airline_theme = 'base16_tomorrow'
+let g:airline_theme = 'zenburn'
 
 " show marks in left gutter
 Plug 'kshenoy/vim-signature'
@@ -344,6 +351,7 @@ Plug 'vimwiki/vimwiki'
 let g:vimwiki_map_prefix = '<Leader>i'
 let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [
+\  {'path': '~/Dropbox/wiki/work/', 'syntax': 'markdown', 'ext': '.md'},
 \  {'path': '~/Dropbox/wiki/notes/', 'syntax': 'markdown', 'ext': '.md'},
 \  {'path': '~/Dropbox/wiki/blog/', 'syntax': 'markdown', 'ext': '.md'},
 \  {'path': '~/Dropbox/wiki/personal/', 'syntax': 'markdown', 'ext': '.md'}
@@ -375,20 +383,33 @@ call Cabbrev('vn', 'VimwikiMakeDiaryNote')
 command! -bang -nargs=* VimwikiToggleCalendar call ToggleCalendar()
 call Cabbrev('vct', 'VimwikiToggleCalendar')
 
-"---- clojure
+"Plug 'MikeCoder/markdown-preview.vim'
+"TODO pull request this to also work on vimwiki files
+""---- preview markdown in browser
+"Plug 'tyru/open-browser.vim'
+"Plug 'kannokanno/previm'
+"let g:previm_open_cmd = 'open -a Safari'
 
-Plug 'tpope/vim-classpath', { 'for': 'clojure' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'tpope/vim-salve', { 'for': 'clojure' }
-Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
-Plug 'guns/vim-sexp', { 'for': 'clojure' }
-Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
-Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+"augroup PrevimSettings
+"    autocmd!
+"    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+"augroup END
+
+""---- clojure
+"Plug 'tpope/vim-classpath', { 'for': 'clojure' }
+"Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+"Plug 'tpope/vim-salve', { 'for': 'clojure' }
+"Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+"Plug 'guns/vim-sexp', { 'for': 'clojure' }
+"Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
+"Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 
 "---- other languages
 
-"Plug 'aklt/plantuml-syntax' " plantuml
+Plug 'aklt/plantuml-syntax' " plantuml
 Plug 'scrooloose/vim-slumlord' " plantuml live preview
+"autocmd FileType plantuml nnoremap e :!java -jar ~/bin/plantuml.jar -o %:p:h %
+autocmd FileType plantuml nnoremap e :!plantuml -o %:p:h %
 
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'

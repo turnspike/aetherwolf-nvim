@@ -112,14 +112,6 @@ set wmw=0 " window min width = 0, for splits?
 "---- vc, diffs
 set diffopt+=vertical
 
-"---- general
-
-" fix search hilite colors
-hi Search cterm=NONE ctermfg=Yellow ctermbg=DarkGray
-
-"" hide ~ for blank lines at bottom of buffer
-"highlight EndOfBuffer ctermfg=black ctermbg=black
-
 "---- buffer hooks
 
 " directly go to insert mode when swtich to terminal window

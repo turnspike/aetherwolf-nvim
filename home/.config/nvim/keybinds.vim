@@ -144,8 +144,13 @@ nmap <leader>r :ProjectMru --tiebreak=end<cr>
 nmap <leader>c :call GAddCommit()<cr>
 nmap <leader>j :BLines<cr>
 nmap <leader>/ :BLines<cr>
+nmap <leader>g :Pgrep<cr>
+nmap <leader>q :Bdelete!<cr>
+
 " edit file relative from current buffer path
 nnoremap <leader>e :e <c-r>=expand('%:p:h') . '/'<cr>
+" expand %%<cr> to current path, eg :e %%/
+cabbr <expr> %% expand('%:p:h')
 
 "---- neovim
 if has("nvim")
