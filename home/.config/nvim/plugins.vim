@@ -4,7 +4,6 @@ if empty(glob("~/.local/share/nvim/site/autoload/plug.vim"))
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
-
 " TODO: denite.vim instead of cabbrev?
 
 "---- files
@@ -294,9 +293,6 @@ nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
 "---- linting
 
- "Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') } " in-buffer word completion
- "let g:deoplete#enable_at_startup = 1 " enable deoplete
-
 "---- status bar mods
 Plug 'bling/vim-airline'
 
@@ -404,6 +400,9 @@ call Cabbrev('vct', 'VimwikiToggleCalendar')
 "Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 "Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 
+"---- javascript
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+
 "---- other languages
 
 Plug 'aklt/plantuml-syntax' " plantuml
@@ -429,9 +428,31 @@ Plug 'sheerun/vim-polyglot' " multi-language syntax pack
 "Bundle 'vim-scripts/Specky.git'
 "Bundle 'ck3g/vim-change-hash-syntax'
 
+"---- autocomplete
+
+Plug 'ervandew/supertab'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+
+" press tab to show autocomplete, tab to select, then keep typing or press <c>-y to accept
+let g:deoplete#disable_auto_complete = 1
+imap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+"TODO snippets...
+"TODO https://github.com/bonsaiben/bootstrap-snippets
+"TODO https://www.gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
+"TODO https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
+
 "---- misc
 
-"" TODO: add a pull request to make <leader>fml optional
+"TODO: add a pull request to make <leader>fml optional
 "" show all leader mappings
 "let g:fml_all_sources = 1
 "Plug 'ktonga/vim-follow-my-lead'
