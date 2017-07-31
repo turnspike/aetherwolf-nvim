@@ -430,8 +430,8 @@ Plug 'sheerun/vim-polyglot' " multi-language syntax pack
 
 "---- autocomplete
 
-Plug 'ervandew/supertab'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ervandew/supertab' " use tab for autocompletion
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocompletion plugin
 let g:deoplete#enable_at_startup = 1
 
 " press tab to show autocomplete, tab to select, then keep typing or press <c>-y to accept

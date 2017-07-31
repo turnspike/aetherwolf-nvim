@@ -1,7 +1,7 @@
 
 "---- all files
 au FileType * setlocal formatoptions-=cro " don't autocomment newlines
-"au BufNewFile,BufRead * setlocal formatoptions-=cro " don't autocomment newlines
+au BufNewFile,BufRead * setlocal formatoptions-=cro " no really, don't autocomment newlines
 au FileType * set tabstop=2|set shiftwidth=2|set noexpandtab " default indenting
 "au BufEnter * if expand('%:p') !~ '://' | :lchdir %:p:h | endif
 

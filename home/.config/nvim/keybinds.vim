@@ -104,8 +104,6 @@ noremap <leader>vd gvd
 "---- files
 "nnoremap <leader>s :w<cr>
 "inoremap <leader>s <C-c>:w<cr>
-nnoremap <leader>w :w<cr>
-nnoremap <leader>x :w<cr>:bd<cr>
 "nnoremap <leader>e :Explore<cr>
 "noremap <leader>q :bd<cr>
 " write files as sudo using w!!
@@ -137,6 +135,7 @@ autocmd FileType help noremap <buffer> q :q<cr>
 "nmap q: <nop>
 
 ""---- override plugin keybinds
+"FIXME why don't these work from plugins.vim
 "nunmap <leader>fml
 nmap <leader>b :Buffers<cr>
 nmap <leader>p :Pfiles<cr>
@@ -146,6 +145,8 @@ nmap <leader>j :BLines<cr>
 nmap <leader>/ :BLines<cr>
 nmap <leader>g :Pgrep<cr>
 nmap <leader>q :Bdelete!<cr>
+nmap <leader>w :w<cr>
+nmap <leader>x :w<cr>:Bd<cr>
 
 " edit file relative from current buffer path
 nnoremap <leader>e :e <c-r>=expand('%:p:h') . '/'<cr>
