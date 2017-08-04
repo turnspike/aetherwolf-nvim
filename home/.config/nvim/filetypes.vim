@@ -21,6 +21,9 @@ au FileType plantuml nnoremap <buffer> <leader>r :!java -jar ~/bin/plantuml.jar 
 "au FileType python set tabstop=4|set shiftwidth=4|set softtabstop=4|set expandtab
 au FileType make setlocal noexpandtab|set softtabstop=4
 au BufRead,BufNewFile *.md setlocal filetype=markdown
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yaml setl indentkeys-=<:> " re-indent with CTRL-F
+"TODO find a decent yaml plugin...
 
 "---- web
 au Filetype html,css,scss,javascript setlocal ts=2 sw=2 expandtab
