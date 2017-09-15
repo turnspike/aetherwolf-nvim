@@ -56,6 +56,7 @@ set wildmode=list:longest,full " more linuxy filename completion with <tab>
 set wildmenu
 set wildignore+=*/tmp/*,*/.git/*,*.so,*.swp,*.zip     " MacOSX/Linux
 "set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+set rtp+=/usr/local/opt/fzf
 
 "---- search and replace
 set gdefault " always use /g with %s/

@@ -418,6 +418,7 @@ Plug 'tpope/vim-rails' " rails syntax
 Plug 'tpope/vim-haml' ", { 'for': 'haml' } rails syntax
 Plug 'sheerun/vim-polyglot' " multi-language syntax pack
 Plug 'stephpy/vim-yaml' " better yaml support
+Plug 'cakebaker/scss-syntax.vim'
 "Plug 'letientai299/vim-react-snippets', { 'branch': 'es6' } " react code snips, ./UltiSnips/javascript.snippets
 "Plug 'skalnik/vim-vroom' " run tests
 
