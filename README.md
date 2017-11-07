@@ -1,8 +1,8 @@
-# ætherwolf
+# :wolf: ætherwolf
 
 _glide through vim like a predator._
 
-# installation for nvim
+# :nut_and_bolt: installing for nvim
 
     mkdir -p ~/.config/nvim && touch ~/.config/nvim/init.vim
     git clone git@github.com:turnspike/aetherwolf.git ~/.config/aetherwolf
