@@ -1,8 +1,8 @@
-source $XDG_CONFIG_HOME/nvim/functions.vim
-source $XDG_CONFIG_HOME/nvim/environment.vim
-source $XDG_CONFIG_HOME/nvim/plugins.vim
-source $XDG_CONFIG_HOME/nvim/keybinds.vim
-source $XDG_CONFIG_HOME/nvim/filetypes.vim
+source ~/.config/aetherwolf/nvim/helpers.vim
+source ~/.config/aetherwolf/nvim/environment.vim
+source ~/.config/aetherwolf/nvim/plugins.vim
+source ~/.config/aetherwolf/nvim/keybinds.vim
+source ~/.config/aetherwolf/nvim/filetypes.vim
 
 "---- colors
 " fix search hilite colors
