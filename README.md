@@ -1,5 +1,6 @@
-# Turnspike Vimrc
-turnspike's vim settings.
+# ætherwolf
+
+_glide through nvim like a predator._
 
 # Pre-requisites
 
