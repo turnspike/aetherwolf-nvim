@@ -1,32 +1,35 @@
+" -- all files
+augroup FtGeneral
+  autocmd!
+  au FileType * setlocal formatoptions-=cro " don't autocomment newlines
+  au BufNewFile,BufRead * setlocal formatoptions-=cro " no really, don't autocomment newlines
+  au FileType * set tabstop=2|set shiftwidth=2|set noexpandtab " default indenting
+  "au BufEnter * if expand('%:p') !~ '://' | :lchdir %:p:h | endif
+augroup END
 
-"---- all files
-au FileType * setlocal formatoptions-=cro " don't autocomment newlines
-au BufNewFile,BufRead * setlocal formatoptions-=cro " no really, don't autocomment newlines
-au FileType * set tabstop=2|set shiftwidth=2|set noexpandtab " default indenting
-"au BufEnter * if expand('%:p') !~ '://' | :lchdir %:p:h | endif
+" -- ruby
+augroup FtRuby
+  autocmd!
+  "au FileType ruby nnoremap <buffer> <leader>r :exec '!clear; ruby' shellescape(@%, 1)<cr>
+  "au FileType ruby nnoremap <buffer> <C-S-r> :exec '!clear; python' shellescape(@%, 1)<cr>
+  "command! FR set filetype=ruby
+  au Filetype ruby,eruby,haml,scss setlocal ts=2 sw=2 expandtab
+  au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+  au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+  au FileType ruby,eruby let g:rubycomplete_rails = 1
+augroup END
 
-"---- ruby
-"au FileType ruby nnoremap <buffer> <leader>r :exec '!clear; ruby' shellescape(@%, 1)<cr>
-"au FileType ruby nnoremap <buffer> <C-S-r> :exec '!clear; python' shellescape(@%, 1)<cr>
-"command! FR set filetype=ruby
-au Filetype ruby,eruby,haml,scss setlocal ts=2 sw=2 expandtab
-au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-au FileType ruby,eruby let g:rubycomplete_rails = 1
-
-"---- plantuml
-au FileType plantuml nnoremap <buffer> <leader>r :!java -jar ~/bin/plantuml.jar -o %:p:h %<cr>
-
-"---- other
-"au FileType python set tabstop=4|set shiftwidth=4|set softtabstop=4|set expandtab
-au FileType make setlocal noexpandtab|set softtabstop=4
-au BufRead,BufNewFile *.md setlocal filetype=markdown
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType yaml setl indentkeys-=<:> " re-indent with CTRL-F
-"TODO find a decent yaml plugin...
-
-"---- web
-au Filetype html,css,scss,javascript setlocal ts=2 sw=2 expandtab
+augroup FtOther
+  autocmd!
+  au FileType plantuml nnoremap <buffer> <leader>r :!java -jar ~/bin/plantuml.jar -o %:p:h %<cr>
+  "au FileType python set tabstop=4|set shiftwidth=4|set softtabstop=4|set expandtab
+  au FileType make setlocal noexpandtab|set softtabstop=4
+  au BufRead,BufNewFile *.md setlocal filetype=markdown
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType yaml setl indentkeys-=<:> " re-indent with CTRL-F
+  "TODO find a decent yaml plugin...
+  au Filetype html,css,scss,javascript setlocal ts=2 sw=2 expandtab
+augroup END
 
 "" - Go {{{3
 "augroup myGolang
@@ -82,3 +85,5 @@ au Filetype html,css,scss,javascript setlocal ts=2 sw=2 expandtab
 "                \ (match(&dip, 'icase')!=-1?'-=':'+=').
 "                \ 'icase<cr>'
 "endif
+" directly go to insert mode when swtich to terminal window
+"au BufEnter * if &buftype == 'terminal' | :startinsert | endif

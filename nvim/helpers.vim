@@ -7,3 +7,11 @@ fu! Cabbrev(key, value)
     \ a:key, 1+len(a:key), string(a:value), string(a:key))
 endfu
 
+command! ConfigEdit edit $MYVIMRC " edit config file
+command! ConfigReload source $MYVIMRC " live reload config
+call Cabbrev('ce', 'ConfigEdit')
+call Cabbrev('cr', 'ConfigReload')
+
+command! FileInfo :echo resolve(expand('%:p'))
+call Cabbrev('fi', 'FileInfo') " file info
+cmap w!! w !sudo tee % >/dev/null

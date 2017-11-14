@@ -10,4 +10,7 @@ source ~/.config/aetherwolf/nvim/filetypes.vim
 "" hide ~ for blank lines at bottom of buffer
 "highlight EndOfBuffer ctermfg=black ctermbg=black
 "colorscheme colorsbox-seighties
-colorscheme colorsbox-stblue
+"colorscheme colorsbox-stblue
+set background=dark
+colorscheme gruvbox
+syntax enable " enable syntax highlighting

@@ -158,12 +158,12 @@ let NERDTreeMinimalUI = 1 " don't show help message
 "    exe "<c-w>l"
 "endfunction
 
-nnoremap <leader>nt :NERDTreeToggle<cr>
+nnoremap <leader>ft :NERDTreeToggle<cr>
 " reveal the current file in NERDTree
-nnoremap <leader>nf :NERDTreeFind<cr><c-w><c-w>
+nnoremap <leader>fs :NERDTreeFind<cr><c-w><c-w>
 "nnoremap <leader>nr :NERDTreeFocus<cr> \| R \| <c-w><c-p>
-call Cabbrev('nt', 'NERDTreeToggle')
-call Cabbrev('nf', 'NERDTreeFind')
+call Cabbrev('ft', 'NERDTreeToggle')
+call Cabbrev('fs', 'NERDTreeFind')
 
 "let g:nerdtree_sync_cursorline = 1
 "let g:NERDTreeHighlightCursorline = 1 " highlight current line
@@ -198,6 +198,9 @@ let g:tagbar_usearrows = 1
 let g:tagbar_compact = 1
 call Cabbrev('tt', 'TagbarToggle')
 
+Plug 'severin-lemaignan/vim-minimap'
+let g:minimap_highlight='CursorLine'
+
 " TODO macos/homebrew
 
 "Plug 'junegunn/vim-peekaboo' " show contents of registers
@@ -229,11 +232,11 @@ command! Pfiles execute 'Files' s:get_project_root()
 
 command! Pmru execute 'ProjectMru'
 
-call Cabbrev('fp', 'Pfiles') " _fuzzy _filenames (in project)
-call Cabbrev('fg', 'Pgrep') " _fuzzy _grep (in project)
-call Cabbrev('fr', 'Pmru') " _fuzzy _recent (in project)
-call Cabbrev('fb', 'Buffers') " _fuzzy _buffer
-call Cabbrev('fi', 'BLines') " _fuzzy _in file
+call Cabbrev('pf', 'Pfiles') " _fuzzy _filenames (in project)
+call Cabbrev('pg', 'Pgrep') " _fuzzy _grep (in project)
+call Cabbrev('pr', 'Pmru') " _fuzzy _recent (in project)
+call Cabbrev('pb', 'Buffers') " _fuzzy _buffer
+call Cabbrev('fs', 'BLines') " _fuzzy _in file
 
 "*** TODO fuzzy tags, fuzzy function list
 
@@ -348,8 +351,7 @@ let g:vimwiki_map_prefix = '<Leader>i'
 let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [
 \  {'path': '~/Dropbox/wiki/work/', 'syntax': 'markdown', 'ext': '.md'},
-\  {'path': '~/Dropbox/wiki/notes/', 'syntax': 'markdown', 'ext': '.md'},
-\  {'path': '~/Dropbox/wiki/blog/', 'syntax': 'markdown', 'ext': '.md'},
+\  {'path': '~/Dropbox/wiki/tech/', 'syntax': 'markdown', 'ext': '.md'},
 \  {'path': '~/Dropbox/wiki/personal/', 'syntax': 'markdown', 'ext': '.md'}
 \]
 
@@ -408,7 +410,7 @@ Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'aklt/plantuml-syntax' " plantuml
 Plug 'scrooloose/vim-slumlord' " plantuml live preview
 "autocmd FileType plantuml nnoremap e :!java -jar ~/bin/plantuml.jar -o %:p:h %
-autocmd FileType plantuml nnoremap e :!plantuml -o %:p:h %
+"autocmd FileType plantuml nnoremap e :!plantuml -o %:p:h %
 
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
@@ -452,7 +454,7 @@ endfunction"}}}
 "TODO https://www.gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
 "TODO https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
 
-"---- misc
+" -- misc
 
 "TODO: add a pull request to make <leader>fml optional
 "" show all leader mappings
@@ -464,3 +466,17 @@ endfunction"}}}
 call plug#end()
 
 runtime macros/matchit.vim
+
+" ---- file browser ----
+
+"" -- open netrw as left pane with :Ve
+"" https://shapeshed.com/vim-netrw/
+"let g:netrw_banner = 0
+"let g:netrw_liststyle = 3
+"let g:netrw_browse_split = 4
+"let g:netrw_altv = 1
+"let g:netrw_winsize = 25
+"augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * :Vexplore " always show file drawer
+"augroup END
