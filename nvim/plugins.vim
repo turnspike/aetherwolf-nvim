@@ -6,16 +6,18 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 " TODO: denite.vim instead of cabbrev?
 
-"---- files
+"---- FILES ----
+
 Plug 'danro/rename.vim' " add :rename
 Plug 'EinfachToll/DidYouMean' " running 'vim <partial filename>' will prompt for matching files
 Plug 'bogado/file-line' " open file at specific line, eg vim app/models/user.rb:1337
 
-"---- colors
+"---- COLORS ----
+
 Plug 'flazz/vim-colorschemes'
 "colorscheme dusk
 
-"---- editing
+"---- EDITING ----
 
 Plug 'tpope/vim-repeat' " add . repeat for some plugins
 Plug 'tpope/vim-unimpaired' " use ] and [ combos for :ex commands, eg ]b for next buffer
@@ -28,14 +30,11 @@ Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
 " TODO: osyo-manga/vim-over
 " TODO: godlygeek/tabular
 " TODO: justinmk/vim-sneak
-
 " visually select outwards using <v>
 Plug 'terryma/vim-expand-region'
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-vmap V <Plug>(expand_region_shrink)
 
-" region commenting
+" ---- COMMENTING ----
+
 "Plug 'tpope/vim-commentary' " gc to comment, <leader>c<space> to toggle comment
 Plug 'scrooloose/nerdcommenter'
 let g:NERDDefaultAlign = 'left' " comment delimiters hard left
@@ -46,17 +45,19 @@ let g:NERDTrimTrailingWhitespace = 1 " enable trimming of trailing whitespace wh
 " whitespace
 "Plug 'thirtythreeforty/lessspace.vim' "strip whitespace only on edited lines
 Plug 'ntpeters/vim-better-whitespace' " hilight and work with trailing whitespace
-autocmd BufEnter * EnableStripWhitespaceOnSave " auto strip whitespace
+"autocmd BufEnter * EnableStripWhitespaceOnSave " auto strip whitespace
 
-"---- buffers
+"---- BUFFERS ----
+
 Plug 'schickling/vim-bufonly' " :BufOnly to close other buffers
 Plug 'moll/vim-bbye' " :Bdelete for a better buffer closer
 
-"---- searching
-"Plug 'wincent/loupe' " make current search match more obvious
-"let g:LoupeVeryMagic=0 " don't prepend \v to searches
+"---- SEARCHING ----
 
-"---- version control
+Plug 'wincent/loupe' " make current search match more obvious
+let g:LoupeVeryMagic=0 " don't prepend \v to searches
+
+"---- VERSION CONTROL ----
 
 " show git line status in left gutter
 Plug 'airblade/vim-gitgutter'
@@ -72,34 +73,8 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 
 call Cabbrev('gac', 'call GAddCommit()')
-function! GAddCommit() " add file and commit in one command
-    exe ":w"
-    "exe ":Gwrite"
-	exe "Dispatch git add %:p"
-    exe ":Gcommit -v -q"
-endfunction
 
-"autocmd BufReadPost fugitive://* set bufhidden=delete
-call Cabbrev('ga', 'Gwrite')
-"nmap <leader>ga :Dispatch git add %:p<CR><CR>
-call Cabbrev('gs', 'Gstatus')
-call Cabbrev('gc', 'Gcommit -v -q')
-" TODO: how to chain Cabbrev commands??
-"call Cabbrev('gac', 'Dispatch git add %:p<CR><CR>Gcommit -v -q')
-call Cabbrev('gd', 'Gdiff')
-call Cabbrev('gD', 'diffoff!<CR><c-w>h:bd') "clean way to close fugitive diff window
-call Cabbrev('ge', 'Gedit')
-call Cabbrev('gr', 'Gread')
-"call Cabbrev('gl', 'silent! Glog<CR>:bot copen')
-"call Cabbrev('gg', 'Ggrep<space>')
-"call Cabbrev('gm', 'Gmove<space>')
-"call Cabbrev('gb', 'Git branch<space>')
-"call Cabbrev('go', 'Git checkout<space>')
-call Cabbrev('gp', 'Dispatch! git push')
-call Cabbrev('gu', 'Dispatch! git pull')
-:command! Gwho Gblame " eeeeliminate the negativity
-
-"---- codesense
+"---- CODESENSE ----
 
 "Plug 'ervandew/supertab' " autocomplete by pressing tab (overlay for ctrl-p, ctrl-x etc)
 Plug 'luochen1990/rainbow' " color paren pairs, good for lisps
@@ -116,7 +91,8 @@ Plug 'tpope/vim-ragtag'
 " Plug 'xolox/vim-easytags'
 " g:easytags_async = 1
 
-"---- sessions
+"---- SESSIONS ----
+
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
@@ -129,7 +105,7 @@ let g:session_autoload='yes'
 let g:session_autosave='yes'
 let g:session_command_aliases=1
 
-"---- project plugins (files, outlines, layouts...)
+"---- PROJECT PLUGINS ----
 
 Plug 'airblade/vim-rooter'
 let g:rooter_change_directory_for_non_project_files = 'current'
@@ -139,34 +115,17 @@ let g:rooter_silent_chdir = 1
 "Plug 'justinmk/vim-dirvish'
 
 "Plug 'vim-ctrlspace/vim-ctrlspace'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
 Plug 'unkiwii/vim-nerdtree-sync', { 'on': 'NERDTreeToggle' }
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
 
 let NERDTreeMinimalUI = 1 " don't show help message
 
-"autocmd BufEnter * if &modifiable | NERDTreeFind | wincmd p | endif
-" autocmd BufEnter * silent! if bufname('%') !~# 'NERD_tree_' | cd %:p:h | NERDTreeCWD | wincmd p | endif
-
-"autocmd CursorHold,CursorHoldI * call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | wincmd w
-
-
-" FIXME sync nerdtree...
-"command! -bang -nargs=* NERDTreeSync call g:nt_sync() " search file content within proj scope
-"function! g:nt_sync()
-"    exe ":NERDTreeFind"
-"    exe "<c-w>l"
-"endfunction
-
-nnoremap <leader>ft :NERDTreeToggle<cr>
-" reveal the current file in NERDTree
-nnoremap <leader>fs :NERDTreeFind<cr><c-w><c-w>
-"nnoremap <leader>nr :NERDTreeFocus<cr> \| R \| <c-w><c-p>
-call Cabbrev('ft', 'NERDTreeToggle')
-call Cabbrev('fs', 'NERDTreeFind')
-
 "let g:nerdtree_sync_cursorline = 1
-"let g:NERDTreeHighlightCursorline = 1 " highlight current line
+let g:NERDTreeHighlightCursorline = 0 " highlight current file
 " don't blat <c-j> and <c-k> (used for split movement)
 let g:NERDTreeMapJumpPrevSibling='<Nop>'
 let g:NERDTreeMapJumpNextSibling='<Nop>'
@@ -196,10 +155,9 @@ map <silent> - <Plug>FileBeagleOpenCurrentBufferDir
 Plug 'majutsushi/tagbar'
 let g:tagbar_usearrows = 1
 let g:tagbar_compact = 1
-call Cabbrev('tt', 'TagbarToggle')
 
-Plug 'severin-lemaignan/vim-minimap'
-let g:minimap_highlight='CursorLine'
+"Plug 'severin-lemaignan/vim-minimap'
+"let g:minimap_highlight='CursorLine'
 
 " TODO macos/homebrew
 
@@ -211,32 +169,21 @@ Plug 'junegunn/fzf.vim' " load Ex commands
 "let g:fzf_command_prefix = 'F' " use :Fzf prefix for Ex commands
 Plug 'tweekmonster/fzf-filemru' " provides :FilesMru :ProjectMru
 
-" linewise completion
-imap <c-x><c-l> <plug>(fzf-complete-line)
-"nmap <leader>l <plug>(fzf-complete-line)
-
 " lifted from: https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
 command! -bang -nargs=* Pgrep call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).' '.s:get_project_root(), 1, <bang>0) " search file content within proj scope
 "set grepprg=rg\ --vimgrep
 
+" find filenames within project scope
+" TODO: add search string as second param, add --tiebreak=end for better sorting
 " lifted from: https://github.com/junegunn/fzf.vim/issues/47#issuecomment-160237795
 function! s:get_project_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
-
-" find filenames within project scope
-" TODO: add search string as second param, add --tiebreak=end for better sorting
 command! Pfiles execute 'Files' s:get_project_root()
 "command! -bang -complete=buffer -nargs=? Bclose Bdelete<bang> <args>
 "command! FPfiles execute 'FFiles '.s:get_project_root().' '.shellescape(<q-args>)
 
 command! Pmru execute 'ProjectMru'
-
-call Cabbrev('pf', 'Pfiles') " _fuzzy _filenames (in project)
-call Cabbrev('pg', 'Pgrep') " _fuzzy _grep (in project)
-call Cabbrev('pr', 'Pmru') " _fuzzy _recent (in project)
-call Cabbrev('pb', 'Buffers') " _fuzzy _buffer
-call Cabbrev('fs', 'BLines') " _fuzzy _in file
 
 "*** TODO fuzzy tags, fuzzy function list
 
@@ -284,20 +231,17 @@ call Cabbrev('fs', 'BLines') " _fuzzy _in file
 "Plug 'roxma/vim-tmux-clipboard'
 Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_no_mappings = 1
-"TODO do these blat core vim shortcuts?
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
 "Plug 'wincent/terminus' " change cursor shape with mode
 "let g:TerminusMouse=0
+Plug 'jszakmeister/vim-togglecursor'
+let g:togglecursor_insert='line'
 
-"---- linting
+"---- LINTING ----
 
-"---- status bar mods
+"---- STATUS LINE ----
 Plug 'bling/vim-airline'
+Plug 'jordwalke/flatlandia'
 
 " airline - use unicode symbols (terminal friendly)
 " TODO make conditional on term mode
@@ -334,7 +278,9 @@ Plug 'vim-airline/vim-airline-themes'
 "let g:airline_theme = 'powerlineish'
 "let g:airline_theme = 'sol'
 "let g:airline_theme = 'base16_tomorrow'
-let g:airline_theme = 'zenburn'
+"let g:airline_theme = 'zenburn'
+let g:airline_theme = 'monochrome'
+"let g:airline_theme = 'flatlandia'
 
 " show marks in left gutter
 Plug 'kshenoy/vim-signature'
@@ -349,37 +295,11 @@ Plug 'vimwiki/vimwiki'
 
 let g:vimwiki_map_prefix = '<Leader>i'
 let g:vimwiki_global_ext = 0
-let g:vimwiki_list = [
-\  {'path': '~/Dropbox/wiki/work/', 'syntax': 'markdown', 'ext': '.md'},
-\  {'path': '~/Dropbox/wiki/tech/', 'syntax': 'markdown', 'ext': '.md'},
-\  {'path': '~/Dropbox/wiki/personal/', 'syntax': 'markdown', 'ext': '.md'}
-\]
-
 " FIXME these apply to all open buffers when a vimwiki buffer is open
 "au BufRead,BufNewFile *.wiki set filetype=vimwiki
 "autocmd FileType vimwiki map d :VimwikiMakeDiaryNote<cr>
 "autocmd FileType vimwiki map c :call ToggleCalendar()<cr>
 
-function! ToggleCalendar()
-    execute ":Calendar"
-    if exists("g:calendar_open")
-        if g:calendar_open == 1
-            execute "q"
-            unlet g:calendar_open
-        else
-            g:calendar_open = 1
-        end
-    else
-        let g:calendar_open = 1
-    end
-endfunction
-
-call Cabbrev('vw', 'VimwikiIndex')
-call Cabbrev('vd', 'VimwikiDiaryIndex')
-call Cabbrev('vn', 'VimwikiMakeDiaryNote')
-
-command! -bang -nargs=* VimwikiToggleCalendar call ToggleCalendar()
-call Cabbrev('vct', 'VimwikiToggleCalendar')
 
 "Plug 'MikeCoder/markdown-preview.vim'
 "TODO pull request this to also work on vimwiki files
@@ -434,20 +354,15 @@ Plug 'cakebaker/scss-syntax.vim'
 
 "---- autocomplete
 
-Plug 'ervandew/supertab' " use tab for autocompletion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocompletion plugin
-let g:deoplete#enable_at_startup = 1
-
-" press tab to show autocomplete, tab to select, then keep typing or press <c>-y to accept
-let g:deoplete#disable_auto_complete = 1
-imap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+if has("nvim")
+	Plug 'ervandew/supertab' " use tab for autocompletion
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocompletion plugin
+	let g:deoplete#enable_at_startup = 1
+	" press tab to show autocomplete, tab to select, then keep typing or press <c>-y to accept
+	let g:deoplete#disable_auto_complete = 1
+else
+	" TODO YCM
+endif
 
 "TODO snippets...
 "TODO https://github.com/bonsaiben/bootstrap-snippets

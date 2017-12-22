@@ -1,13 +1,98 @@
 noremap <space> <nop>
 let mapleader = "\<space>"
 "let maplocalleader = "\<space>"
-nmap <leader><leader> :
+"nmap <leader><leader> :
+
+" -- override plugin keybinds
+"nunmap <leader>fml
+nmap <leader>b :Buffers<cr>
+nmap <leader>p :Pfiles<cr>
+nmap <leader>r :ProjectMru --tiebreak=end<cr>
+nmap <leader>c :call GAddCommit()<cr>
+nmap <leader>s :BLines<cr>
+nmap <leader>/ :BLines<cr>
+nmap <leader>g :Pgrep<cr>
+nmap <leader>x :Bdelete!<cr>
+nmap <leader>w :w<cr>
+nmap <leader>q :w<cr>:Bd<cr>
+nnoremap <silent> <Leader>f :NERDTreeFind<CR>
+
+" edit file relative from current buffer path
+nnoremap <leader>e :e <c-r>=expand('%:p:h') . '/'<cr>
+" expand %%<cr> to current path, eg :e %%/
+cabbr <expr> %% expand('%:p:h')
+
+call Cabbrev('vw', 'VimwikiIndex')
+call Cabbrev('vd', 'VimwikiDiaryIndex')
+call Cabbrev('vn', 'VimwikiMakeDiaryNote')
+
+command! -bang -nargs=* VimwikiToggleCalendar call ToggleCalendar()
+call Cabbrev('vct', 'VimwikiToggleCalendar')
+call Cabbrev('bo', 'BufOnly')
+call Cabbrev('ce', 'ConfigEdit')
+call Cabbrev('cr', 'ConfigReload')
+call Cabbrev('fs', 'BLines') " _fuzzy _in file
+call Cabbrev('fi', 'FileInfo') " file info
+"call Cabbrev('tf', 'FileInfo') " file info
+"autocmd BufReadPost fugitive://* set bufhidden=delete
+call Cabbrev('ga', 'Gwrite')
+"nmap <leader>ga :Dispatch git add %:p<CR><CR>
+call Cabbrev('gs', 'Gstatus')
+call Cabbrev('gc', 'Gcommit -v -q')
+" TODO: how to chain Cabbrev commands??
+"call Cabbrev('gac', 'Dispatch git add %:p<CR><CR>Gcommit -v -q')
+call Cabbrev('gd', 'Gdiff')
+call Cabbrev('gD', 'diffoff!<CR><c-w>h:bd') "clean way to close fugitive diff window
+call Cabbrev('ge', 'Gedit')
+call Cabbrev('gr', 'Gread')
+"call Cabbrev('gl', 'silent! Glog<CR>:bot copen')
+"call Cabbrev('gg', 'Ggrep<space>')
+"call Cabbrev('gm', 'Gmove<space>')
+"call Cabbrev('gb', 'Git branch<space>')
+"call Cabbrev('go', 'Git checkout<space>')
+call Cabbrev('gp', 'Dispatch! git push')
+call Cabbrev('gu', 'Dispatch! git pull')
+:command! Gwho Gblame " eeeeliminate the negativity
+call Cabbrev('pf', 'Pfiles') " _fuzzy _filenames (in project)
+call Cabbrev('pg', 'Pgrep') " _fuzzy _grep (in project)
+call Cabbrev('pr', 'Pmru') " _fuzzy _recent (in project)
+call Cabbrev('pb', 'Buffers') " _fuzzy _buffer
+"nnoremap <leader>ft :NERDTreeToggle<cr>
+"" reveal the current file in NERDTree
+"nnoremap <leader>fs :NERDTreeFind<cr><c-w><c-w>
+""nnoremap <leader>nr :NERDTreeFocus<cr> \| R \| <c-w><c-p>
+call Cabbrev('tn', 'NERDTreeToggle')
+call Cabbrev('tnf', 'NERDTreeFind')
+call Cabbrev('tt', 'TagbarToggle')
+call Cabbrev('w=', 'vsplit')
+call Cabbrev('w/', 'split')
+call Cabbrev('wd', 'q')
+call Cabbrev('wm', 'BufOnly')
+
+" -- plugins
+
+"TODO do these blat core vim shortcuts?
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
 " -- movement
 
 " extra ways to exit insert mode
 imap <silent> jk <esc>
 "imap <s-cr> <esc>
+
+"" home key
+"noremap <expr> <silent> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
+"imap <silent> <Home> <C-O><Home>
+
+" Emacs-like beginning and end of line.
+imap <c-e> <c-o>$
+imap <c-a> <c-o>^
+nmap <c-e> $
+nmap <c-a> ^
 
 " insert mode control enhancements
 imap <silent> <c-f> <right>
@@ -44,13 +129,16 @@ endif
 "nmap <leader>svg :vertical resize -5<cr>
 "nmap <leader>svs :vertical resize +5<cr>
 
-call Cabbrev('w=', 'vsplit')
-call Cabbrev('w/', 'split')
-call Cabbrev('wd', 'q')
 "call Cabbrev('shg', 'resize +5')
 "call Cabbrev('shs', 'resize -5')
 "call Cabbrev('shs', 'eq')
 "call Cabbrev('svg', 'eq')
+
+" -- selection
+
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+vmap V <Plug>(expand_region_shrink)
 
 " -- copy/paste
 
@@ -86,7 +174,7 @@ nnoremap <silent> k gk
 " -- lines
 
 " double-tap leader to select current line in visual mode
-"nmap <leader><leader> V
+nmap <leader><leader> V
 
 " duplicate/clone line
 noremap <leader>d "ayy"ap
@@ -124,24 +212,6 @@ augroup END
 "nnoremap q <nop>
 "" don't use q: command (TODO: find a replacement for q:)
 "nmap q: <nop>
-
-" -- override plugin keybinds
-"nunmap <leader>fml
-nmap <leader>b :Buffers<cr>
-nmap <leader>p :Pfiles<cr>
-nmap <leader>r :ProjectMru --tiebreak=end<cr>
-nmap <leader>c :call GAddCommit()<cr>
-nmap <leader>j :BLines<cr>
-nmap <leader>/ :BLines<cr>
-nmap <leader>g :Pgrep<cr>
-nmap <leader>q :Bdelete!<cr>
-nmap <leader>w :w<cr>
-nmap <leader>x :w<cr>:Bd<cr>
-
-" edit file relative from current buffer path
-nnoremap <leader>e :e <c-r>=expand('%:p:h') . '/'<cr>
-" expand %%<cr> to current path, eg :e %%/
-cabbr <expr> %% expand('%:p:h')
 
 "---- neovim
 if has("nvim")

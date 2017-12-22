@@ -1,10 +1,19 @@
 " -- tabs and spaces
-set autoindent                   " copy indent from current line when starting a new line
-set expandtab                    " spaces not tabs
-set shiftwidth=2                 " spaces used in >>, <<, ==, and autoindent
-"set smarttab                    " Remove smarttab since you don't want to use tab characters
-set softtabstop=2                " set tab to use 4 space characters
-set tabstop=2                    " width of tab character
+
+"set autoindent                   " copy indent from current line when starting a new line
+"set expandtab                    " spaces not tabs
+"set shiftwidth=2                 " spaces used in >>, <<, ==, and autoindent
+""set smarttab                    " Remove smarttab since you don't want to use tab characters
+"set softtabstop=2                " set tab to use 4 space characters
+"set tabstop=2                    " width of tab character
+
+set expandtab       "Use softtabstop spaces instead of tab characters for indentation
+set shiftwidth=2    "Indent by 2 spaces when using >>, <<, == etc.
+set softtabstop=2   "Indent by 2 spaces when pressing <TAB>
+
+set autoindent      "Keep indentation from previous line
+set smartindent     "Automatically inserts indentation in some cases
+set cindent         "Like smartindent, but stricter and more customisable
 
 " -- don't hard wrap or autoformat
 set nowrap
@@ -21,13 +30,6 @@ set splitright " open vsplits right (defaults left)
 " -- cursor movement
 set backspace=indent,eol,start
 set nostartofline " preserve column on page movements
-
-augroup Cursor
-  autocmd!
-  autocmd InsertEnter,InsertLeave * set cul! " underline current line for insert mode only
-  "autocmd InsertEnter * set cul
-  "autocmd InsertLeave * set nocul
-augroup END
 
 " -- timeouts (leader keys, esc)
 set ttimeout
