@@ -7,7 +7,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 " TODO: denite.vim instead of cabbrev?
 
 "---- FILES ----
-
 Plug 'danro/rename.vim' " add :rename
 Plug 'EinfachToll/DidYouMean' " running 'vim <partial filename>' will prompt for matching files
 Plug 'bogado/file-line' " open file at specific line, eg vim app/models/user.rb:1337
@@ -18,7 +17,6 @@ Plug 'flazz/vim-colorschemes'
 "colorscheme dusk
 
 "---- EDITING ----
-
 Plug 'tpope/vim-repeat' " add . repeat for some plugins
 Plug 'tpope/vim-unimpaired' " use ] and [ combos for :ex commands, eg ]b for next buffer
 Plug 'tpope/vim-surround' " bracket manipulation eg cs'<p>
@@ -48,7 +46,6 @@ Plug 'ntpeters/vim-better-whitespace' " hilight and work with trailing whitespac
 "autocmd BufEnter * EnableStripWhitespaceOnSave " auto strip whitespace
 
 "---- BUFFERS ----
-
 Plug 'schickling/vim-bufonly' " :BufOnly to close other buffers
 Plug 'moll/vim-bbye' " :Bdelete for a better buffer closer
 
@@ -232,10 +229,10 @@ command! Pmru execute 'ProjectMru'
 Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_no_mappings = 1
 
-"Plug 'wincent/terminus' " change cursor shape with mode
+Plug 'wincent/terminus' " change cursor shape with mode
 "let g:TerminusMouse=0
-Plug 'jszakmeister/vim-togglecursor'
-let g:togglecursor_insert='line'
+"Plug 'jszakmeister/vim-togglecursor'
+"let g:togglecursor_insert='line'
 
 "---- LINTING ----
 
@@ -352,17 +349,57 @@ Plug 'cakebaker/scss-syntax.vim'
 "Bundle 'vim-scripts/Specky.git'
 "Bundle 'ck3g/vim-change-hash-syntax'
 
-"---- autocomplete
+"-- AUTOCOMPLETE
 
-if has("nvim")
-	Plug 'ervandew/supertab' " use tab for autocompletion
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocompletion plugin
-	let g:deoplete#enable_at_startup = 1
-	" press tab to show autocomplete, tab to select, then keep typing or press <c>-y to accept
-	let g:deoplete#disable_auto_complete = 1
+" TODO https://www.gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
+
+Plug 'ervandew/supertab' " use tab for autocompletion
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-	" TODO YCM
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+let g:deoplete#enable_at_startup = 1
+
+"" press tab to show autocomplete, tab to select, then keep typing or press <c>-y to accept
+"let g:deoplete#disable_auto_complete = 0
+"if !exists('g:deoplete#omni#input_patterns')
+"  let g:deoplete#omni#input_patterns = {}
+"endif
+"let g:deoplete#disable_auto_complete = 0
+"autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" <CR>: close popup and save indent.
+"function! s:my_cr_function()
+"  return deoplete#mappings#smart_close_popup() . "\<CR>"
+"endfunction
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"inoremap <expr> <c-q> (pumvisible() ? "\<c-y>\<cr>" : "\<cr>")
+"imap <expr> <CR>  deoplete#mappings#manual_complete()
+"" Enter: complete&close popup if visible (so next Enter works); else: break undo
+"inoremap <silent><expr> <Enter> pumvisible() ?
+"            \ deoplete#mappings#close_popup() : "<C-g>u<Cr>"
+"
+"" Escape: exit autocompletion, go to Normal mode
+"inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
+
+"Plug 'kien/ctrlp.vim'
+"let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP'
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+"let g:ctrlp_custom_ignore = {
+"  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+"  \ 'file': '\v\.(exe|so|dll)$',
+"  \ 'link': 'some_bad_symbolic_links',
+"  \ }
+"
+"Plug 'ivalkeen/vim-ctrlp-tjump'
+"nnoremap <c-]> :CtrlPtjump<cr>
+"vnoremap <c-]> :CtrlPtjumpVisual<cr>
 
 "TODO snippets...
 "TODO https://github.com/bonsaiben/bootstrap-snippets

@@ -19,7 +19,12 @@ set cindent         "Like smartindent, but stricter and more customisable
 set nowrap
 set textwidth=0
 set linebreak
-set formatoptions=l
+"set formatoptions=l
+set formatoptions=tcroqnj
+" -- show hidden chars
+set list
+"set listchars=tab:>-,trail:·
+set listchars=tab:→\ ,nbsp:␣,trail:·
 
 " -- buffers and splits
 set hidden " enable multi file editing
@@ -51,7 +56,7 @@ set nowritebackup
 "set gdefault " always use /g with %s/
 set hlsearch " highlight search hits
 set incsearch "incremental search
-set wrapscan
+set wrapscan " wrap searches around EOF
 set ignorecase
 set smartcase
 set infercase
@@ -116,6 +121,7 @@ set title " change the terminal's title
 set wmh=0 " window min height = 0, for splits?
 set wmw=0 " window min width = 0, for splits?
 set noerrorbells " no bell
+set shortmess+=atIoOtT " change the messages shown by vim
 
 " -- vc, diffs
 set diffopt+=vertical

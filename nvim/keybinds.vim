@@ -10,7 +10,7 @@ nmap <leader>p :Pfiles<cr>
 nmap <leader>r :ProjectMru --tiebreak=end<cr>
 nmap <leader>c :call GAddCommit()<cr>
 nmap <leader>s :BLines<cr>
-nmap <leader>/ :BLines<cr>
+"nmap <leader>/ :BLines<cr>
 nmap <leader>g :Pgrep<cr>
 nmap <leader>x :Bdelete!<cr>
 nmap <leader>w :w<cr>
@@ -44,6 +44,10 @@ call Cabbrev('gc', 'Gcommit -v -q')
 call Cabbrev('gd', 'Gdiff')
 call Cabbrev('gD', 'diffoff!<CR><c-w>h:bd') "clean way to close fugitive diff window
 call Cabbrev('ge', 'Gedit')
+call Cabbrev('ghn', 'GitGutterNextHunk')
+call Cabbrev('ghp', 'GitGutterPrevHunk')
+call Cabbrev('ghs', 'GitGutterStageHunk')
+call Cabbrev('ghu', 'GitGutterUndoHunk')
 call Cabbrev('gr', 'Gread')
 "call Cabbrev('gl', 'silent! Glog<CR>:bot copen')
 "call Cabbrev('gg', 'Ggrep<space>')
@@ -78,7 +82,23 @@ nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
-" -- movement
+nnoremap <c-N> :GitGutterNextHunk<cr>
+nnoremap <c-P> :GitGutterPrevHunk<cr>
+nnoremap <c-S> :GitGutterStageHunk<cr>
+
+"nnoremap <leader>/ :BLines<cr>
+nnoremap <leader>/ :call NERDComment(0,"toggle")<cr>
+vnoremap <leader>/ :call NERDComment(0,"toggle")<cr>gv
+
+" deoplete
+inoremap <silent><expr> <cr> pumvisible() ? "<c-n>" : "<cr>"
+inoremap <silent><expr> <esc> pumvisible() ? "<c-e>" : "<esc>"
+
+" jumps, blatted by supertab
+nnoremap [j <C-o>
+nnoremap ]j <tab>
+
+"-- movement
 
 " extra ways to exit insert mode
 imap <silent> jk <esc>
@@ -112,6 +132,8 @@ if has("nvim")
 endif
 
 "---- buffers
+" jump back from gf
+nnoremap gb :bf<cr>
 "nnoremap <leader>bd :bdelete<cr>
 "nnoremap <leader>bn :bnext<cr>
 "nnoremap <leader>bp :bprev<cr>
@@ -139,6 +161,11 @@ endif
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 vmap V <Plug>(expand_region_shrink)
+
+" -- indenting
+" keep selection when indenting
+vnoremap < <gv
+vnoremap > >gv
 
 " -- copy/paste
 

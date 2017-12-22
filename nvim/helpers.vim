@@ -10,7 +10,7 @@ endfu
 function! GAddCommit() " add file and commit in one command
   exe ":w"
   "exe ":Gwrite"
-	exe "Dispatch git add %:p"
+  exe "Dispatch git add %:p"
   exe ":Gcommit -v -q"
 endfunction
 
@@ -26,6 +26,12 @@ function! ToggleCalendar()
 	else
 		let g:calendar_open = 1
 	end
+endfunction
+
+" -- deopleete
+
+function! s:my_cr_function()
+  return deoplete#mappings#smart_close_popup() . "\<CR>"
 endfunction
 
 imap <silent><expr> <TAB>

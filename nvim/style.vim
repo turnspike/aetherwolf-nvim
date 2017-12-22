@@ -18,7 +18,10 @@ set hlsearch
 set modelines=0
 set noshowmode " suppress mode change messages
 
-match ErrorMsg '\s\+$'
+augroup ErrorHiglights
+    autocmd!
+    autocmd WinEnter,BufEnter * call clearmatches() | call matchadd('ErrorMsg', '\s\+$', 120) | call matchadd('ErrorMsg', '\%>120v.\+', 100)
+augroup END
 
 " -- hilight cursor position
 set nocursorline
