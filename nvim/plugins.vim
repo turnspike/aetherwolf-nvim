@@ -366,27 +366,6 @@ endif
 
 let g:deoplete#enable_at_startup = 1
 
-"" press tab to show autocomplete, tab to select, then keep typing or press <c>-y to accept
-"let g:deoplete#disable_auto_complete = 0
-"if !exists('g:deoplete#omni#input_patterns')
-"  let g:deoplete#omni#input_patterns = {}
-"endif
-"let g:deoplete#disable_auto_complete = 0
-"autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-" <CR>: close popup and save indent.
-"function! s:my_cr_function()
-"  return deoplete#mappings#smart_close_popup() . "\<CR>"
-"endfunction
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"inoremap <expr> <c-q> (pumvisible() ? "\<c-y>\<cr>" : "\<cr>")
-"imap <expr> <CR>  deoplete#mappings#manual_complete()
-"" Enter: complete&close popup if visible (so next Enter works); else: break undo
-"inoremap <silent><expr> <Enter> pumvisible() ?
-"            \ deoplete#mappings#close_popup() : "<C-g>u<Cr>"
-"
-"" Escape: exit autocompletion, go to Normal mode
-"inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
-
 "Plug 'kien/ctrlp.vim'
 "let g:ctrlp_map = '<c-p>'
 "let g:ctrlp_cmd = 'CtrlP'

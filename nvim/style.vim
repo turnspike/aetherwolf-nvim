@@ -30,19 +30,53 @@ augroup Cursor
   autocmd!
   autocmd InsertEnter * set cursorline
   autocmd InsertLeave * set nocursorline
-	"autocmd InsertEnter * set cursorcolumn
-	"autocmd InsertLeave * set nocursorcolumn
+  "autocmd InsertEnter * set cursorcolumn
+  "autocmd InsertLeave * set nocursorcolumn
   "autocmd InsertEnter * highlight CursorColumn ctermbg=237
   "autocmd InsertEnter * highlight CursorLine ctermbg=237 cterm=underline
   autocmd InsertEnter * highlight CursorLine ctermbg=none cterm=underline
 augroup END
 
+" -- gutter
+highlight GitGutterAdd ctermbg=235 ctermfg=142
+highlight GitGutterChange ctermbg=235 ctermfg=106
+highlight GitGutterDelete ctermbg=235 ctermfg=142
+highlight GitGutterChangeDelete ctermbg=235 ctermfg=142
+highlight SignColumn ctermbg=235
+
+highlight statusline ctermbg=235 cterm=none gui=none guibg=#282828
+highlight TabLineFill ctermbg=235 cterm=none gui=none guibg=#282828
+
+
+"let opt_DimInactiveWin=0
+"hi Inactive ctermfg=235
+"fun! ToggleDimInactiveWin()
+"  if g:opt_DimInactiveWin
+"    autocmd! DimWindows
+"    windo syntax clear Inactive
+"  else
+"    windo syntax region Inactive start='^' end='$'
+"    syntax clear Inactive
+"    augroup DimWindows
+"      autocmd BufEnter * syntax clear Inactive
+"      autocmd BufLeave * syntax region Inactive start='^' end='$'
+"    augroup end
+"  end
+"  let g:opt_DimInactiveWin=!g:opt_DimInactiveWin
+"endfun
+
+" -- split dividers
+" don't use silly | characters for vertical split dividers (note significant whitespace)
+set fillchars+=vert:\ 
+highlight VertSplit ctermbg=237
+highlight VertSplit ctermfg=237
+"
 " -- change cursor to vertical bar for insert mode
 if exists('$TMUX')
-	let &t_SI = "\<esc>Ptmux;\<esc>\<esc>]50;CursorShape=1\x7\<esc>\\"
-	let &t_EI = "\<esc>Ptmux;\<esc>\<esc>]50;CursorShape=0\x7\<esc>\\"
+  let &t_SI = "\<esc>Ptmux;\<esc>\<esc>]50;CursorShape=1\x7\<esc>\\"
+  let &t_EI = "\<esc>Ptmux;\<esc>\<esc>]50;CursorShape=0\x7\<esc>\\"
 else
-	let &t_SI = "\<esc>]50;CursorShape=1\x7"
-	let &t_EI = "\<esc>]50;CursorShape=0\x7"
+  let &t_SI = "\<esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<esc>]50;CursorShape=0\x7"
 endif
 

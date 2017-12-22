@@ -29,6 +29,7 @@ call Cabbrev('vn', 'VimwikiMakeDiaryNote')
 command! -bang -nargs=* VimwikiToggleCalendar call ToggleCalendar()
 call Cabbrev('vct', 'VimwikiToggleCalendar')
 call Cabbrev('bo', 'BufOnly')
+call Cabbrev('bd', 'Bd') " sane buffer deletion
 call Cabbrev('ce', 'ConfigEdit')
 call Cabbrev('cr', 'ConfigReload')
 call Cabbrev('fs', 'BLines') " _fuzzy _in file
@@ -91,8 +92,8 @@ nnoremap <leader>/ :call NERDComment(0,"toggle")<cr>
 vnoremap <leader>/ :call NERDComment(0,"toggle")<cr>gv
 
 " deoplete
-inoremap <silent><expr> <cr> pumvisible() ? "<c-n>" : "<cr>"
-inoremap <silent><expr> <esc> pumvisible() ? "<c-e>" : "<esc>"
+"inoremap <silent><expr> <cr> pumvisible() ? "<c-n>" : "<cr>"
+inoremap <silent><expr> <esc> pumvisible() ? "<c-e><esc>" : "<esc>"
 
 " jumps, blatted by supertab
 nnoremap [j <C-o>
