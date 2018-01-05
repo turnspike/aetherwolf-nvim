@@ -15,20 +15,35 @@ function! GAddCommit() " add file and commit in one command
 endfunction
 
 function! ToggleCalendar()
-	execute ":Calendar"
-	if exists("g:calendar_open")
-		if g:calendar_open == 1
-			execute "q"
-			unlet g:calendar_open
-		else
-			g:calendar_open = 1
-		end
-	else
-		let g:calendar_open = 1
-	end
+  execute ":Calendar"
+  if exists("g:calendar_open")
+    if g:calendar_open == 1
+      execute "q"
+      unlet g:calendar_open
+    else
+      g:calendar_open = 1
+    end
+  else
+    let g:calendar_open = 1
+  end
 endfunction
 
 :command! FileInfo :echo resolve(expand('%:p'))
+
+" -- nerdtree
+" Check if NERDTree is open or active
+function! IsNERDTreeOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
 
 " -- deopleete
 
@@ -62,8 +77,20 @@ function! IndentWithI()
 endfunction
 nnoremap <expr> i IndentWithI()
 
+" -- airline
+
+function! RefreshUI()
+  if exists(':AirlineRefresh')
+    AirlineRefresh
+  else
+    " Clear & redraw the screen, then redraw all statuslines.
+    redraw!
+    redrawstatus!
+  endif
+endfunction
+
 command! ConfigEdit edit $MYVIMRC " edit config file
-command! ConfigReload source $MYVIMRC " live reload config
+command! ConfigReload source $MYVIMRC | :call RefreshUI() " live reload config
 
 command! FileInfo :echo resolve(expand('%:p'))
 cmap w!! w !sudo tee % >/dev/null

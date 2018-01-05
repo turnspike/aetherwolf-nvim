@@ -6,25 +6,21 @@ let mapleader = "\<space>"
 " -- override plugin keybinds
 "nunmap <leader>fml
 nmap <leader>b :Buffers<cr>
-nmap <leader>f :Pfiles<cr>
-nmap <leader>r :ProjectMru --tiebreak=end<cr>
 nmap <leader>c :call GAddCommit()<cr>
-nmap <leader>s :BLines<cr>
-"nmap <leader>/ :BLines<cr>
-nmap <leader>g :Pgrep<cr>
+nmap <leader>pf :Pfiles<cr>
+nmap <leader>pg :Pgrep<cr>
+nmap <leader>pr :ProjectMru --tiebreak=end<cr>
+"nmap <leader>s :BLines<cr>
+nmap <leader>/ :BLines<cr>
 nmap <leader>x :Bdelete!<cr>
 nmap <leader>w :w<cr>
 nmap <leader>q :w<cr>:Bd<cr>
-nnoremap <silent> <Leader>f :NERDTreeFind<CR>
+nnoremap <silent> <leader>f :NERDTreeFind<cr>:TmuxNavigatePrevious<cr>
 
 " edit file relative from current buffer path
 nnoremap <leader>e :e <c-r>=expand('%:p:h') . '/'<cr>
 " expand %%<cr> to current path, eg :e %%/
 cabbr <expr> %% expand('%:p:h')
-
-call Cabbrev('av', 'VimwikiIndex')
-call Cabbrev('avd', 'VimwikiDiaryIndex')
-call Cabbrev('avn', 'VimwikiMakeDiaryNote')
 
 command! -bang -nargs=* VimwikiToggleCalendar call ToggleCalendar()
 call Cabbrev('vct', 'VimwikiToggleCalendar')
@@ -67,6 +63,11 @@ call Cabbrev('pf', 'Pfiles') " _fuzzy _filenames (in project)
 call Cabbrev('pg', 'Pgrep') " _fuzzy _grep (in project)
 call Cabbrev('pr', 'Pmru') " _fuzzy _recent (in project)
 call Cabbrev('pb', 'Buffers') " _fuzzy _buffer
+
+call Cabbrev('pv', 'VimwikiIndex')
+call Cabbrev('pvd', 'VimwikiDiaryIndex')
+call Cabbrev('pvn', 'VimwikiMakeDiaryNote')
+
 "nnoremap <leader>ft :NERDTreeToggle<cr>
 "" reveal the current file in NERDTree
 "nnoremap <leader>fs :NERDTreeFind<cr><c-w><c-w>
@@ -172,6 +173,7 @@ vmap V <Plug>(expand_region_shrink)
 " keep selection when indenting
 vnoremap < <gv
 vnoremap > >gv
+vnoremap = =gv
 
 " -- copy/paste
 

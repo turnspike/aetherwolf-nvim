@@ -29,38 +29,52 @@ augroup Cursor
   autocmd InsertEnter * highlight CursorLine ctermbg=none cterm=underline
 augroup END
 
-augroup Highlights
-	autocmd!
-	" fix search hilite colors
-	"hi Search cterm=NONE ctermfg=Yellow ctermbg=DarkGray
-	"colorscheme colorsbox-seighties
-	"colorscheme colorsbox-stblue
-	set background=dark
-	colorscheme gruvbox
-	syntax enable " enable syntax highlighting
-	" -- gutter
-	highlight GitGutterAdd ctermbg=235 ctermfg=142
-	highlight GitGutterChange ctermbg=235 ctermfg=106
-	highlight GitGutterDelete ctermbg=235 ctermfg=142
-	highlight GitGutterChangeDelete ctermbg=235 ctermfg=142
-	highlight SignColumn ctermbg=235 guibg=#282828
+set background=dark
+colorscheme gruvbox
+syntax enable " enable syntax highlighting
+" -- gutter
+highlight GitGutterAdd ctermbg=235 ctermfg=142
+highlight GitGutterChange ctermbg=235 ctermfg=106
+highlight GitGutterDelete ctermbg=235 ctermfg=142
+highlight GitGutterChangeDelete ctermbg=235 ctermfg=142
+highlight SignColumn ctermbg=235 guibg=#282828
 
-	highlight StatusLine ctermbg=235 cterm=none gui=none
-	highlight StatusLineNC ctermbg=235 cterm=none gui=none
-	"highlight Normal ctermbg=235 cterm=none gui=none guibg=#282828
-	"
-	highlight TabLineFill ctermbg=235 cterm=none gui=none
-	"highlight TabLine ctermfg=Blue
-	"highlight TabLineSel ctermfg=124
-	"highlight Title ctermfg=LightBlue
-	" hide ~ for blank lines at bottom of buffer - 235 is the gruvbox bg color code
-	highlight EndOfBuffer ctermfg=235
-	highlight VertSplit ctermbg=235 ctermfg=235
+highlight StatusLine ctermbg=235 cterm=none gui=none
+highlight StatusLineNC ctermbg=235 cterm=none gui=none
+"highlight Normal ctermbg=235 cterm=none gui=none guibg=#282828
+"
+highlight TabLineFill ctermbg=235 cterm=none gui=none
+"highlight TabLine ctermfg=Blue
+"highlight TabLineSel ctermfg=124
+"highlight Title ctermfg=LightBlue
+" hide ~ for blank lines at bottom of buffer - 235 is the gruvbox bg color code
+highlight EndOfBuffer ctermfg=235
+highlight VertSplit ctermbg=235 ctermfg=235
+
+augroup Highlights
+  autocmd!
+  " fix search hilite colors
+  "hi Search cterm=NONE ctermfg=Yellow ctermbg=DarkGray
+  "colorscheme colorsbox-seighties
+  "colorscheme colorsbox-stblue
 augroup END
+
+"augroup PluginTabline
+"  autocmd!
+"  " set alternate color for modified active/inactive tabs
+"  autocmd VimEnter *
+"   \ let g:airline#themes#gruvbox#palette.tabline = {
+"   \    'airline_tabmod':       ['#f8f8f8','#780000',231,88,''],
+"   \    'airline_tabmod_unsel': ['#dddddd','#463030',231,52,''],
+"   \ } | :AirlineRefresh
+"  "hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
+"  "hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
+"  "hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
+"augroup END
 
 " -- split dividers
 " don't use silly | characters for vertical split dividers (note significant whitespace)
-set fillchars+=vert:\ 
+set fillchars+=vert:\
 
 "let opt_DimInactiveWin=0
 "hi Inactive ctermfg=235

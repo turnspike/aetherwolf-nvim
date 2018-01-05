@@ -1,6 +1,6 @@
 " initialise vimplug
 if empty(glob("~/.local/share/nvim/site/autoload/plug.vim"))
-    execute '!curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+  execute '!curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -14,6 +14,7 @@ Plug 'bogado/file-line' " open file at specific line, eg vim app/models/user.rb:
 "---- COLORS ----
 
 Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
 "colorscheme dusk
 
 "---- EDITING ----
@@ -113,20 +114,22 @@ let g:rooter_silent_chdir = 1
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
-Plug 'unkiwii/vim-nerdtree-sync', { 'on': 'NERDTreeToggle' }
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
+"Plug 'unkiwii/vim-nerdtree-sync', { 'on': 'NERDTreeToggle' }
 
 augroup PluginNerd
   autocmd!
   autocmd VimEnter * NERDTree
-  autocmd BufEnter * NERDTreeMirror
-  autocmd VimEnter * wincmd w
+  "autocmd StdinReadPre * let s:std_in=1
+  "autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
+  "autocmd VimEnter * NERDTree
+  "autocmd BufEnter * call SyncTree()
+  "autocmd BufEnter * NERDTreeMirror
+  "autocmd VimEnter * wincmd w
 augroup END
 
 let NERDTreeMinimalUI = 1 " don't show help message
-"let g:nerdtree_sync_cursorline = 1
-let g:NERDTreeHighlightCursorline = 0 " highlight current file
+let g:nerdtree_sync_cursorline = 1
+"let g:NERDTreeHighlightCursorline = 1 " highlight current file
 " don't blat <c-j> and <c-k> (used for split movement)
 let g:NERDTreeMapJumpPrevSibling='<Nop>'
 let g:NERDTreeMapJumpNextSibling='<Nop>'
@@ -240,48 +243,54 @@ Plug 'wincent/terminus' " change cursor shape with mode
 
 "---- LINTING ----
 
+"---- TABS ----
+Plug 'ap/vim-buftabline'
+
 "---- STATUS LINE ----
-Plug 'bling/vim-airline'
-Plug 'jordwalke/flatlandia'
-
-" airline - use unicode symbols (terminal friendly)
-" TODO make conditional on term mode
-if !exists('g:airline_symbols')
-		let g:airline_symbols = {}
-endif
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_symbols.crypt = '❖'
-let g:airline_symbols.linenr = ''
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.paste = '✂' " :set paste symbol
-let g:airline_symbols.spell = 's'
-let g:airline_symbols.notexists = '✖'
-let g:airline_symbols.whitespace = '☰' " mixed whitespace warnings
-
-"let g:airline_section_c = '' " default is (bufferline or filename)
-"let g:airline_section_x = '' " default is (tagbar, filetype, virtualenv)
-let g:airline_section_y = '' " default is (fileencoding, fileformat)
-
-"let g:airline#extensions#tabline#fnamemod = ':t'
-"let g:airline#extensions#tabline#show_buffers = 0
-"let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#branch#empty_message  =  "no .git"
-let g:airline#extensions#whitespace#enabled    =  0
-let g:airline#extensions#syntastic#enabled     =  1
-let g:airline#extensions#tabline#enabled       =  1
-let g:airline#extensions#tabline#tab_nr_type   =  1 " tab number
-let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
-let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
-
-Plug 'vim-airline/vim-airline-themes'
-"let g:airline_theme = 'powerlineish'
-"let g:airline_theme = 'sol'
-"let g:airline_theme = 'base16_tomorrow'
-"let g:airline_theme = 'zenburn'
-let g:airline_theme = 'monochrome'
-"let g:airline_theme = 'flatlandia'
+"Plug 'bling/vim-airline'
+""Plug 'jordwalke/flatlandia'
+"
+"" airline - use unicode symbols (terminal friendly)
+"" TODO make conditional on term mode
+"if !exists('g:airline_symbols')
+"  let g:airline_symbols = {}
+"endif
+"
+"let g:airline_left_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_symbols.crypt = '❖'
+"let g:airline_symbols.linenr = ''
+"let g:airline_symbols.maxlinenr = ''
+"let g:airline_symbols.branch = ''
+"let g:airline_symbols.paste = '✂' " :set paste symbol
+"let g:airline_symbols.spell = 's'
+"let g:airline_symbols.notexists = '✖'
+"let g:airline_symbols.whitespace = '☰' " mixed whitespace warnings
+"
+""let g:airline_section_c = '' " default is (bufferline or filename)
+""let g:airline_section_x = '' " default is (tagbar, filetype, virtualenv)
+"let g:airline_section_y = '' " default is (fileencoding, fileformat)
+"
+""let g:airline#extensions#tabline#fnamemod = ':t'
+""let g:airline#extensions#tabline#show_buffers = 0
+""let g:airline#extensions#tabline#show_splits = 0
+"let g:airline#extensions#branch#empty_message  =  "no .git"
+"let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
+"let g:airline#extensions#syntastic#enabled     =  1
+""let g:airline#extensions#tabline#buffer_nr_show = 0
+"let g:airline#extensions#tabline#enabled       =  1
+"let g:airline#extensions#tabline#fnamemod      = ':t'
+"let g:airline#extensions#tabline#show_tab_nr = 0
+""let g:airline#extensions#tabline#fnamecollapse =  0 " /a/m/model.rb
+""let g:airline#extensions#tabline#tab_nr_type   =  0 " tab number
+"let g:airline#extensions#whitespace#enabled    =  0
+"Plug 'vim-airline/vim-airline-themes'
+""let g:airline_theme = 'powerlineish'
+"let g:airline_theme = 'gruvbox'
+""let g:airline_theme = 'base16_tomorrow'
+""let g:airline_theme = 'zenburn'
+""let g:airline_theme = 'monochrome'
+""let g:airline_theme = 'flatlandia'
 
 " show marks in left gutter
 Plug 'kshenoy/vim-signature'
