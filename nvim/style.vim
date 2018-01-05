@@ -1,5 +1,3 @@
-Dude!!
-
 " gruvbox color reference: https://github.com/morhetz/gruvbox
 " vim color reference: http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 " vim color tutorial: https://www.sbf5.com/~cduan/technical/vi/vi-4.shtml
