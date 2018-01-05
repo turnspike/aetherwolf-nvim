@@ -41,8 +41,8 @@ let g:NERDCommentEmptyLines = 1 " allow commenting and inverting empty lines (us
 let g:NERDTrimTrailingWhitespace = 1 " enable trimming of trailing whitespace when uncommenting
 
 " whitespace
-"Plug 'thirtythreeforty/lessspace.vim' "strip whitespace only on edited lines
-Plug 'ntpeters/vim-better-whitespace' " hilight and work with trailing whitespace
+Plug 'thirtythreeforty/lessspace.vim' "strip whitespace only on edited lines
+"Plug 'ntpeters/vim-better-whitespace' " hilight and work with trailing whitespace
 "autocmd BufEnter * EnableStripWhitespaceOnSave " auto strip whitespace
 
 "---- BUFFERS ----
@@ -68,8 +68,6 @@ let g:gitgutter_max_signs=10000 " limit signs on large files
 
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
-
-call Cabbrev('gac', 'call GAddCommit()')
 
 "---- CODESENSE ----
 
@@ -119,8 +117,14 @@ Plug 'unkiwii/vim-nerdtree-sync', { 'on': 'NERDTreeToggle' }
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
 
-let NERDTreeMinimalUI = 1 " don't show help message
+augroup PluginNerd
+  autocmd!
+  autocmd VimEnter * NERDTree
+  autocmd BufEnter * NERDTreeMirror
+  autocmd VimEnter * wincmd w
+augroup END
 
+let NERDTreeMinimalUI = 1 " don't show help message
 "let g:nerdtree_sync_cursorline = 1
 let g:NERDTreeHighlightCursorline = 0 " highlight current file
 " don't blat <c-j> and <c-k> (used for split movement)

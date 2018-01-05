@@ -28,6 +28,8 @@ function! ToggleCalendar()
 	end
 endfunction
 
+:command! FileInfo :echo resolve(expand('%:p'))
+
 " -- deopleete
 
 function! s:my_cr_function()

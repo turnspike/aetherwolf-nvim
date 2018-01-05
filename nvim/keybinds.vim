@@ -6,7 +6,7 @@ let mapleader = "\<space>"
 " -- override plugin keybinds
 "nunmap <leader>fml
 nmap <leader>b :Buffers<cr>
-nmap <leader>p :Pfiles<cr>
+nmap <leader>f :Pfiles<cr>
 nmap <leader>r :ProjectMru --tiebreak=end<cr>
 nmap <leader>c :call GAddCommit()<cr>
 nmap <leader>s :BLines<cr>
@@ -22,9 +22,9 @@ nnoremap <leader>e :e <c-r>=expand('%:p:h') . '/'<cr>
 " expand %%<cr> to current path, eg :e %%/
 cabbr <expr> %% expand('%:p:h')
 
-call Cabbrev('vw', 'VimwikiIndex')
-call Cabbrev('vd', 'VimwikiDiaryIndex')
-call Cabbrev('vn', 'VimwikiMakeDiaryNote')
+call Cabbrev('av', 'VimwikiIndex')
+call Cabbrev('avd', 'VimwikiDiaryIndex')
+call Cabbrev('avn', 'VimwikiMakeDiaryNote')
 
 command! -bang -nargs=* VimwikiToggleCalendar call ToggleCalendar()
 call Cabbrev('vct', 'VimwikiToggleCalendar')
@@ -34,12 +34,17 @@ call Cabbrev('ce', 'ConfigEdit')
 call Cabbrev('cr', 'ConfigReload')
 call Cabbrev('fs', 'BLines') " _fuzzy _in file
 call Cabbrev('fi', 'FileInfo') " file info
+
+" -- config
+call Cabbrev('ce', 'e $MYVIMRC')
+call Cabbrev('cr', 'so $MYVIMRC')
 "call Cabbrev('tf', 'FileInfo') " file info
 "autocmd BufReadPost fugitive://* set bufhidden=delete
 call Cabbrev('ga', 'Gwrite')
 "nmap <leader>ga :Dispatch git add %:p<CR><CR>
 call Cabbrev('gs', 'Gstatus')
 call Cabbrev('gc', 'Gcommit -v -q')
+call Cabbrev('gac', 'call GAddCommit()')
 " TODO: how to chain Cabbrev commands??
 "call Cabbrev('gac', 'Dispatch git add %:p<CR><CR>Gcommit -v -q')
 call Cabbrev('gd', 'Gdiff')
@@ -173,6 +178,11 @@ vnoremap > >gv
 "" move point back to original position after yanking
 "vmap y ygv<Esc>
 
+" cut to system clipboard
+vnoremap <leader>d "+d
+nnoremap <leader>D "+D
+nnoremap <leader>dd "+dd
+
 " copy to system clipboard
 vnoremap <leader>y "+y
 nnoremap <leader>Y "+yg_
@@ -217,13 +227,6 @@ noremap <leader>d "ayy"ap
 cmap w!! w !sudo tee % >/dev/null
 " show file uri in command area
 "nnoremap <leader>g :echo resolve(expand('%:p'))<CR>
-:command! FileInfo :echo resolve(expand('%:p'))
-call Cabbrev('fi', 'FileInfo') " file info
-"call Cabbrev('fs', 'FileInfo') " file info
-
-" -- config
-call Cabbrev('ce', 'e $MYVIMRC')
-call Cabbrev('cr', 'so $MYVIMRC')
 
 " -- fix common typos
 cnoreabbrev W w

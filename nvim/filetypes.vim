@@ -1,11 +1,12 @@
-" -- all files
-augroup FtGeneral
-  autocmd!
-  au FileType * setlocal formatoptions-=cro " don't autocomment newlines
-  "au BufNewFile,BufRead * setlocal formatoptions-=cro " no really, don't autocomment newlines
-  au FileType * set tabstop=2|set shiftwidth=2|set noexpandtab " default indenting
-  "au BufEnter * if expand('%:p') !~ '://' | :lchdir %:p:h | endif
-augroup END
+"" -- all files
+"augroup FtGeneral
+"  autocmd!
+"  au FileType * setlocal formatoptions-=cro " don't autocomment newlines
+"  "au BufNewFile,BufRead * setlocal formatoptions-=cro " no really, don't autocomment newlines
+"  "au FileType * set tabstop=2|set shiftwidth=2|set noexpandtab " default indenting
+"  au FileType * set tabstop=2|set shiftwidth=2 " default indenting
+"  "au BufEnter * if expand('%:p') !~ '://' | :lchdir %:p:h | endif
+"augroup END
 
 " -- ruby
 augroup FtRuby
@@ -23,18 +24,18 @@ augroup FtOther
   autocmd!
   au FileType plantuml nnoremap <buffer> <leader>r :!java -jar ~/bin/plantuml.jar -o %:p:h %<cr>
   "au FileType python set tabstop=4|set shiftwidth=4|set softtabstop=4|set expandtab
-  au FileType make setlocal noexpandtab|set softtabstop=4
+  au FileType make setlocal noexpandtab|set softtabstop=2
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType yaml setl indentkeys-=<:> " re-indent with CTRL-F
   "TODO find a decent yaml plugin...
   au Filetype html,css,scss,javascript setlocal ts=2 sw=2 expandtab
-	" By default, vim thinks .md is Modula-2.
+  " By default, vim thinks .md is Modula-2.
   "au BufRead,BufNewFile *.md setlocal filetype=markdown
-	autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-	" Without this, vim breaks in the middle of words when wrapping
-	autocmd FileType markdown setlocal nolist wrap lbr
-	" Wrap the quickfix window
-	autocmd FileType qf setlocal wrap linebreak
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+  " Without this, vim breaks in the middle of words when wrapping
+  autocmd FileType markdown setlocal nolist wrap lbr
+  " Wrap the quickfix window
+  autocmd FileType qf setlocal wrap linebreak
 augroup END
 
 "" - Go {{{3

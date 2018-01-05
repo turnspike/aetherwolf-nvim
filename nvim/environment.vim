@@ -24,7 +24,7 @@ set formatoptions=tcroqnj
 " -- show hidden chars
 set list
 "set listchars=tab:>-,trail:·
-set listchars=tab:→\ ,nbsp:␣,trail:·
+set listchars=tab:→\ ,nbsp:␣
 
 " -- buffers and splits
 set hidden " enable multi file editing
