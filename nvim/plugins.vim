@@ -13,7 +13,7 @@ Plug 'bogado/file-line' " open file at specific line, eg vim app/models/user.rb:
 
 "---- COLORS ----
 
-Plug 'flazz/vim-colorschemes'
+"Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 "colorscheme dusk
 
