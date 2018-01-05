@@ -116,6 +116,7 @@ imap <silent> jk <esc>
 "imap <silent> <Home> <C-O><Home>
 
 " Emacs-like beginning and end of line.
+" MFW THAT'S SOME SERIOUS HERESY
 imap <c-e> <c-o>$
 imap <c-a> <c-o>^
 nmap <c-e> $
@@ -206,6 +207,11 @@ nnoremap <leader>P "+P
 " select most recently edited/pasted text with gp
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
+" -- editing
+nnoremap J mzJ`z
+nnoremap n nzz
+nnoremap } }zz
+
 " -- cursor
 " move cursor naturally through wrapped lines
 nnoremap <silent> j gj
@@ -233,7 +239,11 @@ cmap w!! w !sudo tee % >/dev/null
 " -- fix common typos
 cnoreabbrev W w
 cnoreabbrev X x
-cnoreabbrev Q q
+"cnoreabbrev Q q
+nnoremap <F1> <nop>
+nnoremap Q <nop>
+nnoremap K <nop>
+
 augroup Keybinds
   autocmd!
   "" q will quit help buffer

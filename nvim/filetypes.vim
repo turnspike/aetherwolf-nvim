@@ -22,13 +22,13 @@ augroup END
 
 augroup FtOther
   autocmd!
-  au FileType plantuml nnoremap <buffer> <leader>r :!java -jar ~/bin/plantuml.jar -o %:p:h %<cr>
+  autocmd FileType plantuml nnoremap <buffer> <leader>b :!java -jar ~/bin/plantuml.jar -o %:p:h %<cr>
   "au FileType python set tabstop=4|set shiftwidth=4|set softtabstop=4|set expandtab
-  au FileType make setlocal noexpandtab|set softtabstop=2
-  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-  autocmd FileType yaml setl indentkeys-=<:> " re-indent with CTRL-F
-  "TODO find a decent yaml plugin...
-  au Filetype html,css,scss,javascript setlocal ts=2 sw=2 expandtab
+  "au FileType make setlocal noexpandtab|set softtabstop=2
+  "autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+  "autocmd FileType yaml setl indentkeys-=<:> " re-indent with CTRL-F
+  ""TODO find a decent yaml plugin...
+  "au Filetype html,css,scss,javascript setlocal ts=2 sw=2 expandtab
   " By default, vim thinks .md is Modula-2.
   "au BufRead,BufNewFile *.md setlocal filetype=markdown
   autocmd BufNewFile,BufReadPost *.md set filetype=markdown

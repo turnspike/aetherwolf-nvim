@@ -118,9 +118,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
 
 augroup PluginNerd
   autocmd!
-  autocmd VimEnter * NERDTree
-  "autocmd StdinReadPre * let s:std_in=1
-  "autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
+  "autocmd VimEnter * NERDTree
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
   "autocmd VimEnter * NERDTree
   "autocmd BufEnter * call SyncTree()
   "autocmd BufEnter * NERDTreeMirror
@@ -369,13 +369,13 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'ervandew/supertab' " use tab for autocompletion
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'
+"  Plug 'roxma/vim-hug-neovim-rpc'
+"endif
 
 let g:deoplete#enable_at_startup = 1
 

@@ -114,14 +114,16 @@ set nowritebackup
 " -- display
 "set breakindent " preserve indentation when wrapping
 "set noruler
-set noshowmode " airline handles mode display
+set noshowmode " don't display "INSERT" mode status
 set ruler " show cursor position
 set scrolloff=3 " show context above/below cursorline
 set title " change the terminal's title
 set wmh=0 " window min height = 0, for splits?
 set wmw=0 " window min width = 0, for splits?
 set noerrorbells " no bell
-set shortmess+=atIoOtT " change the messages shown by vim
+set shortmess+=atIoOtTF " change the messages shown by vim
+set laststatus=0
+set noshowcmd
 
 " -- vc, diffs
 set diffopt+=vertical
