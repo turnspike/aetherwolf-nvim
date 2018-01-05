@@ -134,8 +134,8 @@ nnoremap <silent> <leader>h :%s//<left>
 " press esc to clear hilites after searching
 " -- neovim only
 if has("nvim")
-	"nnoremap <esc> :noh<return><esc>
-	nmap <silent> <esc>:noh<CR>:echo ""<CR><esc>
+  "nnoremap <esc> :noh<return><esc>
+  nmap <silent> <esc>:noh<CR>:echo ""<CR><esc>
 endif
 
 "---- buffers
