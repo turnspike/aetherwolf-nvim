@@ -1,3 +1,5 @@
+set nocompatible " required for arrow keys to work under macos
+
 " -- tabs and spaces
 
 "set autoindent                   " copy indent from current line when starting a new line
@@ -78,7 +80,10 @@ set timeout " use timeouts for keyboard combo mappings
 set timeoutlen=200 ttimeoutlen=0 " 200ms for key combos, 0ms for <esc>
 
 " -- mouse
-set mouse=n
+if has('mouse')
+  set mouse=a
+endif
+
 if exists(':ttymouse')
   set ttymouse = xterm2
 endif
