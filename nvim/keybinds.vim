@@ -7,8 +7,8 @@ let mapleader = "\<space>"
 " -- LEADER KEYS --
 
 "nunmap <leader>fml
-nmap <leader>b :Buffers<cr>
-nmap <leader>c :call GAddCommit()<cr>
+nnoremap <leader>b :Buffers<cr>
+"nmap <leader>c :call GAddCommit()<cr>
 "" duplicate/clone line
 "noremap <leader>d "ayy"ap
 " cut to system clipboard
@@ -21,43 +21,49 @@ vnoremap <silent> <leader>h "hy:%s/<c-r>h/<paste>
 nnoremap <silent> <leader>h :%s//<left>
 " edit file relative from current buffer path
 nnoremap <leader>e :e <c-r>=expand('%:p:h') . '/'<cr>
+nnoremap <leader>ff :ProjectFiles<cr>
+nnoremap <leader>fg :ProjectGrep<cr>
+"nmap <leader>fr :ProjectMru --tiebreak=end<cr>
+"nmap <leader>fr :FilesMru --tiebreak=end<cr>
+nnoremap <leader>fr :History<cr>
+nnoremap <leader>fb :BLines<cr>
 " paste from system clipboard
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
-nmap <leader>ff :Pfiles<cr>
-nmap <leader>fg :Pgrep<cr>
-nmap <leader>fr :ProjectMru --tiebreak=end<cr>
-nmap <leader>fb :BLines<cr>
 "nmap <leader>/ :BLines<cr>
 " double-tap leader to select current line in visual mode
 "nmap <leader><leader> V
-nmap <leader>w :w<cr>
-nmap <leader>x :Bdelete!<cr>
+nnoremap <leader>q :w<cr>:Bd<cr>
+nnoremap <leader>r :call NTChangeRoot()<cr>
+nnoremap <leader>s :call SyncTree()<cr>
+nnoremap <leader>w :w<cr>
+nnoremap <leader>x :Bdelete!<cr>
 " copy to system clipboard
 vnoremap <leader>y "+y
 nnoremap <leader>Y "+yg_
 nnoremap <leader>yy "+yy
-nmap <leader>q :w<cr>:Bd<cr>
-nnoremap <silent> <leader>r :NERDTreeFind<cr>:TmuxNavigatePrevious<cr>
+"nnoremap <silent> <leader>r :NERDTreeFind<cr>:TmuxNavigatePrevious<cr>
 "nnoremap <leader>/ :BLines<cr>
 nnoremap <leader>/ :call NERDComment(0,"toggle")<cr>
 vnoremap <leader>/ :call NERDComment(0,"toggle")<cr>gv
 
-" expand %%<cr> to current path, eg :e %%/
-cabbr <expr> %% expand('%:p:h')
-
-command! -bang -nargs=* VimwikiToggleCalendar call ToggleCalendar()
 call Cabbrev('vct', 'VimwikiToggleCalendar')
 call Cabbrev('bi', 'FileInfo') " buffer info
 call Cabbrev('bo', 'BufOnly')
 call Cabbrev('bd', 'Bd') " sane buffer deletion
 call Cabbrev('ce', 'ConfigEdit')
 call Cabbrev('cr', 'ConfigReload')
-call Cabbrev('fb', 'BLines') " _fuzzy _in file
+"" -- config
+"call Cabbrev('ce', 'e $MYVIMRC')
+"call Cabbrev('cr', 'so $MYVIMRC')
+call Cabbrev('ff', 'ProjectGrep') " _fuzzy _in file
+call Cabbrev('fb', 'Blines') " _fuzzy _in file
 
-" -- config
-call Cabbrev('ce', 'e $MYVIMRC')
-call Cabbrev('cr', 'so $MYVIMRC')
+"nnoremap <leader>ff :Pfiles<cr>
+"nnoremap <leader>fg :ProjectGrep<cr>
+"nnoremap <leader>fr :ProjectMru --tiebreak=end<cr>
+"nnoremap <leader>fb :BLines<cr>
+
 "call Cabbrev('tf', 'FileInfo') " file info
 "autocmd BufReadPost fugitive://* set bufhidden=delete
 call Cabbrev('ga', 'Gwrite')
@@ -84,7 +90,7 @@ call Cabbrev('gp', 'Dispatch! git push')
 call Cabbrev('gu', 'Dispatch! git pull')
 :command! Gwho Gblame " eeeeliminate the negativity
 call Cabbrev('pf', 'Pfiles') " _fuzzy _filenames (in project)
-call Cabbrev('pg', 'Pgrep') " _fuzzy _grep (in project)
+call Cabbrev('pg', 'ProjectGrep') " _fuzzy _grep (in project)
 call Cabbrev('pr', 'Pmru') " _fuzzy _recent (in project)
 call Cabbrev('pb', 'Buffers') " _fuzzy _buffer
 
@@ -102,7 +108,7 @@ call Cabbrev('tnf', 'NERDTreeFind')
 call Cabbrev('tt', 'TagbarToggle')
 call Cabbrev('w=', 'vsplit')
 call Cabbrev('w/', 'split')
-call Cabbrev('wd', 'q')
+call Cabbrev('wc', 'call CloseSplitOrDeleteBuffer()')
 call Cabbrev('wm', 'BufOnly')
 
 " -- plugins
@@ -118,6 +124,8 @@ nnoremap <c-N> :GitGutterNextHunk<cr>
 nnoremap <c-P> :GitGutterPrevHunk<cr>
 nnoremap <c-S> :GitGutterStageHunk<cr>
 
+nnoremap <c-p> <Plug>yankstack_substitute_older_paste
+nnoremap <c-P> <Plug>yankstack_substitute_newer_paste
 
 " deoplete
 "inoremap <silent><expr> <cr> pumvisible() ? "<c-n>" : "<cr>"
@@ -130,7 +138,7 @@ nnoremap ]j <tab>
 "-- movement
 
 " extra ways to exit insert mode
-imap <silent> jk <esc>
+inoremap <silent> jk <esc>
 "imap <s-cr> <esc>
 
 "" home key
@@ -139,24 +147,25 @@ imap <silent> jk <esc>
 
 " Emacs-like beginning and end of line.
 " MFW THAT'S SOME SERIOUS HERESY
-imap <c-e> <c-o>$
-imap <c-a> <c-o>^
-nmap <c-e> $
-nmap <c-a> ^
+inoremap <c-e> <c-o>$
+inoremap <c-a> <c-o>^
+nnoremap <c-e> $
+nnoremap <c-a> ^
 
 " insert mode control enhancements
-imap <silent> <c-f> <right>
-imap <silent> <c-b> <left>
+inoremap <silent> <c-f> <right>
+inoremap <silent> <c-b> <left>
 
-" press esc to clear hilites after searching
-" -- neovim only
-if has("nvim")
-  "nnoremap <esc> :noh<return><esc>
-  nmap <silent> <esc>:noh<CR>:echo ""<CR><esc>
-endif
+" press esc esc to clear hilites after searching
+nnoremap <silent> <esc><esc> :nohlsearch<cr><esc>
+"" -- neovim only
+"if has("nvim")
+"  "nnoremap <esc> :noh<return><esc>
+"  nmap <silent> <esc>:noh<CR>:echo ""<CR><esc>
+"endif
 
 "---- buffers
-" jump back from gf
+" jump back from gf FIXME this doesn't really work
 nnoremap gb :bf<cr>
 "nnoremap <leader>bd :bdelete<cr>
 "nnoremap <leader>bn :bnext<cr>
@@ -165,6 +174,8 @@ nnoremap gb :bf<cr>
 "nnoremap <leader>bs :ls<CR>:b<space>
 
 "---- splits
+" Universal closing behavior
+nnoremap <silent> Q :call CloseSplitOrDeleteBuffer()<cr>
 
 "" manipulate splits
 "nmap <leader>sv :vsplit<cr>
@@ -182,9 +193,9 @@ nnoremap gb :bf<cr>
 
 " -- selection
 
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-vmap V <Plug>(expand_region_shrink)
+vnoremap v <Plug>(expand_region_expand)
+vnoremap <C-v> <Plug>(expand_region_shrink)
+vnoremap V <Plug>(expand_region_shrink)
 
 " -- indenting
 " keep selection when indenting
@@ -211,10 +222,16 @@ vnoremap = =gv
 " select most recently edited/pasted text with gp
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" -- editing
+" -- keep screen centered
 nnoremap J mzJ`z
 nnoremap n nzz
-nnoremap } }zz
+"nnoremap } }zz
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
 
 " -- cursor
 " move cursor naturally through wrapped lines
@@ -230,7 +247,7 @@ nnoremap <silent> k gk
 "noremap <leader>q :bd<cr>
 " write files as sudo using w!!
 "cnoremap w!! %!sudo tee > /dev/null %
-cmap w!! w !sudo tee % >/dev/null
+cnoremap w!! w !sudo tee % >/dev/null
 " show file uri in command area
 "nnoremap <leader>g :echo resolve(expand('%:p'))<CR>
 

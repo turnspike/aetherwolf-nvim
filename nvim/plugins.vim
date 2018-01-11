@@ -116,27 +116,27 @@ let g:rooter_silent_chdir = 1
 "Plug 'vim-ctrlspace/vim-ctrlspace'
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
-Plug 'unkiwii/vim-nerdtree-sync', { 'on': 'NERDTreeToggle' }
 let g:NERDTreeHighlightCursorline = 1
-
-augroup PluginNerd
-  autocmd!
-  "autocmd VimEnter * NERDTree
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree;TmuxNavigateRight | endif
-  "autocmd VimEnter * NERDTree
-  "autocmd BufEnter * call SyncTree()
-  "autocmd BufEnter * NERDTreeMirror
-  "autocmd VimEnter * wincmd w
-augroup END
-
-let NERDTreeMinimalUI = 1 " don't show help message
-let g:nerdtree_sync_cursorline = 1
+let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeMinimalUI = 1 " don't show help message
 "let g:NERDTreeHighlightCursorline = 1 " highlight current file
 " don't blat <c-j> and <c-k> (used for split movement)
 let g:NERDTreeMapJumpPrevSibling='<Nop>'
 let g:NERDTreeMapJumpNextSibling='<Nop>'
+
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
+"Plug 'unkiwii/vim-nerdtree-sync', { 'on': 'NERDTreeToggle' }
+"let g:nerdtree_sync_cursorline = 1
+
+augroup PluginNerdTree
+  autocmd!
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | wincmd l | endif
+  "FIXME this breaks tagbar, need to add check for tagbar window
+  "autocmd BufEnter * call SyncTree()
+augroup END
+
 
 " use vimfiler instead of netrw
 "Plug 'Shougo/unite.vim'
@@ -148,9 +148,9 @@ let g:NERDTreeMapJumpNextSibling='<Nop>'
 
 " vinegar is bugged so use filebeagle for now
 
-let g:filebeagle_suppress_keymaps = 1
-Plug 'jeetsukumaran/vim-filebeagle'
-map <silent> - <Plug>FileBeagleOpenCurrentBufferDir
+"let g:filebeagle_suppress_keymaps = 1
+"Plug 'jeetsukumaran/vim-filebeagle'
+"map <silent> - <Plug>FileBeagleOpenCurrentBufferDir
 
 "Plug 'francoiscabrol/ranger.vim'
 "Plug 'rbgrouleff/bclose.vim'
@@ -374,15 +374,16 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'ervandew/supertab' " use tab for autocompletion
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
-"if has('nvim')
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-"  Plug 'Shougo/deoplete.nvim'
-"  Plug 'roxma/nvim-yarp'
-"  Plug 'roxma/vim-hug-neovim-rpc'
-"endif
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#disable_auto_complete = 1
 
 "Plug 'kien/ctrlp.vim'
 "let g:ctrlp_map = '<c-p>'

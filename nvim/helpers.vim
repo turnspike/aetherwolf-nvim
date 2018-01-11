@@ -41,13 +41,27 @@ function! IsNTOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
+function! IsNTLinkable
+  "FIXME this needs to test for :echo @% != __Tagbar__.1 to enable auto sync
+  return &modifiable && IsNTOpen() && strlen(expand('%')) > 0 && !&diff
+endfunction
+
 " calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
 function! SyncTree()
-  if &modifiable && IsNTOpen() && strlen(expand('%')) > 0 && !&diff
+  if IsNTLinkable()
     NERDTreeFind
     wincmd p
   endif
 endfunction
+
+function! NTChangeRoot()
+  if IsNTLinkable()
+    NERDTreeCWD
+    wincmd p
+  endif
+endfunction
+
+"com! -nargs=1 -complete=dir Ncd NERDTree | cd <args> |NERDTreeCWD
 
 " -- deopleete
 
@@ -102,13 +116,32 @@ function! RefreshUI()
   endif
 endfunction
 
+function! CloseSplitOrDeleteBuffer()
+  if winnr('$') > 1
+    wincmd c
+  else
+    execute 'bdelete'
+  endif
+endfunction
+
+" Delete all hidden buffers
+"https://github.com/zenbro/dotfiles/blob/master/.nvimrc#L732
+"nnoremap <silent> <Leader><BS>b :call DeleteHiddenBuffers()<CR>
+function! DeleteHiddenBuffers() " {{{
+  let tpbl=[]
+  call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+  for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+    silent execute 'bwipeout' buf
+  endfor
+endfunction " }}}
+
 command! ConfigEdit edit $MYVIMRC " edit config file
 command! ConfigReload source $MYVIMRC | :call RefreshUI() " live reload config
 
 command! FileInfo :echo resolve(expand('%:p'))
 cmap w!! w !sudo tee % >/dev/null
 
-"autocmd BufEnter * if &modifiable | NERDTreeFind | wincmd p | endif
+"autocmd BufEnter * if &modifiable | NERDTrgs=1 -complete=dir Ncd NERDTrgs=1 -complete=dir Ncd NERDTree | cd <args> |NERDTreeCWDree | cd <args> |NERDTreeCWDreeFind | wincmd p | endif
 " autocmd BufEnter * silent! if bufname('%') !~# 'NERD_tree_' | cd %:p:h | NERDTreeCWD | wincmd p | endif
 "autocmd CursorHold,CursorHoldI * call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | wincmd w
 

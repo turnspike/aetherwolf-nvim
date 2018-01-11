@@ -1,4 +1,5 @@
 set nocompatible " required for arrow keys to work under macos
+"set term=linux " also required for arrow keys
 
 " -- tabs and spaces
 
@@ -38,9 +39,9 @@ set splitright " open vsplits right (defaults left)
 set backspace=indent,eol,start
 set nostartofline " preserve column on page movements
 
-" -- timeouts (leader keys, esc)
-set ttimeout
-set ttimeoutlen=100
+""" -- timeouts (leader keys, esc)
+"set ttimeout
+"set ttimeoutlen=300
 
 " -- commandline
 set path+=** " search down into subfolders
@@ -131,7 +132,10 @@ set laststatus=0
 set noshowcmd
 
 " -- vc, diffs
+"https://lornajane.net/posts/2015/vimdiff-and-vim-to-compare-files
 set diffopt+=vertical
+set diffopt+=iwhite " ignore whitespace
+set diffexpr="" " ignore whitespace
 
 " -- neovim
 let g:python2_host_prog = '/usr/local/bin/python2'

@@ -42,9 +42,9 @@ highlight StatusLine ctermbg=235 cterm=none gui=none
 highlight StatusLineNC ctermbg=235 cterm=none gui=none
 "highlight Normal ctermbg=235 cterm=none gui=none guibg=#282828
 "
-highlight BufTabLineHidden ctermbg=235 ctermfg=237
+highlight BufTabLineHidden ctermbg=234 ctermfg=241
 highlight BufTabLineCurrent ctermbg=235 ctermfg=172
-highlight BufTabLineFill ctermbg=235
+highlight BufTabLineFill ctermbg=234
 
 "highlight TabLine ctermfg=Blue
 "highlight TabLineSel ctermfg=124
