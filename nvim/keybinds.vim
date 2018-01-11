@@ -3,33 +3,57 @@ let mapleader = "\<space>"
 "let maplocalleader = "\<space>"
 "nmap <leader><leader> :
 
-" -- override plugin keybinds
+
+" -- LEADER KEYS --
+
 "nunmap <leader>fml
 nmap <leader>b :Buffers<cr>
 nmap <leader>c :call GAddCommit()<cr>
-nmap <leader>pf :Pfiles<cr>
-nmap <leader>pg :Pgrep<cr>
-nmap <leader>pr :ProjectMru --tiebreak=end<cr>
-"nmap <leader>s :BLines<cr>
-nmap <leader>/ :BLines<cr>
-nmap <leader>x :Bdelete!<cr>
-nmap <leader>w :w<cr>
-nmap <leader>q :w<cr>:Bd<cr>
-nnoremap <silent> <leader>f :NERDTreeFind<cr>:TmuxNavigatePrevious<cr>
-
+"" duplicate/clone line
+"noremap <leader>d "ayy"ap
+" cut to system clipboard
+vnoremap <leader>d "+d
+nnoremap <leader>D "+D
+nnoremap <leader>dd "+dd
+" in visual mode, leader-h does a global search/replace of the highlighted text
+vnoremap <silent> <leader>h "hy:%s/<c-r>h/<paste>
+" in normal mode, leader-h launches search/replace :ex command
+nnoremap <silent> <leader>h :%s//<left>
 " edit file relative from current buffer path
 nnoremap <leader>e :e <c-r>=expand('%:p:h') . '/'<cr>
+" paste from system clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+nmap <leader>ff :Pfiles<cr>
+nmap <leader>fg :Pgrep<cr>
+nmap <leader>fr :ProjectMru --tiebreak=end<cr>
+nmap <leader>fb :BLines<cr>
+"nmap <leader>/ :BLines<cr>
+" double-tap leader to select current line in visual mode
+"nmap <leader><leader> V
+nmap <leader>w :w<cr>
+nmap <leader>x :Bdelete!<cr>
+" copy to system clipboard
+vnoremap <leader>y "+y
+nnoremap <leader>Y "+yg_
+nnoremap <leader>yy "+yy
+nmap <leader>q :w<cr>:Bd<cr>
+nnoremap <silent> <leader>r :NERDTreeFind<cr>:TmuxNavigatePrevious<cr>
+"nnoremap <leader>/ :BLines<cr>
+nnoremap <leader>/ :call NERDComment(0,"toggle")<cr>
+vnoremap <leader>/ :call NERDComment(0,"toggle")<cr>gv
+
 " expand %%<cr> to current path, eg :e %%/
 cabbr <expr> %% expand('%:p:h')
 
 command! -bang -nargs=* VimwikiToggleCalendar call ToggleCalendar()
 call Cabbrev('vct', 'VimwikiToggleCalendar')
+call Cabbrev('bi', 'FileInfo') " buffer info
 call Cabbrev('bo', 'BufOnly')
 call Cabbrev('bd', 'Bd') " sane buffer deletion
 call Cabbrev('ce', 'ConfigEdit')
 call Cabbrev('cr', 'ConfigReload')
-call Cabbrev('fs', 'BLines') " _fuzzy _in file
-call Cabbrev('fi', 'FileInfo') " file info
+call Cabbrev('fb', 'BLines') " _fuzzy _in file
 
 " -- config
 call Cabbrev('ce', 'e $MYVIMRC')
@@ -72,6 +96,7 @@ call Cabbrev('pvn', 'VimwikiMakeDiaryNote')
 "" reveal the current file in NERDTree
 "nnoremap <leader>fs :NERDTreeFind<cr><c-w><c-w>
 ""nnoremap <leader>nr :NERDTreeFocus<cr> \| R \| <c-w><c-p>
+" edit file relative from current buffer path
 call Cabbrev('tn', 'NERDTreeToggle')
 call Cabbrev('tnf', 'NERDTreeFind')
 call Cabbrev('tt', 'TagbarToggle')
@@ -93,9 +118,6 @@ nnoremap <c-N> :GitGutterNextHunk<cr>
 nnoremap <c-P> :GitGutterPrevHunk<cr>
 nnoremap <c-S> :GitGutterStageHunk<cr>
 
-"nnoremap <leader>/ :BLines<cr>
-nnoremap <leader>/ :call NERDComment(0,"toggle")<cr>
-vnoremap <leader>/ :call NERDComment(0,"toggle")<cr>gv
 
 " deoplete
 "inoremap <silent><expr> <cr> pumvisible() ? "<c-n>" : "<cr>"
@@ -125,12 +147,6 @@ nmap <c-a> ^
 " insert mode control enhancements
 imap <silent> <c-f> <right>
 imap <silent> <c-b> <left>
-
-" -- searching
-" in visual mode, leader-h does a global search/replace of the highlighted text
-vnoremap <silent> <leader>h "hy:%s/<c-r>h/<paste>
-" in normal mode, leader-h launches search/replace :ex command
-nnoremap <silent> <leader>h :%s//<left>
 
 " press esc to clear hilites after searching
 " -- neovim only
@@ -181,19 +197,7 @@ vnoremap = =gv
 "" move point back to original position after yanking
 "vmap y ygv<Esc>
 
-" cut to system clipboard
-vnoremap <leader>d "+d
-nnoremap <leader>D "+D
-nnoremap <leader>dd "+dd
 
-" copy to system clipboard
-vnoremap <leader>y "+y
-nnoremap <leader>Y "+yg_
-nnoremap <leader>yy "+yy
-
-" paste from system clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
 
 " don't copy the contents of an overwritten selection
 "vnoremap p "_dP
@@ -218,12 +222,6 @@ nnoremap <silent> j gj
 nnoremap <silent> k gk
 
 " -- lines
-
-" double-tap leader to select current line in visual mode
-nmap <leader><leader> V
-
-" duplicate/clone line
-noremap <leader>d "ayy"ap
 
 "---- files
 "nnoremap <leader>s :w<cr>
@@ -256,6 +254,12 @@ augroup END
 "" don't use q: command (TODO: find a replacement for q:)
 "nmap q: <nop>
 
+""---- fix macos arrow keys
+"map ^[[A <up>
+"map ^[[B <down>
+"map ^[[C <right>
+"map ^[[D <left>
+"
 "---- neovim
 if has("nvim")
   " exit terminal mode

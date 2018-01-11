@@ -32,6 +32,10 @@ Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
 " visually select outwards using <v>
 Plug 'terryma/vim-expand-region'
 
+Plug 'maxbrunsfeld/vim-yankstack'
+let g:yankstack_map_keys = 0
+"call yankstack#setup()
+
 " ---- COMMENTING ----
 
 "Plug 'tpope/vim-commentary' " gc to comment, <leader>c<space> to toggle comment
@@ -72,7 +76,6 @@ Plug 'tpope/vim-fugitive'
 
 "---- CODESENSE ----
 
-"Plug 'ervandew/supertab' " autocomplete by pressing tab (overlay for ctrl-p, ctrl-x etc)
 Plug 'luochen1990/rainbow' " color paren pairs, good for lisps
 "Plug 'kien/rainbow_parentheses.vim' " color paren pairs, good for lisps
 "Plug 'SirVer/ultisnips' " insert code snips
@@ -89,17 +92,17 @@ Plug 'tpope/vim-ragtag'
 
 "---- SESSIONS ----
 
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
-
-" g:cache_home is set in env.vim, ususally ~/.cache/nvim
-"silent !mkdir expand(g:cache_home)/sessions > /dev/null 2>&1
-"execute "let g:session_directory='".g:cache_home."/sessions'"
-silent !mkdir ~/.cache/nvim/sessions > /dev/null 2>&1
-let g:session_directory='~/.cache/nvim/sessions'
-let g:session_autoload='yes'
-let g:session_autosave='yes'
-let g:session_command_aliases=1
+"Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-session'
+"
+"" g:cache_home is set in env.vim, ususally ~/.cache/nvim
+""silent !mkdir expand(g:cache_home)/sessions > /dev/null 2>&1
+""execute "let g:session_directory='".g:cache_home."/sessions'"
+"silent !mkdir ~/.cache/nvim/sessions > /dev/null 2>&1
+"let g:session_directory='~/.cache/nvim/sessions'
+"let g:session_autoload='yes'
+"let g:session_autosave='yes'
+"let g:session_command_aliases=1
 
 "---- PROJECT PLUGINS ----
 
@@ -114,13 +117,14 @@ let g:rooter_silent_chdir = 1
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
-"Plug 'unkiwii/vim-nerdtree-sync', { 'on': 'NERDTreeToggle' }
+Plug 'unkiwii/vim-nerdtree-sync', { 'on': 'NERDTreeToggle' }
+let g:NERDTreeHighlightCursorline = 1
 
 augroup PluginNerd
   autocmd!
   "autocmd VimEnter * NERDTree
   autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree;TmuxNavigateRight | endif
   "autocmd VimEnter * NERDTree
   "autocmd BufEnter * call SyncTree()
   "autocmd BufEnter * NERDTreeMirror
@@ -155,6 +159,9 @@ map <silent> - <Plug>FileBeagleOpenCurrentBufferDir
 
 " tpope/vim-sleuth
 
+"Plug 'vim-scripts/taglist.vim'
+"let Tlist_Exit_OnlyWindow = 1
+
 " show tag sidebar for current file
 Plug 'majutsushi/tagbar'
 let g:tagbar_usearrows = 1
@@ -171,23 +178,21 @@ let g:tagbar_compact = 1
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " base fzf
 Plug 'junegunn/fzf.vim' " load Ex commands
 "let g:fzf_command_prefix = 'F' " use :Fzf prefix for Ex commands
-Plug 'tweekmonster/fzf-filemru' " provides :FilesMru :ProjectMru
+"Plug 'tweekmonster/fzf-filemru' " provides :FilesMru :ProjectMru
+"Plug 'lvht/fzf-mru'
 
-" lifted from: https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
-command! -bang -nargs=* Pgrep call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).' '.s:get_project_root(), 1, <bang>0) " search file content within proj scope
-"set grepprg=rg\ --vimgrep
 
 " find filenames within project scope
 " TODO: add search string as second param, add --tiebreak=end for better sorting
 " lifted from: https://github.com/junegunn/fzf.vim/issues/47#issuecomment-160237795
-function! s:get_project_root()
-  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
-endfunction
-command! Pfiles execute 'Files' s:get_project_root()
-"command! -bang -complete=buffer -nargs=? Bclose Bdelete<bang> <args>
-"command! FPfiles execute 'FFiles '.s:get_project_root().' '.shellescape(<q-args>)
-
-command! Pmru execute 'ProjectMru'
+"function! s:get_project_root()
+"  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+"endfunction
+"command! Pfiles execute 'Files' s:get_project_root()
+""command! -bang -complete=buffer -nargs=? Bclose Bdelete<bang> <args>
+""command! FPfiles execute 'FFiles '.s:get_project_root().' '.shellescape(<q-args>)
+"
+"command! Pmru execute 'ProjectMru'
 
 "*** TODO fuzzy tags, fuzzy function list
 
@@ -215,7 +220,7 @@ command! Pmru execute 'ProjectMru'
 "
 "Plug 'iurifq/ctrlp-rails.vim'
 "":CtrlPModels :CtrlPControllers :CtrlPViews :CtrlPLibs :CtrlPSpecs :CtrlPMigrations
-"
+				       "
 ""Plug 'ivan-cukic/vim-ctrlp-switcher'
 ""let g:ctrlpswitcher_mode = 1
 
@@ -236,9 +241,9 @@ command! Pmru execute 'ProjectMru'
 Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_no_mappings = 1
 
-Plug 'wincent/terminus' " change cursor shape with mode
+"Plug 'wincent/terminus' " change cursor shape with mode
 "let g:TerminusMouse=0
-"Plug 'jszakmeister/vim-togglecursor'
+Plug 'jszakmeister/vim-togglecursor'
 "let g:togglecursor_insert='line'
 
 "---- LINTING ----
@@ -295,8 +300,8 @@ Plug 'ap/vim-buftabline'
 " show marks in left gutter
 Plug 'kshenoy/vim-signature'
 
-" start screen menu
-Plug 'mhinz/vim-startify'
+"" start screen menu
+"Plug 'mhinz/vim-startify'
 
 "---- wiki
 Plug 'mattn/calendar-vim'
@@ -411,6 +416,7 @@ call plug#end()
 
 runtime macros/matchit.vim
 
+call yankstack#setup()
 " ---- file browser ----
 
 "" -- open netrw as left pane with :Ve
