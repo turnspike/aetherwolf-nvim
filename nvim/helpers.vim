@@ -30,16 +30,20 @@ endfunction
 
 :command! FileInfo :echo resolve(expand('%:p'))
 
+function! CopyCurrentFilePath() " {{{
+  let @+ = expand('%')
+  echo @+
+endfunction
+
 " -- nerdtree
-" Check if NERDTree is open or active
-function! IsNERDTreeOpen()
+" returns true iff is NERDTree open/active
+function! IsNTOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
+" calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
 function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+  if &modifiable && IsNTOpen() && strlen(expand('%')) > 0 && !&diff
     NERDTreeFind
     wincmd p
   endif
@@ -56,15 +60,20 @@ imap <silent><expr> <TAB>
   \ <SID>check_back_space() ? "\<TAB>" :
   \ deoplete#mappings#manual_complete()
 
-function! s:check_back_space() abort "{{{
+function! s:check_back_space()
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+endfunction
 
+" FZF
 " lifted from: https://github.com/junegunn/fzf.vim/issues/47#issuecomment-160237795
-function! s:get_project_root()
+function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
+command! ProjectFiles execute 'Files' s:find_git_root()
+" lifted from: https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
+command! -bang -nargs=* ProjectGrep call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).' '.s:find_git_root(), 1, <bang>0) " search file content within proj scope
+"set grepprg=rg\ --vimgrep
 
 " smart indent when entering insert mode with i on empty lines
 " https://stackoverflow.com/questions/3003393/vim-smart-indent-when-entering-insert-mode-on-blank-line
@@ -76,6 +85,10 @@ function! IndentWithI()
     endif
 endfunction
 nnoremap <expr> i IndentWithI()
+
+" expand %%<cr> to current path, eg :e %%/
+cabbr <expr> %% expand('%:p:h')
+command! -bang -nargs=* VimwikiToggleCalendar call ToggleCalendar()
 
 " -- airline
 
