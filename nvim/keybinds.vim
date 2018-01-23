@@ -1,7 +1,7 @@
 noremap <space> <nop>
 let mapleader = "\<space>"
 "let maplocalleader = "\<space>"
-"nmap <leader><leader> :
+nmap <leader><leader> :
 
 
 " -- LEADER KEYS --
@@ -44,13 +44,14 @@ nnoremap <leader>Y "+yg_
 nnoremap <leader>yy "+yy
 "nnoremap <silent> <leader>r :NERDTreeFind<cr>:TmuxNavigatePrevious<cr>
 "nnoremap <leader>/ :BLines<cr>
-nnoremap <leader>/ :call NERDComment(0,"toggle")<cr>
-vnoremap <leader>/ :call NERDComment(0,"toggle")<cr>gv
+nnoremap <leader>C :call NERDComment(0,"toggle")<cr>
+vnoremap <leader>C :call NERDComment(0,"toggle")<cr>gv
 
 call Cabbrev('vct', 'VimwikiToggleCalendar')
 call Cabbrev('bi', 'FileInfo') " buffer info
 call Cabbrev('bo', 'BufOnly')
 call Cabbrev('bd', 'Bd') " sane buffer deletion
+"call Cabbrev('bd', 'call CloseSplitOrDeleteBuffer()') " sane buffer deletion
 call Cabbrev('ce', 'ConfigEdit')
 call Cabbrev('cr', 'ConfigReload')
 "" -- config
@@ -108,7 +109,7 @@ call Cabbrev('tnf', 'NERDTreeFind')
 call Cabbrev('tt', 'TagbarToggle')
 call Cabbrev('w=', 'vsplit')
 call Cabbrev('w/', 'split')
-call Cabbrev('wc', 'call CloseSplitOrDeleteBuffer()')
+call Cabbrev('wd', 'call CloseSplitOrDeleteBuffer()')
 call Cabbrev('wm', 'BufOnly')
 
 " -- plugins
@@ -120,20 +121,24 @@ nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
-nnoremap <c-N> :GitGutterNextHunk<cr>
-nnoremap <c-P> :GitGutterPrevHunk<cr>
-nnoremap <c-S> :GitGutterStageHunk<cr>
+nnoremap ]h :GitGutterNextHunk<cr>zz
+nnoremap [h :GitGutterPrevHunk<cr>zz
+" note - gs blats shortcut for :sleep
+nnoremap ghs :GitGutterStageHunk<cr>
 
-nnoremap <c-p> <Plug>yankstack_substitute_older_paste
-nnoremap <c-P> <Plug>yankstack_substitute_newer_paste
+nmap [p <plug>yankstack_substitute_older_paste
+nmap ]p <plug>yankstack_substitute_newer_paste
 
 " deoplete
 "inoremap <silent><expr> <cr> pumvisible() ? "<c-n>" : "<cr>"
-inoremap <silent><expr> <esc> pumvisible() ? "<c-e><esc>" : "<esc>"
+" esc closes popup
+inoremap <silent><expr><esc> pumvisible() ? "<c-e><esc>" : "<esc>"
+" enter inserts popup text and closes it
+inoremap <silent><expr><cr> pumvisible() ? deoplete#mappings#close_popup() : "\<cr>"
 
 " jumps, blatted by supertab
-nnoremap [j <C-o>
-nnoremap ]j <tab>
+nnoremap [j <C-o>zz
+nnoremap ]j <tab>zz
 
 "-- movement
 
@@ -193,9 +198,9 @@ nnoremap <silent> Q :call CloseSplitOrDeleteBuffer()<cr>
 
 " -- selection
 
-vnoremap v <Plug>(expand_region_expand)
-vnoremap <C-v> <Plug>(expand_region_shrink)
-vnoremap V <Plug>(expand_region_shrink)
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+vmap V <Plug>(expand_region_shrink)
 
 " -- indenting
 " keep selection when indenting
@@ -205,8 +210,8 @@ vnoremap = =gv
 
 " -- copy/paste
 
-"" move point back to original position after yanking
-"vmap y ygv<Esc>
+" move point back to original position after yanking
+vmap y ygv<esc>
 
 
 
@@ -225,7 +230,8 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 " -- keep screen centered
 nnoremap J mzJ`z
 nnoremap n nzz
-"nnoremap } }zz
+nnoremap { {zz
+nnoremap } }zz
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap * *zz

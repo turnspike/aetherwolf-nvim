@@ -30,7 +30,7 @@ endfunction
 
 :command! FileInfo :echo resolve(expand('%:p'))
 
-function! CopyCurrentFilePath() " {{{
+function! CopyCurrentFilePath()
   let @+ = expand('%')
   echo @+
 endfunction
@@ -41,15 +41,22 @@ function! IsNTOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
-function! IsNTLinkable
+function! IsNTLinkable()
   "FIXME this needs to test for :echo @% != __Tagbar__.1 to enable auto sync
   return &modifiable && IsNTOpen() && strlen(expand('%')) > 0 && !&diff
 endfunction
 
+"com! -nargs=1 -complete=dir Ncd NERDTree | cd <args> | NERDTreeCWD
+
 " calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
 function! SyncTree()
   if IsNTLinkable()
+    "let root = s:find_git_root()
+    "echo root
+    "execute 'Ncd' root
     NERDTreeFind
+    "NERDTree | cd <> | NERDTreeCWD
+    "NERDTreeCWD(s:find_git_root())
     wincmd p
   endif
 endfunction
@@ -141,6 +148,12 @@ command! ConfigReload source $MYVIMRC | :call RefreshUI() " live reload config
 command! FileInfo :echo resolve(expand('%:p'))
 cmap w!! w !sudo tee % >/dev/null
 
+command! SortWords :'<,'>!xargs -n1 | sort | xargs
+
+"function! SortWords(delim)
+"  "TODO default delim to ' '
+"  call setline(line('.'),join(sort(split(getline('.'))), a:delim))
+"endfunction
 "autocmd BufEnter * if &modifiable | NERDTrgs=1 -complete=dir Ncd NERDTrgs=1 -complete=dir Ncd NERDTree | cd <args> |NERDTreeCWDree | cd <args> |NERDTreeCWDreeFind | wincmd p | endif
 " autocmd BufEnter * silent! if bufname('%') !~# 'NERD_tree_' | cd %:p:h | NERDTreeCWD | wincmd p | endif
 "autocmd CursorHold,CursorHoldI * call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | wincmd w

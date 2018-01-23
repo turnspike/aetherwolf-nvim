@@ -10,6 +10,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'danro/rename.vim' " add :rename
 Plug 'EinfachToll/DidYouMean' " running 'vim <partial filename>' will prompt for matching files
 Plug 'bogado/file-line' " open file at specific line, eg vim app/models/user.rb:1337
+Plug 'farmergreg/vim-lastplace' " move to last known editing location when opening a file
 
 "---- COLORS ----
 
@@ -32,8 +33,9 @@ Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
 " visually select outwards using <v>
 Plug 'terryma/vim-expand-region'
 
-Plug 'maxbrunsfeld/vim-yankstack'
-let g:yankstack_map_keys = 0
+"Plug 'Shougo/neoyank.vim'
+"Plug 'maxbrunsfeld/vim-yankstack'
+"let g:yankstack_map_keys = 0
 "call yankstack#setup()
 
 " ---- COMMENTING ----
@@ -46,7 +48,7 @@ let g:NERDCommentEmptyLines = 1 " allow commenting and inverting empty lines (us
 let g:NERDTrimTrailingWhitespace = 1 " enable trimming of trailing whitespace when uncommenting
 
 " whitespace
-Plug 'thirtythreeforty/lessspace.vim' "strip whitespace only on edited lines
+"Plug 'thirtythreeforty/lessspace.vim' "strip whitespace only on edited lines
 "Plug 'ntpeters/vim-better-whitespace' " hilight and work with trailing whitespace
 "autocmd BufEnter * EnableStripWhitespaceOnSave " auto strip whitespace
 
@@ -58,6 +60,16 @@ Plug 'moll/vim-bbye' " :Bdelete for a better buffer closer
 
 Plug 'wincent/loupe' " make current search match more obvious
 let g:LoupeVeryMagic=0 " don't prepend \v to searches
+
+Plug 'mileszs/ack.vim' " fuzzy searching
+let g:ackprg = 'rg --vimgrep --no-heading'
+
+"TODO helm-swoop equivalent
+"TODO bulk rename plugin
+
+"---- SORTING ----
+Plug 'christoomey/vim-sort-motion' "gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
+let g:sort_motion_flags = "i" " case insensitive
 
 "---- VERSION CONTROL ----
 
@@ -81,6 +93,8 @@ Plug 'luochen1990/rainbow' " color paren pairs, good for lisps
 "Plug 'SirVer/ultisnips' " insert code snips
 "Plug 'honza/vim-snippets' "insert code snips
 Plug 'tpope/vim-ragtag'
+Plug 'vim-syntastic/syntastic'
+Plug 'myint/syntastic-extras'
 
 " TODO: YCM?
 " TODO: kspell
@@ -130,11 +144,21 @@ Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
 
 augroup PluginNerdTree
   autocmd!
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | wincmd l | endif
+
+"  if isdirectory(argv(0))
+    "bd
+    "autocmd vimenter * exe "cd" argv(0)
+    "autocmd VimEnter * NERDTree
+  "endif
+
+  "autocmd StdinReadPre * let s:std_in=1
+  "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+  "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | wincmd l | endif
+  autocmd VimEnter * NERDTree
+  autocmd VimEnter * wincmd l
   "FIXME this breaks tagbar, need to add check for tagbar window
   "autocmd BufEnter * call SyncTree()
+  "TODO auto set nerd root to buffer's git root
 augroup END
 
 
@@ -315,8 +339,6 @@ let g:vimwiki_global_ext = 0
 "autocmd FileType vimwiki map d :VimwikiMakeDiaryNote<cr>
 "autocmd FileType vimwiki map c :call ToggleCalendar()<cr>
 
-
-"Plug 'MikeCoder/markdown-preview.vim'
 "TODO pull request this to also work on vimwiki files
 ""---- preview markdown in browser
 "Plug 'tyru/open-browser.vim'
@@ -356,6 +378,8 @@ Plug 'tpope/vim-haml' ", { 'for': 'haml' } rails syntax
 Plug 'sheerun/vim-polyglot' " multi-language syntax pack
 Plug 'stephpy/vim-yaml' " better yaml support
 Plug 'cakebaker/scss-syntax.vim'
+Plug 'kballard/vim-swift'
+Plug 'reedes/vim-pencil' " :PencilToggle for writing mode
 "Plug 'letientai299/vim-react-snippets', { 'branch': 'es6' } " react code snips, ./UltiSnips/javascript.snippets
 "Plug 'skalnik/vim-vroom' " run tests
 
@@ -417,7 +441,7 @@ call plug#end()
 
 runtime macros/matchit.vim
 
-call yankstack#setup()
+"call yankstack#setup()
 " ---- file browser ----
 
 "" -- open netrw as left pane with :Ve

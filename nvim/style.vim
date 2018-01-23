@@ -31,30 +31,37 @@ augroup END
 set background=dark
 colorscheme gruvbox
 syntax enable " enable syntax highlighting
-" -- gutter
-highlight GitGutterAdd ctermbg=235 ctermfg=142
-highlight GitGutterChange ctermbg=235 ctermfg=106
-highlight GitGutterDelete ctermbg=235 ctermfg=142
-highlight GitGutterChangeDelete ctermbg=235 ctermfg=142
-highlight SignColumn ctermbg=235 guibg=#282828
-
-highlight StatusLine ctermbg=235 cterm=none gui=none
-highlight StatusLineNC ctermbg=235 cterm=none gui=none
-"highlight Normal ctermbg=235 cterm=none gui=none guibg=#282828
-"
-highlight BufTabLineHidden ctermbg=234 ctermfg=241
-highlight BufTabLineCurrent ctermbg=235 ctermfg=172
-highlight BufTabLineFill ctermbg=234
-
-"highlight TabLine ctermfg=Blue
-"highlight TabLineSel ctermfg=124
-"highlight Title ctermfg=LightBlue
-" hide ~ for blank lines at bottom of buffer - 235 is the gruvbox bg color code
-highlight EndOfBuffer ctermfg=235
-highlight VertSplit ctermbg=235 ctermfg=235
 
 augroup Highlights
   autocmd!
+  " -- gutter
+  highlight GitGutterAdd ctermbg=235 ctermfg=142
+  highlight GitGutterChange ctermbg=235 ctermfg=142
+  highlight GitGutterDelete ctermbg=235 ctermfg=142
+  highlight GitGutterChangeDelete ctermbg=235 ctermfg=142
+  highlight SignColumn ctermbg=235 guibg=#282828
+
+  "highlight SpellBad ctermbg=235
+  "highlight SpellCap ctermbg=235
+  highlight SyntasticErrorSymbol ctermbg=235 ctermfg=124
+  highlight SyntasticWarningSign ctermbg=235 ctermfg=172
+  "highlight SyntasticErrorSign ctermbg=235
+  highlight SignColumn ctermbg=235
+  highlight StatusLine ctermbg=235 cterm=none gui=none
+  highlight StatusLineNC ctermbg=235 cterm=none gui=none
+  "highlight Normal ctermbg=235 cterm=none gui=none guibg=#282828
+
+  highlight BufTabLineHidden ctermbg=234 ctermfg=241
+  highlight BufTabLineCurrent ctermbg=235 ctermfg=172
+  highlight BufTabLineFill ctermbg=234
+
+  "highlight TabLine ctermfg=Blue
+  "highlight TabLineSel ctermfg=124
+  "highlight Title ctermfg=LightBlue
+  " hide ~ for blank lines at bottom of buffer - 235 is the gruvbox bg color code
+  highlight EndOfBuffer ctermfg=235
+  highlight VertSplit ctermbg=235 ctermfg=235
+
   " fix search hilite colors
   "hi Search cterm=NONE ctermfg=Yellow ctermbg=DarkGray
   "colorscheme colorsbox-seighties
