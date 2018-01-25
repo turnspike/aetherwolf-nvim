@@ -32,6 +32,7 @@ Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
 " TODO: justinmk/vim-sneak
 " visually select outwards using <v>
 Plug 'terryma/vim-expand-region'
+Plug 'junegunn/vim-easy-align'
 
 "Plug 'Shougo/neoyank.vim'
 "Plug 'maxbrunsfeld/vim-yankstack'

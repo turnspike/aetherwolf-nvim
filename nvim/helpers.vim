@@ -1,3 +1,5 @@
+" This file contains helper functions
+
 
 " the built-in vim cabbrev replaces all command strings including search /
 " we only want to remap :example commands

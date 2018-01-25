@@ -1,7 +1,7 @@
-set nocompatible " required for arrow keys to work under macos
+set nocompatible " required for arrow keys to work under mac
 "set term=linux " also required for arrow keys
 
-" -- tabs and spaces
+" ---- TABS AND SPACES ----
 
 "set autoindent                   " copy indent from current line when starting a new line
 "set expandtab                    " spaces not tabs
@@ -23,7 +23,7 @@ set nowrap
 set textwidth=0
 set linebreak
 "set formatoptions=l
-set formatoptions=tcroqnj
+set formatoptions=tqnj
 " -- show hidden chars
 set list
 "set listchars=tab:>-,trail:·
@@ -35,22 +35,29 @@ set splitbelow " open hsplits down (defaults up)
 set splitright " open vsplits right (defaults left)
 "set autochdir " set working directory to current file eg for :e
 
-" -- cursor movement
+" ---- CURSOR MOVEMENT ----
+"
 set backspace=indent,eol,start
 set nostartofline " preserve column on page movements
+set scrolloff=3 " show context above/below cursorline
+"set scrolloff=999 " keep cursor centered vertically
 
-""" -- timeouts (leader keys, esc)
+" ---- TIMEOUTS (LEADER KEYS, ESC) ----
+
+set nottimeout " no timeouts for key combos
 "set ttimeout
 "set ttimeoutlen=300
 
-" -- commandline
+" ---- COMMANDLINE ----
+
 set path+=** " search down into subfolders
 set wildmenu " <tab> autocompletion in commandline
 set wildmode=list:longest,full " more linuxy filename completion with <tab>
 set wildignore+=*/tmp/*,*/.git/*,*.so,*.swp,*.zip " exclude from <tab> completion
 "set rtp+=~/.fzf " add fuzzy finder to runtime path
 
-" -- backups
+" ---- BACKUPS ----
+
 set nobackup
 set noswapfile
 set nowritebackup
@@ -69,6 +76,10 @@ set infercase
 "if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
 "    "set clipboard=unnamed
 "endif
+augroup copyPaste
+  " Unset paste on InsertLeave
+  au InsertLeave * silent! set nopaste
+augroup END
 
 " -- splits
 set hidden " enable multi file editing
@@ -122,7 +133,6 @@ set nowritebackup
 "set noruler
 set noshowmode " don't display "INSERT" mode status
 set ruler " show cursor position
-set scrolloff=3 " show context above/below cursorline
 set title " change the terminal's title
 set wmh=0 " window min height = 0, for splits?
 set wmw=0 " window min width = 0, for splits?
@@ -130,6 +140,12 @@ set noerrorbells " no bell
 set shortmess+=atIoOtTF " change the messages shown by vim
 set laststatus=0
 set noshowcmd
+
+augroup display
+  " http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+  au BufNewFile,BufRead,InsertLeave * silent! match ExtraWhitespace /\s\+$/
+  au InsertEnter * silent! match ExtraWhitespace /\s\+\%#\@<!$/
+augroup END
 
 " -- vc, diffs
 "https://lornajane.net/posts/2015/vimdiff-and-vim-to-compare-files

@@ -1,10 +1,12 @@
+" ---- LEADER ----
+
 noremap <space> <nop>
 let mapleader = "\<space>"
 "let maplocalleader = "\<space>"
 nmap <leader><leader> :
 
 
-" -- LEADER KEYS --
+" ---- LEADER COMBOS ----
 
 "nunmap <leader>fml
 nnoremap <leader>b :Buffers<cr>
@@ -112,7 +114,7 @@ call Cabbrev('w/', 'split')
 call Cabbrev('wd', 'call CloseSplitOrDeleteBuffer()')
 call Cabbrev('wm', 'BufOnly')
 
-" -- plugins
+" ---- PLUGINS ----
 
 "TODO do these blat core vim shortcuts?
 nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
@@ -134,13 +136,18 @@ nmap ]p <plug>yankstack_substitute_newer_paste
 " esc closes popup
 inoremap <silent><expr><esc> pumvisible() ? "<c-e><esc>" : "<esc>"
 " enter inserts popup text and closes it
-inoremap <silent><expr><cr> pumvisible() ? deoplete#mappings#close_popup() : "\<cr>"
+inoremap <silent><expr><cr> pumvisible() ? deoplete#mappings#close_popup() . "<esc>" : "\<cr>"
 
 " jumps, blatted by supertab
 nnoremap [j <C-o>zz
 nnoremap ]j <tab>zz
 
-"-- movement
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" ---- MOVEMENT ----
 
 " extra ways to exit insert mode
 inoremap <silent> jk <esc>
@@ -169,7 +176,8 @@ nnoremap <silent> <esc><esc> :nohlsearch<cr><esc>
 "  nmap <silent> <esc>:noh<CR>:echo ""<CR><esc>
 "endif
 
-"---- buffers
+" ---- BUFFERS ----
+
 " jump back from gf FIXME this doesn't really work
 nnoremap gb :bf<cr>
 "nnoremap <leader>bd :bdelete<cr>
@@ -178,7 +186,8 @@ nnoremap gb :bf<cr>
 "nnoremap <leader>bc :enew<cr>
 "nnoremap <leader>bs :ls<CR>:b<space>
 
-"---- splits
+" ---- SPLITS ----
+
 " Universal closing behavior
 nnoremap <silent> Q :call CloseSplitOrDeleteBuffer()<cr>
 
@@ -196,19 +205,20 @@ nnoremap <silent> Q :call CloseSplitOrDeleteBuffer()<cr>
 "call Cabbrev('shs', 'eq')
 "call Cabbrev('svg', 'eq')
 
-" -- selection
+" ---- SELECTION ----
 
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 vmap V <Plug>(expand_region_shrink)
 
-" -- indenting
+" ---- INDENTING ----
+
 " keep selection when indenting
 vnoremap < <gv
 vnoremap > >gv
 vnoremap = =gv
 
-" -- copy/paste
+" ---- COPY/PASTE ----
 
 " move point back to original position after yanking
 vmap y ygv<esc>
@@ -227,26 +237,28 @@ vmap y ygv<esc>
 " select most recently edited/pasted text with gp
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" -- keep screen centered
+" -- keep screen centered for large movements
 nnoremap J mzJ`z
 nnoremap n nzz
-nnoremap { {zz
-nnoremap } }zz
+"nnoremap { {zz
+"nnoremap } }zz
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
+nnoremap g; g;zz
+nnoremap g, g,zz
 
-" -- cursor
+" ---- CURSOR ----
+
 " move cursor naturally through wrapped lines
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 
-" -- lines
+" ---- FILES ----
 
-"---- files
 "nnoremap <leader>s :w<cr>
 "inoremap <leader>s <C-c>:w<cr>
 "nnoremap <leader>e :Explore<cr>
@@ -257,7 +269,8 @@ cnoremap w!! w !sudo tee % >/dev/null
 " show file uri in command area
 "nnoremap <leader>g :echo resolve(expand('%:p'))<CR>
 
-" -- fix common typos
+" ---- FIX COMMON TYPOS ----
+
 cnoreabbrev W w
 cnoreabbrev X x
 "cnoreabbrev Q q
@@ -265,11 +278,14 @@ nnoremap <F1> <nop>
 nnoremap Q <nop>
 nnoremap K <nop>
 
-augroup Keybinds
+" ---- FILETYPES ----
+
+augroup FtKeybinds
   autocmd!
   "" q will quit help buffer
   autocmd FileType help noremap <buffer> q :q<cr>
 augroup END
+
 "" use Q to record macros (don't use Ex mode)
 "nnoremap Q q
 "" normal q does nothing
@@ -282,8 +298,9 @@ augroup END
 "map ^[[B <down>
 "map ^[[C <right>
 "map ^[[D <left>
-"
-"---- neovim
+
+" ---- NEOVIM ----
+
 if has("nvim")
   " exit terminal mode
   tnoremap jk <C-\><C-n>
