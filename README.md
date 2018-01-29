@@ -2,10 +2,10 @@
 
 _glide through vim like a predator._
 
-# :nut_and_bolt: installing
+# :nut_and_bolt: installing base package
 
     mkdir -p ~/.config
-    git clone git@github.com:turnspike/aetherwolf.git ~/.config/aetherwolf
+    git clone https://github.com/turnspike/aetherwolf.git ~/.config/aetherwolf
     
 # :nut_and_bolt: installing for nvim
 
