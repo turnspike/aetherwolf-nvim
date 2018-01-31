@@ -17,6 +17,7 @@ _glide through vim like a predator._
     nvim +PlugInstall +qall
 
 # :nut_and_bolt: installing zsh mod
+    brew install exa
     touch ~/.zshenv
     echo -e "source ~/.config/aetherwolf/zsh/env.zsh" >> ~/.zshenv
     touch ~/.zshsrc
