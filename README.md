@@ -18,6 +18,7 @@ _glide through vim like a predator._
 
 # :nut_and_bolt: installing zsh mod
     brew install exa fzf chruby
+    /usr/local/opt/fzf/install
     touch ~/.zshenv
     echo -e "source ~/.config/aetherwolf/zsh/env.zsh" >> ~/.zshenv
     touch ~/.zshsrc
