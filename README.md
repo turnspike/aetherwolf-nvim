@@ -2,8 +2,7 @@
 
 _glide through shell like a predator._
 
-All installation steps are non-destructive; they tap into your existing configuration files, or create stubs if you have none.
-
+All installation steps are non-destructive; they tap into your existing configuration files, or create stubs if you have none. Recommended terminal color theme is [https://github.com/morhetz/gruvbox-contrib](Gruvbox Dark).
 
 # :nut_and_bolt: installing base package
 
