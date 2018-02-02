@@ -15,7 +15,7 @@ All installation steps are non-destructive; they tap into your existing configur
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim                # install vim plugin manager
     
-    mkdir -p ~/.config/nvim && touch ~/.config/nvim/init.vim                           # ensure nvim config file exists (non-destructive)
+    mkdir -p ~/.config/nvim && touch ~/.config/nvim/init.vim                           # ensure nvim config file exists
     echo -e "source ~/.config/aetherwolf/nvim/init.vim" >> ~/.config/nvim/init.vim     # tap into nvim config
     nvim +PlugInstall +qall                                                            # install new vim plugins
 
