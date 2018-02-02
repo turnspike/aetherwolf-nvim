@@ -2,8 +2,7 @@
 
 _glide through vim like a predator._
 
-All installation steps are non-destructive;
-They tap into your existing configuration files, or create stubs if you have none.
+All installation steps are non-destructive; they tap into your existing configuration files, or create stubs if you have none.
 
 
 # :nut_and_bolt: installing base package
