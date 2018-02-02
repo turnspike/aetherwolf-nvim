@@ -8,7 +8,7 @@ All installation steps are non-destructive; they tap into your existing configur
 # :nut_and_bolt: installing base package
 
     mkdir -p ~/.config                                                                 # create .config dir if needed
-    git clone https://github.com/turnspike/aetherwolf.git ~/.config/aetherwolf         # wolf me up
+    git clone https://github.com/turnspike/aetherwolf.git ~/.config/aetherwolf         # wolf it up
     
 # :nut_and_bolt: installing nvim mod
 
