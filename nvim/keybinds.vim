@@ -299,6 +299,18 @@ augroup END
 "map ^[[C <right>
 "map ^[[D <left>
 
+" ---- GIT ----
+
+" Fugitive Mappings
+nnoremap gsl :Glog<CR>
+nnoremap gsd :Gdiff<CR>
+nnoremap gsb :Gblame<CR>
+nnoremap gsw :Gwrite<CR>
+nnoremap gsC :Gcommit<CR>
+nnoremap gst :Gstatus<CR>
+nnoremap gscd :Gcd<Bar>pwd<CR>
+nnoremap gsld :Glcd<Bar>pwd<CR>
+
 " ---- NEOVIM ----
 
 if has("nvim")
