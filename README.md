@@ -1,6 +1,6 @@
 # :wolf: ætherwolf
 
-_glide through vim like a predator._
+_glide through shell like a predator._
 
 All installation steps are non-destructive; they tap into your existing configuration files, or create stubs if you have none.
 
