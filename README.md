@@ -2,7 +2,9 @@
 
 _glide through vim like a predator._
 
-All installation steps are non-destructive: they tap into your existing configuration files, or create stubs if you have none.
+All installation steps are non-destructive;
+They tap into your existing configuration files, or create stubs if you have none.
+
 
 # :nut_and_bolt: installing base package
 
@@ -20,6 +22,6 @@ All installation steps are non-destructive: they tap into your existing configur
 
 # :nut_and_bolt: installing zsh mod
     brew install exa fzf chruby # install homebrew dependencies
-    /usr/local/opt/fzf/install # install fzf autocomplete
+    /usr/local/opt/fzf/install # install fzf autocomplete (recommended options - enable fuzzy: yes, enable bindings: yes, update shell cfg: no)
     touch ~/.zshenv && echo -e "source ~/.config/aetherwolf/zsh/env.zsh" >> ~/.zshenv     # tap into zsh env config
     touch ~/.zshsrc && echo -e "source ~/.config/aetherwolf/zsh/main.zsh" >> ~/.zshrc     # tap into zsh main config
