@@ -1,13 +1,25 @@
 #!/bin/zsh
 
-#---- init
-ZCACHE=$XDG_CACHE_HOME/zsh
+# ---- DIR CONFIG ----
+export XDG_CACHE_HOME="$HOME/.cache"
 [ -d $ZCACHE ] || mkdir -p $ZCACHE
+export XDG_CONFIG_HOME="$HOME/.config"
+export ZCONF=$XDG_CONFIG_HOME/aetherwolf/zsh # path to zsh config
 
-#---- general
+# ---- MACOS ----
+
+if [[ "$OSTYPE" == "darwin"* ]]; then # homebrew configs for macos
+  export PATH="/usr/local/sbin:$PATH"
+  export PATH="/usr/local/opt/sqlite/bin:$PATH"
+  export M2_REPO="~/.m2"
+fi
+
+# ---- GENERAL ----
+
 export BLOCKSIZE=1k # set default blocksize for ls, df, du
 
-#---- history
+# ---- HISTORY ----
+
 HISTFILE="$ZCACHE/.zsh_history"
 HISTSIZE=100000
 SAVEHIST=100000
@@ -25,21 +37,49 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-#---- autocomplete
+# ---- AUTOCOMPLETE ----
+
 #setopt MENU_COMPLETE
 
-#---- input
-KEYTIMEOUT=1 # 10ms for key sequences
+# ---- INPUT ----
 
-#---- locale
+KEYTIMEOUT=1 # 10ms for key sequences
+#bindkey -v # use vim keybinds
+
+PS1+='${VIMODE}'
+#   '$' for normal insert mode
+#   a big red 'I' for command mode - to me this is 'NOT insert' because red
+function zle-line-init zle-keymap-select {
+    DOLLAR='%B%F{green}$%f%b '
+    GIANT_I='%B%F{red}I%f%b '
+    VIMODE="${${KEYMAP/vicmd/$GIANT_I}/(main|viins)/$DOLLAR}"
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# ---- LOCALE ----
 # (used by perl, ruby etc)
+
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-#---- apps
+# ---- APPS ----
+
 export ENHANCD_FILTER=fzy;
 
-#---- ruby
+# ---- RUBY ----
+
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
+
+# ---- SSH KEYS ----
+
+# load ssh key for github etc (only if not already loaded)
+# http://unix.stackexchange.com/questions/132791/have-ssh-add-be-quiet-if-key-already-there
+if [ -f ~/.ssh/id_rsa ]; then
+    pp_msg "loading ~/.ssh/id_rsa"
+    ssh-add -l | grep -q `ssh-keygen -lf ~/.ssh/id_rsa | awk '{print $2}'` || ssh-add ~/.ssh/id_rsa
+fi
+

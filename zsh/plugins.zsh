@@ -59,6 +59,7 @@ zplug "mollifier/cd-gitroot" # cd-gitroot to move up to git toplevel folder
 #zplug "themes/af-magic", from:oh-my-zsh
 #zplug "themes/clean", from:oh-my-zsh
 zplug "plugins/colorize", from:oh-my-zsh, ignore:oh-my-zsh.sh
+zplug "plugins/colorize", from:oh-my-zsh, ignore:oh-my-zsh.sh
 #zplug "plugins/zsh_reload", from:oh-my-zsh
 zplug "chrissicool/zsh-256color" # ZSH plugin enhancesheerminal environment with 256 colors.
 #zplug "zsh-users/zsh-syntax-highlighting", defer:2

@@ -15,5 +15,8 @@ fi
 
 # load ssh key for github etc (only if not already loaded)
 # http://unix.stackexchange.com/questions/132791/have-ssh-add-be-quiet-if-key-already-there
-ssh-add -l | grep -q `ssh-keygen -lf ~/.ssh/id_rsa | awk '{print $2}'` || ssh-add ~/.ssh/id_rsa
+if [ -f ~/.ssh/id_rsa ]; then
+    pp_msg "loading ~/.ssh/id_rsa"
+    ssh-add -l | grep -q `ssh-keygen -lf ~/.ssh/id_rsa | awk '{print $2}'` || ssh-add ~/.ssh/id_rsa
+fi
 

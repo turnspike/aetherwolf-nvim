@@ -31,22 +31,4 @@ function { # function to localise vars
 
 unset ZSTART # remove startup timer
 
-#-- load user config settings from
-if [ -f $ZCONF/user.zsh ]; then
-    pp_msg "loading user config from $ZCONF/user.zsh"
-    source $ZCONF/user.zsh
-fi
-
-#-- load secrets
-if [ -f $ZCONF/secrets.zsh ]; then
-    pp_msg "loading secrets config from $ZCONF/secrets.zsh"
-    source $ZCONF/secrets.zsh
-fi
-
-#-- load local per-machine config settings
-if [ -f $ZCONF/local.zsh ]; then
-    pp_msg "loading local machine config from $ZCONF/local.zsh"
-    source $ZCONF/local.zsh
-fi
-
 pp_title "zsh ready."
