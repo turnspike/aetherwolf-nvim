@@ -28,7 +28,7 @@ Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
 "Plug 'timkendrick/vim-duplicate' " duplicate chunks using <leader>-d
 "nmap <leader>d <Plug>Duplicate
 " TODO: osyo-manga/vim-over
-" TODO: godlygeek/tabular
+Plug 'godlygeek/tabular'
 " TODO: justinmk/vim-sneak
 " visually select outwards using <v>
 Plug 'terryma/vim-expand-region'
@@ -191,6 +191,7 @@ augroup END
 Plug 'majutsushi/tagbar'
 let g:tagbar_usearrows = 1
 let g:tagbar_compact = 1
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 
 "Plug 'severin-lemaignan/vim-minimap'
 "let g:minimap_highlight='CursorLine'
@@ -437,6 +438,25 @@ let g:deoplete#disable_auto_complete = 1
 "Plug 'ktonga/vim-follow-my-lead'
 "nunmap <Leader>fml
 "command! -bang -nargs=0 FollowMyLead call FMLShow()
+
+" ReasonML
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+Plug 'reasonml-editor/vim-reason-plus'
+
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'reason': ['ocaml-language-server', '--stdio'],
+    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ }
+
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
+nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
+nnoremap <silent> <c-cr> :call LanguageClient_textDocument_hover()<cr>
 
 call plug#end()
 

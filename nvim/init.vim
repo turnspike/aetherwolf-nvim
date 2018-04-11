@@ -1,4 +1,4 @@
-source ~/.config/aetherwolf/nvim/helpers.vim
+source ~/.config/aetherwolf/nvim/functions.vim
 source ~/.config/aetherwolf/nvim/environment.vim
 source ~/.config/aetherwolf/nvim/plugins.vim
 source ~/.config/aetherwolf/nvim/keybinds.vim

@@ -254,8 +254,10 @@ nnoremap g, g,zz
 " ---- CURSOR ----
 
 " move cursor naturally through wrapped lines
-nnoremap <silent> j gj
-nnoremap <silent> k gk
+"nnoremap <silent> j gj
+"nnoremap <silent> k gk
+nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 
 " ---- FILES ----
 
