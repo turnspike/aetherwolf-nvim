@@ -1,5 +1,5 @@
 " This file contains helper functions
-
+" HERE BE DRAGONS
 
 " the built-in vim cabbrev replaces all command strings including search /
 " we only want to remap :example commands
@@ -144,7 +144,8 @@ function! DeleteHiddenBuffers() " {{{
   endfor
 endfunction " }}}
 
-command! ConfigEdit edit $MYVIMRC " edit config file
+"command! ConfigEdit edit $MYVIMRC " edit config file
+command! ConfigEdit edit ~/.config/aetherwolf/nvim/init.vim " edit config file
 command! ConfigReload source $MYVIMRC | :call RefreshUI() " live reload config
 
 command! FileInfo :echo resolve(expand('%:p'))

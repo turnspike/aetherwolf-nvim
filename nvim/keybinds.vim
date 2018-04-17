@@ -5,7 +5,6 @@ let mapleader = "\<space>"
 "let maplocalleader = "\<space>"
 nmap <leader><leader> :
 
-
 " ---- LEADER COMBOS ----
 
 "nunmap <leader>fml
@@ -14,53 +13,59 @@ nnoremap <leader>b :Buffers<cr>
 "" duplicate/clone line
 "noremap <leader>d "ayy"ap
 " cut to system clipboard
-vnoremap <leader>d "+d
-nnoremap <leader>D "+D
-nnoremap <leader>dd "+dd
+"vnoremap <leader>d "+d
+"nnoremap <leader>D "+D
+"nnoremap <leader>dd "+dd
 " in visual mode, leader-h does a global search/replace of the highlighted text
 vnoremap <silent> <leader>h "hy:%s/<c-r>h/<paste>
 " in normal mode, leader-h launches search/replace :ex command
 nnoremap <silent> <leader>h :%s//<left>
 " edit file relative from current buffer path
 nnoremap <leader>e :e <c-r>=expand('%:p:h') . '/'<cr>
-nnoremap <leader>ff :ProjectFiles<cr>
-nnoremap <leader>fg :ProjectGrep<cr>
+"nnoremap <leader>pf :ProjectFiles<cr>
+"nnoremap <leader>pg :ProjectGrep<cr>
 "nmap <leader>fr :ProjectMru --tiebreak=end<cr>
 "nmap <leader>fr :FilesMru --tiebreak=end<cr>
-nnoremap <leader>fr :History<cr>
-nnoremap <leader>fb :BLines<cr>
+"nnoremap <leader>fr :History<cr>
+"nnoremap <leader>fb :BLines<cr>
 " paste from system clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
+"nnoremap <leader>p "+p
+"nnoremap <leader>P "+P
 "nmap <leader>/ :BLines<cr>
 " double-tap leader to select current line in visual mode
 "nmap <leader><leader> V
-nnoremap <leader>q :w<cr>:Bd<cr>
+"nnoremap <leader>q :w<cr>:Bd<cr>
 nnoremap <leader>r :call NTChangeRoot()<cr>
 nnoremap <leader>s :call SyncTree()<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>x :Bdelete!<cr>
 " copy to system clipboard
-vnoremap <leader>y "+y
-nnoremap <leader>Y "+yg_
-nnoremap <leader>yy "+yy
+"vnoremap <leader>y +y
+"nnoremap <leader>Y +yg_
+"nnoremap <leader>yy +yy
 "nnoremap <silent> <leader>r :NERDTreeFind<cr>:TmuxNavigatePrevious<cr>
 "nnoremap <leader>/ :BLines<cr>
-nnoremap <leader>C :call NERDComment(0,"toggle")<cr>
-vnoremap <leader>C :call NERDComment(0,"toggle")<cr>gv
+"nnoremap <leader>C :call NERDComment(0,"toggle")<cr>
+"vnoremap <leader>C :call NERDComment(0,"toggle")<cr>gv
 
 call Cabbrev('vct', 'VimwikiToggleCalendar')
 call Cabbrev('bi', 'FileInfo') " buffer info
 call Cabbrev('bo', 'BufOnly')
 call Cabbrev('bd', 'Bd') " sane buffer deletion
 "call Cabbrev('bd', 'call CloseSplitOrDeleteBuffer()') " sane buffer deletion
+call Cabbrev('bf', 'Blines') " find in buffer
 call Cabbrev('ce', 'ConfigEdit')
 call Cabbrev('cr', 'ConfigReload')
 "" -- config
 "call Cabbrev('ce', 'e $MYVIMRC')
 "call Cabbrev('cr', 'so $MYVIMRC')
-call Cabbrev('ff', 'ProjectGrep') " _fuzzy _in file
-call Cabbrev('fb', 'Blines') " _fuzzy _in file
+"nnoremap <leader>pf :ProjectFiles<cr>
+"nnoremap <leader>pg :ProjectGrep<cr>
+"nmap <leader>fr :ProjectMru --tiebreak=end<cr>
+"nmap <leader>fr :FilesMru --tiebreak=end<cr>
+"nnoremap <leader>fr :History<cr>
+"nnoremap <leader>fb :BLines<cr>
+call Cabbrev('pf', 'ProjectGrep') " _fuzzy _in file
 
 "nnoremap <leader>ff :Pfiles<cr>
 "nnoremap <leader>fg :ProjectGrep<cr>
@@ -113,6 +118,7 @@ call Cabbrev('w=', 'vsplit')
 call Cabbrev('w/', 'split')
 call Cabbrev('wd', 'call CloseSplitOrDeleteBuffer()')
 call Cabbrev('wm', 'BufOnly')
+call Cabbrev('WindowMax', 'BufOnly')
 
 " ---- PLUGINS ----
 
@@ -254,8 +260,6 @@ nnoremap g, g,zz
 " ---- CURSOR ----
 
 " move cursor naturally through wrapped lines
-"nnoremap <silent> j gj
-"nnoremap <silent> k gk
 nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
 nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 

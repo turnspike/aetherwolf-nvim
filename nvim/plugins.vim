@@ -17,12 +17,15 @@ Plug 'farmergreg/vim-lastplace' " move to last known editing location when openi
 "Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 "colorscheme dusk
+Plug 'miyakogi/seiya.vim' " transparent bg
+let g:seiya_auto_enable = 1
 
 "---- EDITING ----
 Plug 'tpope/vim-repeat' " add . repeat for some plugins
 Plug 'tpope/vim-unimpaired' " use ] and [ combos for :ex commands, eg ]b for next buffer
 Plug 'tpope/vim-surround' " bracket manipulation eg cs'<p>
 Plug 'tpope/vim-dispatch' " execute shell commands in the background
+Plug 'tpope/vim-rsi' " emacs/readline style keybinds
 Plug 'idbrii/vim-endoscope' " c-S to close tag/scope
 Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
 "Plug 'timkendrick/vim-duplicate' " duplicate chunks using <leader>-d
@@ -157,6 +160,8 @@ augroup PluginNerdTree
   "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | wincmd l | endif
   autocmd VimEnter * NERDTree
   autocmd VimEnter * wincmd l
+  " quit vim if nerdtree is last buffer
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
   "FIXME this breaks tagbar, need to add check for tagbar window
   "autocmd BufEnter * call SyncTree()
   "TODO auto set nerd root to buffer's git root
