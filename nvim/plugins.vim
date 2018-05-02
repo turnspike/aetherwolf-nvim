@@ -357,14 +357,14 @@ let g:vimwiki_global_ext = 0
 "    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 "augroup END
 
-""---- clojure
+"---- CLOJURE
 "Plug 'tpope/vim-classpath', { 'for': 'clojure' }
-"Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-"Plug 'tpope/vim-salve', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'tpope/vim-salve', { 'for': 'clojure' }
 "Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
-"Plug 'guns/vim-sexp', { 'for': 'clojure' }
-"Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
-"Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+Plug 'guns/vim-sexp', { 'for': 'clojure' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
+Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 
 "---- javascript
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
