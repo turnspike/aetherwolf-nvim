@@ -4,45 +4,50 @@ if empty(glob("~/.local/share/nvim/site/autoload/plug.vim"))
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
-" TODO: denite.vim instead of cabbrev?
 
-"---- FILES ----
+"---- TODO
+" -- syntastic for linting
+" -- denite.vim instead of cabbrev?
+" -- snippets
+
+"---- FILES
+
 Plug 'danro/rename.vim' " add :rename
 Plug 'EinfachToll/DidYouMean' " running 'vim <partial filename>' will prompt for matching files
-Plug 'bogado/file-line' " open file at specific line, eg vim app/models/user.rb:1337
+"Plug 'bogado/file-line' " open file at specific line, eg vim app/models/user.rb:1337
 Plug 'farmergreg/vim-lastplace' " move to last known editing location when opening a file
 
-"---- COLORS ----
+"---- COLORS
 
 "Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
-"colorscheme dusk
 Plug 'miyakogi/seiya.vim' " transparent bg
 let g:seiya_auto_enable = 1
+"colorscheme dusk
 
-"---- EDITING ----
+"---- EDITING
+
 Plug 'tpope/vim-repeat' " add . repeat for some plugins
 Plug 'tpope/vim-unimpaired' " use ] and [ combos for :ex commands, eg ]b for next buffer
 Plug 'tpope/vim-surround' " bracket manipulation eg cs'<p>
 Plug 'tpope/vim-dispatch' " execute shell commands in the background
 Plug 'tpope/vim-rsi' " emacs/readline style keybinds
-Plug 'idbrii/vim-endoscope' " c-S to close tag/scope
-Plug 'matze/vim-move' " move chunks using <A-k> and <A-j>
+"Plug 'matze/vim-move' " move chunks using <A-k> an"d <A-j>
 "Plug 'timkendrick/vim-duplicate' " duplicate chunks using <leader>-d
 "nmap <leader>d <Plug>Duplicate
 " TODO: osyo-manga/vim-over
-Plug 'godlygeek/tabular'
+"Plug 'godlygeek/tabular'
 " TODO: justinmk/vim-sneak
 " visually select outwards using <v>
 Plug 'terryma/vim-expand-region'
-Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align' " vipga= or gaip= to align on equals
 
 "Plug 'Shougo/neoyank.vim'
 "Plug 'maxbrunsfeld/vim-yankstack'
 "let g:yankstack_map_keys = 0
 "call yankstack#setup()
 
-" ---- COMMENTING ----
+"---- COMMENTING
 
 "Plug 'tpope/vim-commentary' " gc to comment, <leader>c<space> to toggle comment
 Plug 'scrooloose/nerdcommenter'
@@ -56,11 +61,12 @@ let g:NERDTrimTrailingWhitespace = 1 " enable trimming of trailing whitespace wh
 "Plug 'ntpeters/vim-better-whitespace' " hilight and work with trailing whitespace
 "autocmd BufEnter * EnableStripWhitespaceOnSave " auto strip whitespace
 
-"---- BUFFERS ----
+"---- BUFFERS
+
 Plug 'schickling/vim-bufonly' " :BufOnly to close other buffers
 Plug 'moll/vim-bbye' " :Bdelete for a better buffer closer
 
-"---- SEARCHING ----
+"---- SEARCHING
 
 Plug 'wincent/loupe' " make current search match more obvious
 let g:LoupeVeryMagic=0 " don't prepend \v to searches
@@ -93,12 +99,13 @@ Plug 'tpope/vim-fugitive'
 "---- CODESENSE ----
 
 Plug 'luochen1990/rainbow' " color paren pairs, good for lisps
+Plug 'idbrii/vim-endoscope' " c-S to close tag/scope
 "Plug 'kien/rainbow_parentheses.vim' " color paren pairs, good for lisps
 "Plug 'SirVer/ultisnips' " insert code snips
 "Plug 'honza/vim-snippets' "insert code snips
-Plug 'tpope/vim-ragtag'
-Plug 'vim-syntastic/syntastic'
-Plug 'myint/syntastic-extras'
+"Plug 'tpope/vim-ragtag'
+"Plug 'vim-syntastic/syntastic'
+"Plug 'myint/syntastic-extras'
 
 " TODO: YCM?
 " TODO: kspell
@@ -108,7 +115,7 @@ Plug 'myint/syntastic-extras'
 " Plug 'xolox/vim-easytags'
 " g:easytags_async = 1
 
-"---- SESSIONS ----
+"---- SESSIONS
 
 "Plug 'xolox/vim-misc'
 "Plug 'xolox/vim-session'
@@ -122,7 +129,7 @@ Plug 'myint/syntastic-extras'
 "let g:session_autosave='yes'
 "let g:session_command_aliases=1
 
-"---- PROJECT PLUGINS ----
+"---- PROJECT PLUGINS
 
 Plug 'airblade/vim-rooter'
 let g:rooter_change_directory_for_non_project_files = 'current'
@@ -196,7 +203,7 @@ augroup END
 Plug 'majutsushi/tagbar'
 let g:tagbar_usearrows = 1
 let g:tagbar_compact = 1
-let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+"let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 
 "Plug 'severin-lemaignan/vim-minimap'
 "let g:minimap_highlight='CursorLine'
@@ -272,14 +279,14 @@ Plug 'junegunn/fzf.vim' " load Ex commands
 Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_no_mappings = 1
 
+" -- these can cause lag when pressing O, A etc because of escape codes
 "Plug 'wincent/terminus' " change cursor shape with mode
 "let g:TerminusMouse=0
-Plug 'jszakmeister/vim-togglecursor'
+"Plug 'jszakmeister/vim-togglecursor'
 "let g:togglecursor_insert='line'
 
-"---- LINTING ----
+"---- TABBAR
 
-"---- TABS ----
 Plug 'ap/vim-buftabline'
 
 "---- STATUS LINE ----
@@ -335,12 +342,12 @@ Plug 'kshenoy/vim-signature'
 "Plug 'mhinz/vim-startify'
 
 "---- wiki
-Plug 'mattn/calendar-vim'
-Plug 'tpope/vim-speeddating' " use CTRL-A/CTRL-X to increment dates, times
-Plug 'vimwiki/vimwiki'
+"Plug 'mattn/calendar-vim'
+"Plug 'tpope/vim-speeddating' " use CTRL-A/CTRL-X to increment dates, times
+"Plug 'vimwiki/vimwiki'
 
-let g:vimwiki_map_prefix = '<Leader>i'
-let g:vimwiki_global_ext = 0
+"let g:vimwiki_map_prefix = '<Leader>i'
+"let g:vimwiki_global_ext = 0
 " FIXME these apply to all open buffers when a vimwiki buffer is open
 "au BufRead,BufNewFile *.wiki set filetype=vimwiki
 "autocmd FileType vimwiki map d :VimwikiMakeDiaryNote<cr>
@@ -358,6 +365,7 @@ let g:vimwiki_global_ext = 0
 "augroup END
 
 "---- CLOJURE
+
 "Plug 'tpope/vim-classpath', { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'tpope/vim-salve', { 'for': 'clojure' }
@@ -366,27 +374,28 @@ Plug 'guns/vim-sexp', { 'for': 'clojure' }
 Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 
-"---- javascript
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+"---- JAVASCRIPT
 
-"---- other languages
+"Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
-Plug 'aklt/plantuml-syntax' " plantuml
-Plug 'scrooloose/vim-slumlord' " plantuml live preview
+"---- OTHER LANGUAGES
+
+"Plug 'aklt/plantuml-syntax' " plantuml
+"Plug 'scrooloose/vim-slumlord' " plantuml live preview
 "autocmd FileType plantuml nnoremap e :!java -jar ~/bin/plantuml.jar -o %:p:h %
 "autocmd FileType plantuml nnoremap e :!plantuml -o %:p:h %
 
-Plug 'kana/vim-textobj-user'
-Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'tpope/vim-cucumber' ", { 'for': 'rails'} ' cucumber syntax
-Plug 'vim-ruby/vim-ruby' ", { 'for': 'ruby' } ' ruby syntax
-Plug 'tpope/vim-rails' " rails syntax
-Plug 'tpope/vim-haml' ", { 'for': 'haml' } rails syntax
-Plug 'sheerun/vim-polyglot' " multi-language syntax pack
+"Plug 'kana/vim-textobj-user'
+"Plug 'nelstrom/vim-textobj-rubyblock'
+"Plug 'tpope/vim-cucumber', { 'for': 'rails'} " cucumber syntax
+"Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' } " ruby syntax
+"Plug 'tpope/vim-rails', { 'for': 'ruby' } " rails syntax
+"Plug 'tpope/vim-haml', { 'for': 'haml' } " rails haml template syntax
+"Plug 'sheerun/vim-polyglot' " multi-language syntax pack
 Plug 'stephpy/vim-yaml' " better yaml support
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'kballard/vim-swift'
-Plug 'reedes/vim-pencil' " :PencilToggle for writing mode
+"Plug 'cakebaker/scss-syntax.vim'
+"Plug 'kballard/vim-swift'
+"Plug 'reedes/vim-pencil' " :PencilToggle for writing mode
 "Plug 'letientai299/vim-react-snippets', { 'branch': 'es6' } " react code snips, ./UltiSnips/javascript.snippets
 "Plug 'skalnik/vim-vroom' " run tests
 
@@ -398,7 +407,7 @@ Plug 'reedes/vim-pencil' " :PencilToggle for writing mode
 "Bundle 'vim-scripts/Specky.git'
 "Bundle 'ck3g/vim-change-hash-syntax'
 
-"-- AUTOCOMPLETE
+"---- AUTOCOMPLETE
 
 " TODO https://www.gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
 
@@ -445,23 +454,23 @@ let g:deoplete#disable_auto_complete = 1
 "command! -bang -nargs=0 FollowMyLead call FMLShow()
 
 " ReasonML
-
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
-Plug 'reasonml-editor/vim-reason-plus'
-
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'reason': ['ocaml-language-server', '--stdio'],
-    \ 'ocaml': ['ocaml-language-server', '--stdio'],
-    \ }
-
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
-nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
-nnoremap <silent> <c-cr> :call LanguageClient_textDocument_hover()<cr>
+"
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
+"
+"Plug 'reasonml-editor/vim-reason-plus'
+"
+"let g:LanguageClient_serverCommands = {
+"    \ 'javascript': ['javascript-typescript-stdio'],
+"    \ 'reason': ['ocaml-language-server', '--stdio'],
+"    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+"    \ }
+"
+"nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
+"nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
+"nnoremap <silent> <c-cr> :call LanguageClient_textDocument_hover()<cr>
 
 call plug#end()
 
