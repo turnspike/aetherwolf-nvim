@@ -1,0 +1,61 @@
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = vim
+[push]
+	default = simple
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[alias]
+	a = !git add
+  aa = !git add . && git add -u . && git status
+  ac = !git add . && git commit
+	acm = !git add . && git commit -m
+  alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+	au = !git add -u . && git status
+  b = branch
+  br = ls-remote --heads origin # list all remote branches
+	c = commit
+  ca = commit --amend # careful
+	cm = commit -m
+  d = diff --color-words
+	dh = diff --color-words HEAD^
+  f = fetch
+#	l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lg = log --color=auto --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	ll = log --stat --abbrev-commit
+  master = checkout master
+	p = push
+  pr-fetch  = "!f() { git fetch origin refs/pull/$1/head:pr/$1; } ; f"
+  pr-deleteall = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
+  preview = diff --stat --cached origin/master
+  s = status
+  stage = add
+	u = pull
+	unstage = reset
+	uncommit = reset --soft HEAD^
+[include]
+	path = .gitconfig_user # load user settings. Silently ignored if file not present.
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

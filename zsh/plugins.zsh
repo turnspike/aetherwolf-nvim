@@ -18,7 +18,7 @@ export ZPLUG_HOME=$HOME/.zplug # TODO xdg this
 
 # ---- install zplug if needed
 if [[ ! -d $ZPLUG_HOME ]]; then
-	pp_msg "installing zplug..."
+	aw_msg "installing zplug..."
 	git clone https://github.com/zplug/zplug $ZPLUG_HOME
 	source $ZPLUG_HOME/init.zsh && zplug update --self
 fi
@@ -55,10 +55,12 @@ export ENHANCD_DISABLE_HOME=1
 alias cdh="cd -"
 
 zplug "mollifier/cd-gitroot" # cd-gitroot to move up to git toplevel folder
+alias cdr="cd-gitroot"
+
 # zplug "lib/clipboard", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 #zplug "themes/af-magic", from:oh-my-zsh
 #zplug "themes/clean", from:oh-my-zsh
-zplug "plugins/colorize", from:oh-my-zsh, ignore:oh-my-zsh.sh
+# zplug "plugins/colorize", from:oh-my-zsh, ignore:oh-my-zsh.sh
 zplug "plugins/colorize", from:oh-my-zsh, ignore:oh-my-zsh.sh
 #zplug "plugins/zsh_reload", from:oh-my-zsh
 zplug "chrissicool/zsh-256color" # ZSH plugin enhancesheerminal environment with 256 colors.
@@ -67,19 +69,19 @@ zplug "chrissicool/zsh-256color" # ZSH plugin enhancesheerminal environment with
 # jkzplug "mafredri/zsh-async", from:github, defer:0
 #zplug "willghatch/zsh-snippets" # snippet mgr, binds to m-x
 
-# ---- snippets (using pet)
-function prev() {
-  PREV=$(fc -lrn | head -n 1)
-    sh -c "pet new `printf %q "$PREV"`"
-}
-function pet-select() {
-  BUFFER=$(pet search --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle redisplay
-}
-zle -N pet-select
-stty -ixon
-bindkey '^s' pet-select
+# # ---- snippets (using pet)
+# function prev() {
+#   PREV=$(fc -lrn | head -n 1)
+#     sh -c "pet new `printf %q "$PREV"`"
+# }
+# function pet-select() {
+#   BUFFER=$(pet search --query "$LBUFFER")
+#   CURSOR=$#BUFFER
+#   zle redisplay
+# }
+# zle -N pet-select
+# stty -ixon
+# bindkey '^s' pet-select
 
 # ---- fish shell style completion & history plugins
 zplug "lib/completion", from:oh-my-zsh, ignore:oh-my-zsh.sh # Load completion library for sweet [tab] squares
@@ -101,7 +103,8 @@ zplug "plugins/gem", from:oh-my-zsh, ignore:oh-my-zsh.sh, defer:2
 # ---- theme
 #zplug "frmendes/geometry" # nice theme
 #GEOMETRY_SYMBOL_PROMPT="∴"
-zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
+#zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
+zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
 # ---- install packages as needed
 if ! zplug check --verbose; then
@@ -135,7 +138,7 @@ zplug load
 if [ -e $HOME/bin/z/z.sh ]; then
 	#TODO set $_Z_DATA to use ~/.cache
 	. $HOME/bin/z/z.sh
-	pp_msg "loaded z for navigation"
+	aw_msg "loaded z for navigation"
 fi
 
-pp_msg "zplug started."
+aw_msg "zplug started."

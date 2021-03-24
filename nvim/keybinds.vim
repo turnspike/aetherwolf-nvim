@@ -1,11 +1,11 @@
-" ---- LEADER ----
+"---- LEADER KEY
 
 noremap <space> <nop>
 let mapleader = "\<space>"
 "let maplocalleader = "\<space>"
 nmap <leader><leader> :
 
-" ---- LEADER COMBOS ----
+"---- LEADER COMBOS
 
 "nunmap <leader>fml
 nnoremap <leader>b :Buffers<cr>
@@ -48,6 +48,7 @@ nnoremap <leader>x :Bdelete!<cr>
 "nnoremap <leader>C :call NERDComment(0,"toggle")<cr>
 "vnoremap <leader>C :call NERDComment(0,"toggle")<cr>gv
 
+"---- EX COMMANDS eg :bo
 call Cabbrev('vct', 'VimwikiToggleCalendar')
 call Cabbrev('bi', 'FileInfo') " buffer info
 call Cabbrev('bo', 'BufOnly')
@@ -120,8 +121,9 @@ call Cabbrev('wd', 'call CloseSplitOrDeleteBuffer()')
 call Cabbrev('wm', 'BufOnly')
 call Cabbrev('WindowMax', 'BufOnly')
 
-" ---- PLUGINS ----
+"---- PLUGINS
 
+" split navigation
 "TODO do these blat core vim shortcuts?
 nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
@@ -129,6 +131,7 @@ nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
+" gitgutter
 nnoremap ]h :GitGutterNextHunk<cr>zz
 nnoremap [h :GitGutterPrevHunk<cr>zz
 " note - gs blats shortcut for :sleep
@@ -153,7 +156,7 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" ---- MOVEMENT ----
+"---- MOVEMENT
 
 " extra ways to exit insert mode
 inoremap <silent> jk <esc>
@@ -182,7 +185,7 @@ nnoremap <silent> <esc><esc> :nohlsearch<cr><esc>
 "  nmap <silent> <esc>:noh<CR>:echo ""<CR><esc>
 "endif
 
-" ---- BUFFERS ----
+"---- BUFFERS
 
 " jump back from gf FIXME this doesn't really work
 nnoremap gb :bf<cr>
@@ -192,7 +195,7 @@ nnoremap gb :bf<cr>
 "nnoremap <leader>bc :enew<cr>
 "nnoremap <leader>bs :ls<CR>:b<space>
 
-" ---- SPLITS ----
+"---- SPLITS
 
 " Universal closing behavior
 nnoremap <silent> Q :call CloseSplitOrDeleteBuffer()<cr>
@@ -211,20 +214,20 @@ nnoremap <silent> Q :call CloseSplitOrDeleteBuffer()<cr>
 "call Cabbrev('shs', 'eq')
 "call Cabbrev('svg', 'eq')
 
-" ---- SELECTION ----
+"---- SELECTION
 
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 vmap V <Plug>(expand_region_shrink)
 
-" ---- INDENTING ----
+"---- INDENTING
 
 " keep selection when indenting
 vnoremap < <gv
 vnoremap > >gv
 vnoremap = =gv
 
-" ---- COPY/PASTE ----
+"---- COPY/PASTE
 
 " move point back to original position after yanking
 vmap y ygv<esc>
@@ -257,13 +260,13 @@ nnoremap g# g#zz
 nnoremap g; g;zz
 nnoremap g, g,zz
 
-" ---- CURSOR ----
+"---- CURSOR
 
 " move cursor naturally through wrapped lines
 nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
 nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 
-" ---- FILES ----
+"---- FILES
 
 "nnoremap <leader>s :w<cr>
 "inoremap <leader>s <C-c>:w<cr>
@@ -275,7 +278,7 @@ cnoremap w!! w !sudo tee % >/dev/null
 " show file uri in command area
 "nnoremap <leader>g :echo resolve(expand('%:p'))<CR>
 
-" ---- FIX COMMON TYPOS ----
+"---- FIX COMMON TYPOS
 
 cnoreabbrev W w
 cnoreabbrev X x
@@ -284,7 +287,7 @@ nnoremap <F1> <nop>
 nnoremap Q <nop>
 nnoremap K <nop>
 
-" ---- FILETYPES ----
+"---- FILETYPES
 
 augroup FtKeybinds
   autocmd!
@@ -305,7 +308,7 @@ augroup END
 "map ^[[C <right>
 "map ^[[D <left>
 
-" ---- GIT ----
+"---- GIT
 
 " Fugitive Mappings
 nnoremap gsl :Glog<CR>
@@ -317,7 +320,7 @@ nnoremap gst :Gstatus<CR>
 nnoremap gscd :Gcd<Bar>pwd<CR>
 nnoremap gsld :Glcd<Bar>pwd<CR>
 
-" ---- NEOVIM ----
+"---- NEOVIM
 
 if has("nvim")
   " exit terminal mode
