@@ -44,9 +44,10 @@ set scrolloff=3 " show context above/below cursorline
 
 " ---- TIMEOUTS (LEADER KEYS, ESC) ----
 
-set nottimeout " no timeouts for key combos
-"set ttimeout
-"set ttimeoutlen=300
+"set notimeout " no timeouts for key combos
+"set nottimeout " no timeouts for key combos
+set ttimeout timeout " use timeouts for keyboard combo mappings
+set timeoutlen=100 ttimeoutlen=0 " 100ms for key combos, 0ms for <esc>
 
 " ---- COMMANDLINE ----
 
@@ -88,8 +89,6 @@ set splitright " open vsplits right (defaults left)
 
 " -- input
 set noshowcmd " don't display keypresses in bottom right of screen - it's distracting
-set timeout " use timeouts for keyboard combo mappings
-set timeoutlen=200 ttimeoutlen=0 " 200ms for key combos, 0ms for <esc>
 
 " -- mouse
 if has('mouse')

@@ -3,10 +3,10 @@
 ZSTART=$(date +%s%N | cut -b1-13) # startup timer
 source $ZCONF/colors.zsh # load color definitions for pretty output
 
-pp_title "ʕっ•ᴥ•ʔっ.... starting zsh"
-pp_msg "☯ zsh v$ZSH_VERSION" # display zsh version info
+aw_title "ʕっ•ᴥ•ʔっ.... starting zsh"
+aw_msg "☯ zsh v$ZSH_VERSION" # display zsh version info
 
-pp_msg "loading config from $ZCONF"
+aw_msg "loading config from $ZCONF"
 source $ZCONF/plugins.zsh # load plugins
 source $ZCONF/environment.zsh # load environment settings
 source $ZCONF/keybinds.zsh # load keybindings
@@ -24,11 +24,11 @@ function { # function to localise vars
 	else
 		local ZSTOP=$(date +%s%N | cut -b1-13)
 		local ZDIFF=$(($ZSTOP-$ZSTART))
-		pp_msg "☯ startup took ${ZDIFF}ms."
+		aw_msg "☯ startup took ${ZDIFF}ms."
 	fi
 
 }
 
 unset ZSTART # remove startup timer
 
-pp_title "zsh ready."
+aw_title "zsh ready."
