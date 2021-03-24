@@ -22,5 +22,5 @@ All installation steps are non-destructive; they tap into your existing configur
     brew install exa fzf chruby                                                                  # install homebrew dependencies
     /usr/local/opt/fzf/install                                                                   # install fzf autocomplete (recommended options - enable fuzzy: yes, enable bindings: yes, update shell cfg: no)
     touch ~/.zshenv && echo -e "source ~/.config/aetherwolf/zsh/environment.zsh" >> ~/.zshenv.   # tap into zsh env config
-    touch ~/.zshsrc; echo -e "ZCONF=~/.config/aetherwolf/zsh" >> ~/.zshrc; echo -e "" >> ~/.zshrc
+    touch ~/.zshsrc; echo -e "export ZCONF=~/.config/aetherwolf/zsh" >> ~/.zshrc; echo -e "" >> ~/.zshrc
     source $ZCONF/init.zsh && echo -e "source $ZCONF/init.zsh" >> ~/.zshrc                       # tap into zsh main config
